@@ -1,0 +1,57 @@
+.productWrap1{
+	width:1250px;
+}
+table{
+	border-collapse:collapse;
+	border:1px solid black;
+}
+table td,table th{
+	text-align:center; 
+	border:1px solid black;	
+}
+#productTotalTable{
+	padding:0;
+	margin:0;
+	width : 600px;
+	height : 500px;
+	float : left; 
+}
+#productListTable{
+	padding:0;
+	width : 100%;
+	height : 450px;
+	margin-top : 20px;
+	table-layout : fixed;
+}
+#searchType{
+	margin-top:5px;
+	height : 25px;
+}
+#productListTable thead tr{
+	background-color: yellow;
+	height:40px
+}
+#InfoTable{
+	 width : 400px;
+	 height : 380px;
+	 float : left;
+}
+#InfoTable thead tr{
+	background-color:yellow;
+	height:30px;
+}
+#InfoTable tbody tr td input,
+#InfoTable tbody tr td select{
+	width:95%;
+}
+#saveSelectSort,
+#productUnit{
+	text-align-last:center;
+}
+#productListTable tbody tr:hover{ 
+    background-color : gray;
+} 
+#addProductTable tbody td input,
+#addProductTable tbody td select{
+	width:85%;
+}
