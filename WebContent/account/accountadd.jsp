@@ -14,15 +14,15 @@ if(id==null){
 		<title>거래처 추가</title>
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 			<%--우편찾기  --%>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	<%--bootstrap 아이콘추가 --%>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-		<link rel="stylesheet" href="./init.css" /><%--css파일 추가 --%>
+    	<link rel="stylesheet" href="./account.css" />
 		<script src='./getPostNum.js'></script>
-	</head>
-	<body>
+		</head>
+		
+	<body style="background-color: #A6B1E1S">
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
-	<div class="addclass" id="accountdiv">
+	<div class="addclass" id="accountdiv" align="center">
 		<form action="accountAf.jsp" method="post">
 		  <table>
 		  	<tr>
@@ -46,12 +46,12 @@ if(id==null){
 				<td>사업자등록번호:</td>
 				<td><input type="text" name="companynum" class="add"></td>
 				<td>우편번호:</td>
-				<td><input type="text" id="address1" name="address1" class="add" > 
+				<td><input type="text" id="address1" name="address1" class="add" readonly="readonly"> 
 				<button type="button"onClick="postNum()"id="addressbtn"class="glyphicon glyphicon-search" >찾기</button></td>
 			</tr>
 			<tr>
 				<td>기본주소:</td>
-				<td><input type="text" size="50" id="address2" name="address2"  class="add"></td>
+				<td><input type="text" size="50" id="address2" name="address2"  class="add" readonly="readonly"></td>
 				<td>하위주소:</td>
 				<td><input type="text" size="50" id="address3" name="address3"  class="add" size=></td>
 			</tr>
@@ -75,7 +75,7 @@ if(id==null){
 			</tr>
 		</table>
 			<div align="center">
-			<button type="submit" class="glyphicon glyphicon-ok" id="btn">저장</button>
+			<button type="submit" class="btn btn-primary" id="btn" >저장</button>
 			</div>
 		</form>
 	</div>

@@ -30,39 +30,43 @@ if(search == null){
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>                <%--제이쿼리 추가 --%>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>             <%--우편추가 --%>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <%--bootstrap 아이콘추가 --%>
-		<link rel="stylesheet" href="./init.css" />
 		<script src='./getPostNum.js'></script>
+    	<link rel="stylesheet" href="./account.css"/> 
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	
+		
 	</head>
-	<body>
+	<body style="background-color: #A6B1E1">
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
+	
 	<div class='wrap1'>
 		<div class="searchclass">
 			<div align="center">
-				찾기:
-				<input type="text" id="search" name="searchword"> 
+				찾기:<input type="text" id="search" name="searchword"> 
 					<select id="choice" name="choice">
 						<option value="companyname">거래처명</option>
 						<option value="ceoname">대표자</option>
 						<option value="companynum">사업자 번호</option>
 					</select> 
-				<button onclick="searchBuyer()" class="glyphicon glyphicon-search" id="searchbtn">검색</button>
+				<button onclick="searchBuyer()" id="searchbtn" class="btn btn-primary">검색</button>
 			</div>
 		    
 			<br>
 			
 			<%--거래처 리스트 --%>
-			<div class="list" align="left"> 
-				<table border="1" >
+			<div class="list" align="left" style="overflow:auto; width:500px; height:350px;"> 
+				<table border="1"  id="list">
 					<col width="50"><col width="150"><col width="150"><col width="150">
+					<thead>
 					<tr>
-						<th align="center">번호</th>
-						<th align="center">거래처명</th>
-						<th align="center">대표자</th>
-						<th align="center">사업자번호</th>
+						<th>번호</th>
+						<th>거래처명</th>
+						<th>대표자</th>
+						<th>사업자번호</th>
 					</tr>
+					</thead>
 					<%if(list == null || list.size() == 0){%>
 					<tr>
 						<td colspan="4" align="center">거래처목록이 없습니다</td>
@@ -84,9 +88,10 @@ if(search == null){
 					%>
 				</table>
 			</div>
-			<div align="right" class="update"> <%--거래처정보 수정및정보 --%>
+			<div align="right"> <%--거래처정보 수정및정보 --%>
 				<form action="accountupdateAf.jsp"method="post">
 				<table>
+					
 					<tr>
 						<td>거래처명:</td>
 						<td><input type="text"id="companyname"name="companyname"size="20"class="add"></td>
@@ -105,14 +110,14 @@ if(search == null){
 						<td>사업자등록번호:</td>
 						<td><input type="text"id="companynum"name="companynum"class="add"></td>
 						<td>우편번호:</td>
-						<td><input type="text"id="address1"name="address1"class="add" > 
-						<button type="button"onClick="postNum()"id="addressbtn"class="glyphicon glyphicon-search" >찾기
+						<td><input type="text"id="address1"name="address1"class="add"  readonly="readonly"> 
+						<button type="button"onClick="postNum()"id="addressbtn" class="glyphicon glyphicon-search" >찾기
 						</button></td>
 					</tr>
 					
 					<tr>
 						<td>기본주소:</td>
-						<td><input type="text"size="50"id="address2"name="address2"class="add"></td>
+						<td><input type="text"size="50"id="address2"name="address2"class="add" readonly="readonly"></td>
 						<td>하위주소:</td>
 						<td><input type="text"size="50"id="address3"name="address3"class="add"></td>
 					</tr>
@@ -139,9 +144,9 @@ if(search == null){
 						<textarea rows="5"cols="100"id="memo"name="memo"class="add"style="resize:none;border:1"></textarea></td>
 					</tr>
 				</table>
-				<button type="button"id="addbtn"name="add"class="glyphicon glyphicon-user"onclick='popAddBuyer()'>거래처추가</button> 
-				 <button type="submit" id="updatebtn" name="update" class="glyphicon glyphicon-pencil">거래처수정</button> 
-				 <button type="button" id="delbtn" name="del" class="glyphicon glyphicon-trash">거래처삭제</button> 
+				<button type="button"id="addbtn"name="add" onclick='popAddBuyer()' class="btn btn-primary">거래처추가</button> 
+				 <button type="submit" id="updatebtn" name="update" class="btn btn-primary">거래처수정</button> 
+				 <button type="button" id="delbtn" name="del" class="btn btn-primary">거래처삭제</button> 
 				</form>	
 			</div>
 		</div>
