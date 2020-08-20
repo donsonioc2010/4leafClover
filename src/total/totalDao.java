@@ -20,7 +20,7 @@ public class totalDao {
 		return dao;
 	} 
 	
-	public List<totalDto> getMonthTotalAvg(String sellerId) {
+	public List<totalMMDto> getMonthTotalAvg(String sellerId) {
 		String sql = "SELECT AVG(o.order_total), "
 					+ " AVG(o.order_collect_money), "
 					+ " AVG(o.order_not_collect_money) "
@@ -34,7 +34,7 @@ public class totalDao {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		List<totalDto> list = new ArrayList<totalDto>();
+		List<totalMMDto> list = new ArrayList<totalMMDto>();
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -45,7 +45,7 @@ public class totalDao {
 			
 			while (rs.next()) {
 				int i = 1;
-				totalDto dto = new totalDto(rs.getInt(i++),
+				totalMMDto dto = new totalMMDto(rs.getInt(i++),
 											rs.getInt(i++),
 											rs.getInt(i++));
 				list.add(dto);
@@ -61,11 +61,10 @@ public class totalDao {
 		return list;
 	}
 
-	public List<totalDto> getYearTotalAvg(String sellerId) {
+	public List<totalYYYYDto> getYearTotalAvg(String sellerId) {
 		String sql = " SELECT AVG(o.order_total), "
 					+ " AVG(o.order_collect_money), "
-					+ " AVG(o.order_not_collect_money), "
-					+ " B.BUYER_SEQ "
+					+ " AVG(o.order_not_collect_money) "
 					+ " FROM ORDER_LIST O, BUYER B "  
 					+ " WHERE substr(o.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') " 
 					+ " AND b.seller_id = ? ";
@@ -76,7 +75,7 @@ public class totalDao {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		List<totalDto> list = new ArrayList<totalDto>();
+		List<totalYYYYDto> list = new ArrayList<totalYYYYDto>();
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -87,9 +86,7 @@ public class totalDao {
 			
 			while (rs.next()) {
 				int i = 1;
-				totalDto dto = new totalDto(rs.getInt(i++),
-											rs.getInt(i++),
-											rs.getInt(i++),
+				totalYYYYDto dto = new totalYYYYDto(rs.getInt(i++),
 											rs.getInt(i++),
 											rs.getInt(i++));
 				list.add(dto);

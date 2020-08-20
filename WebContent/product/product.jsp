@@ -9,6 +9,7 @@
 	if(id==null){
 		response.sendRedirect("../login/login.jsp");
 	}
+
 	productDao dao = productDao.getInstance();
 	productDto dto = new productDto();
 	List<productDto> productList = dao.getAllProductList();
@@ -20,7 +21,6 @@
 		<meta charset="UTF-8">
 		<title>productManageMent</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		
 		<link rel="stylesheet" href = "./product/productCss.css" />
 		<link rel="stylesheet" href="../init.css" />
 	</head>

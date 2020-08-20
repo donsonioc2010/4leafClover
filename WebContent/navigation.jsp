@@ -48,7 +48,7 @@ a {	text-decoration: none;}
 	<div class="top">
 		<ul class="top_bar">
 			<li class="top_menu"><a href="/ProductManagementSystem/myPage/myPage.jsp"><span>마이페이지</span></a></li>
-			<li class="top_menu"><a href="#"><span>총매출</span></a></li>
+			<li class="top_menu"><a href="/ProductManagementSystem/total/total.jsp"><span>총매출</span></a></li>
 		</ul>
 	</div>
 	

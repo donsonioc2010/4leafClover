@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+body{
+	background-color : #A6B1E1;
+}
+
+form{
+	margin : 100px;
+	background-color : white;
+	padding : 90px;
+	border-radius : 10%;
+	display : block;
+	box-shadow : 3px 3px 3px 3px #999;
+}
+
+table thead{
+	background-color : #2B2E7E;
+	color : white;
+}
+
