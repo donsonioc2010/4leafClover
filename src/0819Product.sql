@@ -1,0 +1,21 @@
+select * from product;
+select * from product_unit_cate;
+
+SELECT P.PRODUCT_SEQ,P.PRODUCT_NAME,
+    P.PRODUCT_TRADE_PRICE,P.PRODUCT_SORT,P.PRODUCT_PIECE_BOX,P.PRODUCT_STANDARD,U.PRODUCT_UNIT
+    FROM PRODUCT P ,PRODUCT_UNIT_CATE U 
+    WHERE P.PRODUCT_UNIT=U.SEQ_NUM
+        AND P.PRODUCT_SEQ = 43;
+delete from product where product_seq = 22;
+commit;
+--FK_ORDERDETAIL_PRODUCTSEQ <= CONSTRAINTNAME
+
+ALTER TABLE ORDER_DETAIL DISABLE CONSTRAINT FK_ORDERDETAIL_PRODUCTSEQ;
+ALTER TABLE ORDER_DETAIL ENABLE NOVALIDATE CONSTRAINT FK_ORDERDETAIL_PRODUCTSEQ;
+update product set product_standard = '500ml' where product_seq=24;
+update product set product_standard = '444ml' where product_standard='ml';
+update product set product_standard = '1000ml' where product_standard is null;
+
+SELECT PRODUCT_SEQ,PRODUCT_NAME, PRODUCT_SORT FROM PRODUCT WHERE PRODUCT_SORT LIKE '%╦фаж%';
+SELECT PRODUCT_SEQ,PRODUCT_NAME, PRODUCT_SORT FROM PRODUCT WHERE PRODUCT_NAME LIKE '%цЁю╫%';
+
