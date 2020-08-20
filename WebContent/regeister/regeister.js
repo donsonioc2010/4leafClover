@@ -1,7 +1,7 @@
 var form = document.querySelector("#regeform");
 
 function goBack() {
-    location.href = "../login/login.html";
+    location.href = "../login/login.jsp";
 }
 function isSame() {
     //비밀번호가 맞는지 확인 맞으면 class명 same에 같다고 작성

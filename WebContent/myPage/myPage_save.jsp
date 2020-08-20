@@ -15,7 +15,6 @@ if(ologin == null){
 	<%
 }
 seller = (sellerDto)ologin;
-
 %> --%>
 <%
 String companyName = request.getParameter("companyName");

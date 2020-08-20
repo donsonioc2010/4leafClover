@@ -3,18 +3,19 @@
 <%
 String id = (String)session.getAttribute("login");
 if(id==null){
-	response.sendRedirect("../login/login.jsp");
+	response.sendRedirect("./login/login.jsp");
 }
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<%if(id!=null){ %>
-		<jsp:include page="./navigation.jsp"></jsp:include>
-	<%} %> 
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Main</title>
+		<link rel="stylesheet" href="./init.css" />
+	</head>
+	<body>
+		<%if(id!=null){ %>
+			<jsp:include page="./navigation.jsp"></jsp:include>
+		<%} %> 
+	</body>
 </html>
