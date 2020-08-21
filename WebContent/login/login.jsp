@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
-
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -15,63 +13,88 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./login.css" />
+    <style type="text/css">
+    #myVideo {
+	  opacity: 0.5;
+	  position: absolute;
+	  right: 0;
+	  bottom: 0;
+	  min-width: 90%;
+	  min-height: 100%;
+	  z-index:0;
+	}
+	.videoOverlay{
+		width:20%;
+		height:50%;
+		left:40%;
+		top:25%;
+		border:5px solid green;
+		border-radius: 5%;
+		z-index:1;
+		position:absolute;
+		background-color:white;
+	}
+	.login{
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index:2;
+		width:50%;
+		height:50%;
+	}
+    </style>
   </head>
   <body lang="ko">
-    <div id="login">
-      <h3 class="text-center text-white pt-5"></h3>
-      <div class="container">
-        <div
-          id="login-row"
-          class="row justify-content-center align-items-center"
-        >
-          <div id="login-column" class="col-md-6">
-            <div id="login-box" class="col-md-12">
-              <form id="login-form" class="form" action="./loginAf.jsp" method="post">
-                <h3 class="text-center text-info">Login</h3>
-                <div class="form-group">
-                  <label for="username" class="text-info">Username:</label
-                  ><br />
-                  <input
-                    type="text"
-                    name="userid"
-                    id="userid"
-                    class="form-control"
-                    onkeydown="fn_press_han(this);"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="password" class="text-info">Password:</label
-                  ><br />
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    class="form-control"
-                  />
-                </div>
-                
-                <div class="form-group">
-                <span id="alert"></span>
-                   <br />
-                  <input
-                    type="button"
-                    id="loginBtn"
-                    class="btn btn-info btn-md"
-                    value="로그인"
-                    onclick="loginFormCheck()"
-                  />
-                </div>
-                <div id="register-link" class="text-right">
-                  <a href="../regeister/regeister.jsp" class="text-info">
-                  	회원가입
-               	</a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  	<video autoplay muted loop id="myVideo">
+  		<source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+	</video>
+	<div class='videoOverlay'>
+  	<div class='login'>
+	    <form id="login-form" class="form" action="./loginAf.jsp" method="post">
+	      <h3 class="text-center text-info">Login</h3>
+	      <div class="form-group">
+	        <label for="username" class="text-info">
+	        	Username:
+        	</label>
+	        <br />
+	        <input 
+	          type="text"
+	          name="userid"
+	          id="userid"
+	          class="form-control"
+	          onkeydown="fn_press_han(this);"
+	        />
+	      </div>
+	      <div class="form-group">
+	        <label for="password" class="text-info">Password:</label
+	        ><br />
+	        <input
+	          type="password"
+	          name="password"
+	          id="password"
+	          class="form-control"
+	        />
+	      </div>
+	      
+	      <div class="form-group">
+	      <span id="alert"></span>
+	         <br />
+	        <input
+	          type="button"
+	          id="loginBtn"
+	          class="btn btn-info btn-md"
+	          value="로그인"
+	          onclick="loginFormCheck()"
+	        />
+	      </div>
+	      <div id="register-link" class="text-right">
+	        <a href="../regeister/regeister.jsp" class="text-info">
+	        	회원가입
+	     	</a>
+	      </div>
+	    </form>
+	</div>
     <!-- 
     	한글 막음 예시  
     <input type="text" onkeydown="fn_press_han(this);">
