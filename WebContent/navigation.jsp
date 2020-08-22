@@ -5,53 +5,52 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
-header table,
-header table tr,
-header table td{
-	border:0;
-}
-header .top{
-	background-color: ghostwhite;
-	position: relative;
-	left: 0;
-	padding: 0;
-	width: 100%;
-	height: 30px;
-	padding-top: 4px;
-}
-header .top span{
-	font-size: 16px;
-	line-height: 20px;
-	color: blue;
-}
-header .top span:hover{
-	color: red;
-}
-header .top_bar{
-	display: inline;
-}
-header .top_bar li{
-	display: inline-block;
-}
-header .top_bar li{
-	float: right;
-	padding-right: 20px;
-}
-header .top .top_bar a {text-decoration: none;}
-#header .category :hover{
-	color: white;
-}
-header .category{
-	border: none;
-	outline: none;
-}
-header .top a .logo{
-	padding-left:10px;
-	width:100px;
-	height:30px;
-}
+	header table,
+	header table tr,
+	header table td{
+		border:0;
+	}
+	header .top{
+		background-color: ghostwhite;
+		position: relative;
+		left: 0;
+		padding: 0;
+		width: 100%;
+		height: 30px;
+		padding-top: 4px;
+	}
+	header .top span{
+		font-size: 16px;
+		line-height: 20px;
+		color: blue;
+	}
+	header .top span:hover{
+		color: red;
+	}
+	header .top_bar{
+		display: inline;
+	}
+	header .top_bar li{
+		display: inline-block;
+	}
+	header .top_bar li{
+		float: right;
+		padding-right: 20px;
+	}
+	header .top .top_bar a {text-decoration: none;}
+	#header .category :hover{
+		color: white;
+	}
+	header .category{
+		border: none;
+		outline: none;
+	}
+	header .top a .logo{
+		padding-left:10px;
+		width:100px;
+		height:30px;
+	}
 </style>
 </head>
 <body>
