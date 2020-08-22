@@ -47,12 +47,20 @@ header .category{
 	border: none;
 	outline: none;
 }
+header .top a .logo{
+	padding-left:10px;
+	width:100px;
+	height:30px;
+}
 </style>
 </head>
 <body>
 <header>
 	<nav>
 	<div class="top">
+		<a href='/ProductManagementSystem/index.jsp'>
+			<img src="/ProductManagementSystem/image/logo.png"class='logo'>
+		</a>
 		<ul class="top_bar">
 			<li class="top_menu"><a href="/ProductManagementSystem/login/logout.jsp"><span>로그아웃</span></a></li>
 			<li class="top_menu"><a href="/ProductManagementSystem/myPage/myPage.jsp"><span>마이페이지</span></a></li>
