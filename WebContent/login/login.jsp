@@ -19,27 +19,31 @@
 	  position: absolute;
 	  right: 0;
 	  bottom: 0;
-	  min-width: 90%;
+	  min-width: 100%;
 	  min-height: 100%;
 	  z-index:0;
 	}
 	.videoOverlay{
-		width:20%;
-		height:50%;
+		width:400px;
+		height:450px;
 		left:40%;
-		top:25%;
+		top:20%; 
 		border:5px solid green;
 		border-radius: 5%;
 		z-index:1;
 		position:absolute;
 		background-color:white;
 	}
-	.login{
+	.videoOverlay .login{
 		position: absolute;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		z-index:2;
+		width:100%;
+		height:100%;
+	}
+	.login form{
 		width:50%;
 		height:50%;
 	}
@@ -94,6 +98,7 @@
 	     	</a>
 	      </div>
 	    </form>
+	    </div>
 	</div>
     <!-- 
     	한글 막음 예시  
