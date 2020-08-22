@@ -7,7 +7,6 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	
 	int seq = Integer.parseInt(request.getParameter("seq"));
 	String searchWord = request.getParameter("search");
 	clienthistoryDao dao = clienthistoryDao.getInstance();	

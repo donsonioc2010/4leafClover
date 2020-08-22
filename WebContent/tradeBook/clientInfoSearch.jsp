@@ -15,7 +15,4 @@
 	list = dao.getClientHistory("test1",seq,"");
 	Gson Jobj=new Gson();
 	out.print(Jobj.toJson(list));
-	
-	
-	
 %>
