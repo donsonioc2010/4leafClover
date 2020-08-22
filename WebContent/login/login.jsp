@@ -43,10 +43,6 @@
 		width:100%;
 		height:100%;
 	}
-	.login form{
-		width:50%;
-		height:50%;
-	}
     </style>
   </head>
   <body lang="ko">
