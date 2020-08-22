@@ -14,58 +14,76 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./login.css" />
     <style type="text/css">
+    .body{
+    	width:1920px;
+    	height:1080px;
+    }
     #backImg {
-	  opacity: 0.5;
-	  position: absolute;
-	  right: 0;
-	  bottom: 0;
-	  width:100%;
-	  height:100%;
-	  z-index:0;
+     	bottom: 0;
+	    width: 1920px;
+	    height: 1080px;
+	    z-index: 0;
+	    display: inline-block;
+	    position: fixed;
+	    opacity: 0.5;
+	}
+	#logoImg{
+		width:200px;
+		height:100px;
 	}
 	.videoOverlay{
-		width:400px;
-		height:450px;
-		left:40%;
-		top:20%; 
-		border:5px solid green;
-		border-radius: 5%;
-		z-index:1;
-		position:absolute;
-		background-color:white;
+		width: 350px;
+	    height: 100%;
+	    z-index: 1;
+	    right: 0;
+		position: absolute;
+	    display: inline-block;
+	    background-color: white;
+	    border:5px solid green;
 	}
+	.videoOverlay .login{
+	 	width:80%;
+	 	height:100%;
+	 	z-index:2;
+	}
+	.videoOverlay .login form{
+		padding-left:15%;
+		padding-top:15%; 
+	}
+
 
     </style>
   </head>
   <body lang="ko">
-  	<img alt="" src="../image/mainimage.jpg" id='backImg'>
+  
+  	<img alt=""src='../image/mainimage.jpg'id='backImg'>
 	<div class='videoOverlay'>
-  	<div class='login'>
-	    <form id="login-form" class="form" action="./loginAf.jsp" method="post">
-	      <h3 class="text-center text-info">Login</h3>
-	      <div class="form-group">
-	        <label for="username" class="text-info">
-	        	Username:
-        	</label>
-	        <br />
-	        <input  type="text"name="userid"id="userid"class="form-control"onkeydown="fn_press_han(this);" />
-	      </div>
-	      <div class="form-group">
-	        <label for="password" class="text-info">Password:</label>
-	        <br />
-	        <input type="password"ame="password"id="password"class="form-control" />
-	      </div>
-	      <div class="form-group">
-	      <span id="alert"></span>
-	         <br />
-	        <input type="button"id="loginBtn"class="btn btn-info btn-md"value="로그인"onclick="loginFormCheck()" />
-	      </div>
-	      <div id="register-link" class="text-right">
-	        <a href="../regeister/regeister.jsp" class="text-info">
-	        	회원가입
-	     	</a>
-	      </div>
-	    </form>
+		<div class='login'>
+		    <form id="login-form" class="form" action="./loginAf.jsp" method="post">
+		      <img alt=""src='../image/logo.png'id='logoImg'>
+		      <div class="form-group">
+		        <label for="username" class="text-info">
+		        	Username:
+	        	</label>
+		        <br />
+		        <input  type="text"name="userid"id="userid"class="form-control"onkeydown="fn_press_han(this);" />
+		      </div>
+		      <div class="form-group">
+		        <label for="password" class="text-info">Password:</label>
+		        <br />
+		        <input type="password"ame="password"id="password"class="form-control" />
+		      </div>
+		      <div class="form-group">
+		      <span id="alert"></span>
+		         <br />
+		        <input type="button"id="loginBtn"class="btn btn-info btn-md"value="로그인"onclick="loginFormCheck()" />
+		      </div>
+		      <div id="register-link" class="text-right">
+		        <a href="../regeister/regeister.jsp" class="text-info">
+		        	회원가입
+		     	</a>
+		      </div>
+		    </form>
 	    </div>
 	</div>
 
