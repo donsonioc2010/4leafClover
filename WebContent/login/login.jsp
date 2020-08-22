@@ -34,19 +34,7 @@
 		position:absolute;
 		background-color:white;
 	}
-	.videoOverlay .login{
-		position: absolute;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		z-index:2;
-		width:100%;
-		height:100%;
-	}
-	.login form{
-		width:50%;
-		height:50%;
-	}
+
     </style>
   </head>
   <body lang="ko">
