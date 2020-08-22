@@ -7,39 +7,46 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-.top{
+header table,
+header table tr,
+header table td{
+	border:0;
+}
+header .top{
 	background-color: ghostwhite;
 	position: relative;
 	left: 0;
 	padding: 0;
 	width: 100%;
-	height: 20px;
-	padding-top: 7px;
+	height: 30px;
+	padding-top: 4px;
 }
-.top span{
-	font-size: 12px;
+header .top span{
+	font-size: 16px;
 	line-height: 20px;
-	color: black;
+	color: blue;
 }
-.top_bar{
+header .top span:hover{
+	color: red;
+}
+header .top_bar{
 	display: inline;
 }
-.top_bar li{
+header .top_bar li{
 	display: inline-block;
 }
-.top_bar li{
+header .top_bar li{
 	float: right;
 	padding-right: 20px;
 }
-a {	text-decoration: none;}
-.category:hover{
+header .top .top_bar a {text-decoration: none;}
+#header .category :hover{
 	color: white;
 }
-.category{
+header .category{
 	border: none;
 	outline: none;
 }
-
 </style>
 </head>
 <body>
