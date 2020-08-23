@@ -75,6 +75,20 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="./order.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#searchCompanyBtn').click(function(){
+				SearchCompany()
+			})
+			$('#searchWord').keypress(function(){
+				 if (window.event.keyCode == 13) {
+		 
+		             // 엔터키가 눌렸을 때 실행할 내용
+		             SearchCompany()
+		        }
+			})	
+		})
+	</script>
 </body>
 </html>
 
