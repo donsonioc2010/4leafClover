@@ -327,8 +327,57 @@ var form = ''
 			alert('거래처를 선택해주십시오')
 		}
 	}	
-
 	
+//Company_List.jsp 에서 검색에 따른 검색결과
+			$('#searchCompanyBtn').click(function(){
+			//비동기로 가져와야함
+			let searchWord = $('#searchWord').val().trim()
+			let type = $('#searchType').val()
+			if(type!='1'){
+				if(searchWord!=''){
+					$.ajax({
+						type:'GET',
+						url:'./searchCompanyList.jsp',
+						datatype:'html',
+						data:{
+							'searchWord':searchWord,
+							'type':type
+						},
+						success:function(data){
+							console.log('??')
+							$('.popup_LeftBox table #companyList').html(data)
+						},error:function(){
+							alert('에러')
+						}
+					})
+				}else{
+					$('#searchWord').focus()
+				}
+			}else{
+				$.ajax({
+					type:'GET',
+					url:'./searchCompanyList.jsp',
+					datatype:'html',
+					data:{
+						'searchWord':searchWord,
+						'type':type
+					},
+					success:function(data){
+						console.log('??')
+						$('.popup_LeftBox table #companyList').html(data)
+					},error:function(){
+						alert('에러')
+					}
+				})
+			}
+		})
+		$('#searchWord').keypress(function(){
+			 if (window.event.keyCode == 13) {
+	 
+	             // 엔터키가 눌렸을 때 실행할 내용
+	             SearchCompany()
+	        }
+		})	
 //productList.jsp=======================
 	//검색버튼 눌렀을대 검색되는 기능 추가하기
 	function SearchProduct(){

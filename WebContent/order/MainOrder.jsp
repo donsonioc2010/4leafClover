@@ -164,7 +164,6 @@
 				</table>
 			</div>
 			<hr>
-			<input type='button'value='세금계산서'onclick="taxStatement();">
 			<input type='button'value='거래명세서'onclick="tradingStatement();">
 			<input type='button'value='저장'id='orderSaveBtn'onclick="orderSave();">
 			<input type='button'value='수정'name='updateDetail'onclick='updateMoney();'disabled>
