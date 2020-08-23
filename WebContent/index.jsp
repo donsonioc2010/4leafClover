@@ -12,6 +12,7 @@ if(id==null){
 		<meta charset="UTF-8">
 		<title>Main</title>
 		<link rel="stylesheet" href="./init.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <style>
         .extendHeight{
             height:90%;
@@ -102,12 +103,12 @@ if(id==null){
                         </a>
                     </th>
                     <th>
-                        <a href='#'>
+                        <div id='addProductbtn'>
                             <div class='extendHeight'>
                                 <img alt="" src="./image/quickMenu/addProductIcon.svg">
                             </div>
                             <span class='menuExp'>상품 추가</span>
-                        </a>
+                        </div>
                     </th>
                     <th>
                         <a href='#'>
@@ -127,6 +128,7 @@ if(id==null){
                     </th>
                 </tr>
             </table>
+            <script src='./product/product.js'type='application/javascript'></script>
         </div> 
 	</body>
 </html>

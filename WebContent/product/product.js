@@ -42,7 +42,7 @@ $('#insertProduct').click(function(){
 
 //상품추가를 눌렀을시에 PopUp을 띄워서 추가페이지를 띄워줌
 $("#addProductbtn").click(function(){
-	let openUrl = "./productAdd.jsp"
+	let openUrl = 'http://'+location.host + '/ProductManagementSystem/product/productAdd.jsp'
 	let popTitle = "AddProduct"
 	let popOption = "width=550,height=250,left=500,top=50,status=no,scrollbars=yes"
 	window.open(openUrl,popTitle,popOption)	 
