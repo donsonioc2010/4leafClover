@@ -15,6 +15,44 @@ public class productDao {
 	private productDao() {DBConnection.initConnection();}
 	public static productDao getInstance() {return dao;}
 	
+	//물품명으로만 검색함
+	public List<productDto> searchProductList(String searchWord){
+		List<productDto> list = new ArrayList<productDto>();
+		
+		String sql = "SELECT PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_SORT, PRODUCT_TRADE_PRICE, PRODUCT_STANDARD "
+				+ " FROM PRODUCT WHERE PRODUCT_NAME LIKE ? ORDER BY PRODUCT_SEQ ";
+		Connection conn = null;
+		PreparedStatement psmt  = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, "%"+searchWord+"%");
+			
+			rs  = psmt.executeQuery();
+			
+			while(rs.next()) {
+				productDto dto = new productDto();
+				dto.setProductSeq(rs.getInt(1));
+				dto.setProductName(rs.getString(2));
+				dto.setProductSort(rs.getString(3));
+				dto.setProductTradePrice(rs.getInt(4));
+				dto.setProductStandard(rs.getString(5));
+				
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return list;
+	}
+	
 	//상품명 또는 Sort의 검색문구를 입력하여 분류하여 검색함
 	//0819 06:22AM 수정중
 	public List<productDto> searchProductList(String dataType, String searchWord) {
@@ -252,7 +290,8 @@ public class productDao {
 	//모든 Product항목을 검색해서 List로 Return 해줌 Seq,Name,Sort만 가져간다 
 	//20200819 01:00수정완료
 	public List<productDto> getAllProductList(){
-		String sql = "SELECT PRODUCT_SEQ,PRODUCT_NAME, PRODUCT_SORT FROM PRODUCT ORDER BY PRODUCT_SEQ";
+		String sql = "SELECT PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_SORT, PRODUCT_TRADE_PRICE, PRODUCT_STANDARD "
+				+ " FROM PRODUCT ORDER BY PRODUCT_SEQ";
 		
 		List<productDto> list = new ArrayList<>();
 		
@@ -268,9 +307,11 @@ public class productDao {
 			
 			while(rs.next()) {
 				productDto dto = new productDto();
-				dto.setProductName(rs.getString("PRODUCT_NAME"));
-				dto.setProductSort(rs.getString("PRODUCT_SORT"));
-				dto.setProductSeq(rs.getInt("PRODUCT_SEQ"));
+				dto.setProductSeq(rs.getInt(1));
+				dto.setProductName(rs.getString(2));
+				dto.setProductSort(rs.getString(3));
+				dto.setProductTradePrice(rs.getInt(4));
+				dto.setProductStandard(rs.getString(5));
 				
 				list.add(dto);
 			}

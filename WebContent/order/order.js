@@ -329,31 +329,12 @@ var form = ''
 	}	
 	
 //Company_List.jsp 에서 검색에 따른 검색결과
-			$('#searchCompanyBtn').click(function(){
+		function SearchCompany(){
 			//비동기로 가져와야함
-			let searchWord = $('#searchWord').val().trim()
-			let type = $('#searchType').val()
-			if(type!='1'){
-				if(searchWord!=''){
-					$.ajax({
-						type:'GET',
-						url:'./searchCompanyList.jsp',
-						datatype:'html',
-						data:{
-							'searchWord':searchWord,
-							'type':type
-						},
-						success:function(data){
-							console.log('??')
-							$('.popup_LeftBox table #companyList').html(data)
-						},error:function(){
-							alert('에러')
-						}
-					})
-				}else{
-					$('#searchWord').focus()
-				}
-			}else{
+		let searchWord = $('#searchWord').val().trim()
+		let type = $('#searchType').val()
+		if(type!='1'){
+			if(searchWord!=''){
 				$.ajax({
 					type:'GET',
 					url:'./searchCompanyList.jsp',
@@ -369,20 +350,49 @@ var form = ''
 						alert('에러')
 					}
 				})
+			}else{
+				$('#searchWord').focus()
 			}
-		})
-		$('#searchWord').keypress(function(){
-			 if (window.event.keyCode == 13) {
-	 
-	             // 엔터키가 눌렸을 때 실행할 내용
-	             SearchCompany()
-	        }
-		})	
+		}else{
+			$.ajax({
+				type:'GET',
+				url:'./searchCompanyList.jsp',
+				datatype:'html',
+				data:{
+					'searchWord':searchWord,
+					'type':type
+				},
+				success:function(data){
+					$('.popup_LeftBox table #companyList').html(data)
+				},error:function(){
+					alert('에러')
+				}
+			})
+		}
+	}
 //productList.jsp=======================
 	//검색버튼 눌렀을대 검색되는 기능 추가하기
-	function SearchProduct(){
+
+	function searchProduct(){
+		let searchWord = $('#searchProductWord').val().trim()
 		
+		if(searchWord!=''){
+			$.ajax({
+				type:'GET',
+				url:'./searchProductList.jsp',
+				datatype:'html',
+				data:{
+					'searchWord':searchWord
+				},
+				success:function(data){
+					$('.popup_LeftBox table #productList').html(data)
+				},error:function(){
+					alert('에러')
+				}
+			})
+		}
 	}
+	
 	
 	//product_list.jsp => order.jsp로 Value를 보내는 기능
 	function SendProductInfo(inputNum){
