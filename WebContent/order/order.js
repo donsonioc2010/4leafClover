@@ -482,18 +482,22 @@ var form = ''
 	function translateExcel(){
 		let orderDate = $('#year').val()+changeNumber($('month').val())+changeNumber($('day').val())
 		let buyerSeq = document.getElementsByName('buyerSeq')[0].value
-		$.ajax({
+		/*$.ajax({
 				type:'POST',
 				url:'./orderListToExcel.jsp',
 				data:{
 					'buyerSeq':buyerSeq,
 					'orderDate':orderDate
 				},
-				success:function(){
-					console.log('zz')
+				success:function(data){
+					
 				},error:function(){
 					alert('에러')
 				}
-			})
+			})*/
+		let openUrl = "orderListToExcel.jsp?buyerSeq="+buyerSeq+"&orderDate="+orderDate
+		let popTitle = "excelDownload"
+		let popOption = "width = 400, height = 200, top = 300, status = no, scrollbars = yes"
 		
+		window.open(openUrl, popTitle, popOption);
 	}

@@ -12,7 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class excelDao {
 	public excelDao() {}
 	
-	public void writeToExcel(List<excelDto> list,String buyerSeq,String sellerId) {
+	public String writeToExcel(List<excelDto> list,String buyerSeq,String sellerId) {
 		//워크북 생성
 		XSSFWorkbook workbook= new XSSFWorkbook();
 		//시트생성
@@ -109,8 +109,8 @@ public class excelDao {
 			cell = row.createCell(6);
 			cell.setCellValue(dto.getDetailPriceSum());
 		}
-		String fileName = sellerId + "_" + list.get(0).getOrderDate()+ "_" + buyerSeq+".xlsx";
-		File file = new File("C:\\CloverExcel\\"+fileName);
+		String fileName = "C:\\cloverExcel\\"+sellerId + "_" + list.get(0).getOrderDate()+ "_" + buyerSeq+".xls";
+		File file = new File(fileName);
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(file);
@@ -127,6 +127,7 @@ public class excelDao {
 				e.printStackTrace();
 			}
 		}
-		
+		return fileName;
 	}
+	
 }
