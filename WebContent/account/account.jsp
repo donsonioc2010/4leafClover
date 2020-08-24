@@ -31,16 +31,14 @@ if(search == null){
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>             <%--우편추가 --%>
 		<script src='./getPostNum.js'></script>
-    	<link rel="stylesheet" href="../init.css"/> 
-    	<link rel="stylesheet" href="./account.css"/> 
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	
+	<link rel="stylesheet" href="../init.css"/> 
+    	<link rel="stylesheet" href="./account.css"/> 
 	</head>
 	<body >
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
-	
 	<div class='wrap1'align='center'>
 		<div class="searchclass">
 			<div align="left">
