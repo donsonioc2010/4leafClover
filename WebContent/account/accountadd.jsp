@@ -14,11 +14,12 @@ if(id==null){
 		<title>거래처 추가</title>
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 			<%--우편찾기  --%>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	<%--bootstrap 아이콘추가 --%>
+	    <link rel="stylesheet" href="../init.css"/>
     	<link rel="stylesheet" href="./account.css" />
 		<script src='./getPostNum.js'></script>
 		</head>
 		
-	<body style="background-color: #A6B1E1S">
+	<body>
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>

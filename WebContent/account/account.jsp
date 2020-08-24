@@ -5,7 +5,7 @@
 <%
 String id = (String)session.getAttribute("login");
 if(id==null){
-	response.sendRedirect("./login/login.jsp");
+	response.sendRedirect("../login/login.jsp");
 }
 BuyerDao dao = BuyerDao.getInstance();
 
@@ -31,17 +31,18 @@ if(search == null){
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>             <%--우편추가 --%>
 		<script src='./getPostNum.js'></script>
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../init.css"/> 
-    	<link rel="stylesheet" href="./account.css"/> 
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">	  
+ 		<link rel="stylesheet" href="../init.css"/>  
+ 		<link rel="stylesheet" href="./account.css"/>  
+ 
 	</head>
-	<body >
+	<body>
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
 	<div class='wrap1'align='center'>
 		<div class="searchclass">
-			<div align="left">
+			<div align="center">
 				찾기:<input type="text" id="search" name="searchword"> 
 					<select id="choice" name="choice">
 						<option value="companyname">거래처명</option>
@@ -55,10 +56,10 @@ if(search == null){
 			
 			<%--거래처 리스트 --%>
 			<div class="list" align="left" style="overflow:auto; width:500px; height:350px;"> 
-				<table border="1"  id="list">
+				<table border="1"  class="list">
 					<col width="50"><col width="150"><col width="150"><col width="150">
 					<thead>
-					<tr>
+					<tr id="listhead">
 						<th>번호</th>
 						<th>거래처명</th>
 						<th>대표자</th>

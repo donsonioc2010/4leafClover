@@ -22,7 +22,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>OrderDetail</title>
-		<link rel="stylesheet" href="../init.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../init.css"/>
 		<link rel="stylesheet" href="./order.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
@@ -30,6 +31,7 @@
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
+		<center>
 		<!-- OrderList추가를 하거나 거래원장에 Date와 BuyerSeq를 보내기 위함 -->
 		<form action='./orderSave.jsp'method='post'id='dataForm'>
 			<!-- DateSelectBox -->
@@ -38,7 +40,7 @@
 				<select name='year' onchange='getMonthDay();'></select> 년
 				<select name='month' onchange='getMonthDay();'></select> 월
 				<select name='day'></select> 일
-				<input type='button'value='검색'onclick='searchList();'>
+				<input type='button'value='검색'onclick='searchList();' class="btn btn-primary">
 				<!-- 
 				<input type='button' value='확인'>
 				 -->
@@ -53,7 +55,7 @@
 						<td > 
 							<input type='hidden'name='buyerSeq'>
 							<input type='text'class='no-write'name='buyerCompanyName'style="width:70%;"readonly>
-							<input type='button'value='목록'onclick='popCompanyList()'style="width:20%;">
+							<input type='button'value='목록'onclick='popCompanyList()'style="width:20%;" class="btn btn-primary">
 						</td>
 						<th>대표자</th>
 						<td>
@@ -137,7 +139,7 @@
 								<input type='text'class='no-write'name='orderTotalPrice'readonly>
 							</td>
 							<td>
-								<input type='button'value='추가'id='addTdBtn'onclick='addRow();'>
+								<input type='button'value='추가'id='addTdBtn'onclick='addRow();' class="btn btn-primary">
 							</td>
 						</tr>
 						<tr>
@@ -164,11 +166,12 @@
 				</table>
 			</div>
 			<hr>
-			<input type='button'value='거래명세서'onclick="tradingStatement();">
-			<input type='button'value='저장'id='orderSaveBtn'onclick="orderSave();">
-			<input type='button'value='수정'name='updateDetail'onclick='updateMoney();'disabled>
-			<input type='button'value='삭제'id='deleteBtn'onclick='deleteList();'disabled>
+			<input type='button'value='거래명세서'onclick="tradingStatement();" class="btn btn-primary">
+			<input type='button'value='저장'id='orderSaveBtn'onclick="orderSave();" class="btn btn-primary">
+			<input type='button'value='수정'name='updateDetail'onclick='updateMoney();'disabled class="btn btn-primary">
+			<input type='button'value='삭제'id='deleteBtn'onclick='deleteList();'disabled class="btn btn-primary">
 		</form>
 		<script src="./order.js" type="text/javascript"></script>
 	</body>
+	</center>
 </html>
