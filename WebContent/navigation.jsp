@@ -23,7 +23,7 @@
 		background-color: gray;
 	}
 	header .top{
-/* 		background-color: ghostwhite; */
+  		background-color: ghostwhite;  
 		position: relative;
 		left: 0;
 		padding: 0;
@@ -50,7 +50,7 @@
 		padding-right: 20px;
 	}
 	header .top .top_bar a {text-decoration: none;}
-	header #header .category :hover{
+	header #header .category:hover{
 		color: white;
 	}
 	header #header .category{
