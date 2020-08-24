@@ -19,6 +19,9 @@
 	header #header #nav_UnderBar table td{
 		border:0;
 	}
+	header #header #nav_UnderBar table td{
+		padding:10px;
+	}
 	header #header #nav_UnderBar table td input{
 		background-color: gray;
 	}
