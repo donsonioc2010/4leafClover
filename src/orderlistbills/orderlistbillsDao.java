@@ -118,13 +118,14 @@ public class orderlistbillsDao {
 		return list;
 	}
 	
-	public int getAllList(String date) {
-		String sql = " SELECT COUNT(O.ORDER_DATE) "
-					+ " FROM ORDER_LIST O, BUYER B "
-					+ " WHERE O.BUYER_SEQ = B.BUYER_SEQ "
-						+ " AND B.SELLER_ID = 'test1' "
-						+ " AND O.ORDER_DATE = ? "
-					+ " ORDER BY O.ORDER_NUM DESC ";
+	public int getAllList(int seq, String date) {
+		String sql = " SELECT COUNT(L.ORDER_DATE) "
+					+ " FROM ORDER_LIST L, BUYER B, ORDER_DETAIL D "
+					+ " WHERE L.BUYER_SEQ = B.BUYER_SEQ"
+						+ " AND D.ORDER_NUM = L.ORDER_NUM "
+						+ " AND B.BUYER_SEQ = ? "
+						+ " AND L.ORDER_DATE = ? "
+					+ " ORDER BY D.ORDER_NUM DESC ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -136,7 +137,8 @@ public class orderlistbillsDao {
 		try {
 			conn= DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, date);
+			psmt.setInt(1, seq);
+			psmt.setString(2, date);
 			
 			rs = psmt.executeQuery();
 			
@@ -209,6 +211,124 @@ public class orderlistbillsDao {
 			
 		}
 		return list;
+	}
+	
+	public List<orderlistbillsDto> getBillsList(int page, int seq, String order_date) {
+		String sql = " SELECT * FROM " + 
+							"(SELECT "
+							+ " O.ORDER_NUM, "
+							+ " O.ORDER_COUNT, "
+							+ " O.ORDER_PRICE, "
+							+ " O.PRICE_TAX, "
+							+ " O.PRICE_SUM, "
+							+ " P.PRODUCT_NAME, "
+							+ " U.PRODUCT_UNIT, "
+							+ " P.PRODUCT_TRADE_PRICE, "
+							+ " L.BUYER_SEQ, "
+							+ " L.ORDER_DATE, "
+							+ " l.order_supply_price, "
+							+ " l.order_collect_money, "
+							+ " l.order_not_collect_money, "
+							+ " l.order_tax_value, "
+							+ " l.order_total, "
+							+ " p.product_standard " + 
+							" ,ROWNUM RNUM " + 
+							" FROM order_detail O, product P, order_list L, product_unit_cate U\r\n" + 
+							" WHERE O.ORDER_NUM = L.ORDER_NUM " + 
+							" AND o.product_seq = p.product_seq " + 
+							" AND U.SEQ_NUM = P.PRODUCT_UNIT " + 
+							" AND l.ORDER_DATE= ? " + 
+							" AND L.BUYER_SEQ = ? )" +
+				" WHERE RNUM BETWEEN ? AND ? ";
+		
+		int start, end;
+		start = 1+ 10 * page;
+		end = 10 + 10 * page;
+		
+		System.out.println(start+" "+end + " " + page);
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<orderlistbillsDto> list = new ArrayList<orderlistbillsDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 get_order_list_bills success");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, order_date);
+			psmt.setInt(2, seq);
+			psmt.setInt(3, start);
+			psmt.setInt(4, end);
+			System.out.println("2/6 get_order_list_bills success");
+			
+			rs = psmt.executeQuery();
+			System.out.println("3/6 get_order_list_bills success");
+			
+			while (rs.next()) {
+				int i = 1;
+
+				orderlistbillsDto dto = new orderlistbillsDto(rs.getString(i++),
+															rs.getInt(i++), 
+															rs.getInt(i++), 
+															rs.getInt(i++),
+															rs.getInt(i++), 
+															rs.getString(i++),
+															rs.getString(i++),
+															rs.getInt(i++), 
+															rs.getInt(i++), 
+															rs.getString(i++),
+															rs.getInt(i++),
+															rs.getInt(i++),
+															rs.getInt(i++),
+															rs.getInt(i++),
+															rs.getInt(i++),
+															rs.getString(i++));
+			
+				list.add(dto);
+			}
+			System.out.println("4/6 get_order_list_bills success");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+			
+		}
+		return list;
+				
+				
+	}
+
+	public boolean confirmId(String orderNum, int seq) {
+		String sql =" SELECT order_num FROM order_list "
+				+ " WHERE ORDER_NUM= ? " 
+				+ " AND BUYER_SEQ = ? ";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		boolean confirm = false;
+		
+		try {
+			conn = DBConnection.getConnection();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,orderNum);
+			psmt.setInt(2,seq);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				confirm = true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		//데이터가 있을떄만 true
+		return confirm;
 	}
 	
 }

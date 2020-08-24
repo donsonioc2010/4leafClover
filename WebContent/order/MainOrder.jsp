@@ -1,3 +1,7 @@
+<%@page import="orderlistbills.orderlistbillsDao"%>
+<%@page import="order.orderDto"%>
+<%@page import="java.util.List"%>
+<%@page import="order.orderDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -15,6 +19,7 @@
 		//getParameter가 있을경우에 list로 받아오기
 		
 	}
+
 %>
 
 <!DOCTYPE html>
