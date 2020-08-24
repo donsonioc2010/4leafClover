@@ -23,7 +23,8 @@ if(id==null){
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
-	<div class="addclass" id="accountdiv" align="center">
+	<center>
+	<div class="addclass" id="accountdiv">
 		<form action="accountAf.jsp" method="post">
 		  <table>
 		  	<tr>
@@ -80,6 +81,6 @@ if(id==null){
 			</div>
 		</form>
 	</div>
-
+	</center>
 </body>
 </html>
