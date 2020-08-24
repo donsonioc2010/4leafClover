@@ -39,7 +39,7 @@ table {
 }
 th, td {
   border: 1px solid #444444;
-  padding: 10px;
+  padding: 10px;																												
 }
 
 /*======================================================*/
@@ -89,7 +89,8 @@ th, td {
 .orderDetail table input{
 	border:1px solid black;
 	padding:0px;
-	width:100%;
+	width:87%;
+	text-align : center;
 }
 .orderDetail .cell1,
 .orderDetail .cell3,
@@ -97,10 +98,10 @@ th, td {
 .orderDetail .cell5,
 .orderDetail .cell6,
 .orderDetail .cell7{
-	width:200px;
+	width:100px;
 }
 .orderDetail .cell2{
-	width:250px;
+	width:350px;
 }
 .orderDetail .tf1{
 	width:150px;
@@ -109,8 +110,8 @@ th, td {
 	width:300px;
 }
 
-.cell2 btton{
-	margin-top:3px;
+.cell2 button{
+	margin-left : 8px;
 	padding:0;
 	float:right;
 	width:10px;
