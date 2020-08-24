@@ -99,9 +99,11 @@ th, td {
 .orderDetail .cell6,
 .orderDetail .cell7{
 	width:100px;
+	text-align : center;
 }
 .orderDetail .cell2{
 	width:350px;
+	text-align : center;
 }
 .orderDetail .tf1{
 	width:150px;
