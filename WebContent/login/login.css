@@ -31,17 +31,16 @@ body {
 }
 
 #backImg {
-	 bottom: 0;
-	 width: 1920px;
-	 height: 1080px;
-	 z-index: 0;
-	 display: inline-block;
-	 position: fixed;
-	 opacity: 0.5;
+    bottom: 0;
+    width: 75%;
+    height: 100%;
+    z-index: 0;
+    display: inline-block;
+    position: fixed;
+    opacity: 0.5;
 }
 #logoImg{
 	width:200px;
-	height:100px;
 }
 .videoOverlay{
 	width: 350px;
@@ -51,7 +50,6 @@ body {
 	position: absolute;
     display: inline-block;
     background-color: white;
-    border:5px solid green;
 }
 .videoOverlay .login{
  	width:80%;

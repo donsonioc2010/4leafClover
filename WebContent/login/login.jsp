@@ -16,7 +16,7 @@
   </head>
   <body lang="ko">
   
-  	<img alt=""src='../image/mainimage.jpg'id='backImg'>
+  	<img alt=""src='../image/video.gif'id='backImg'>
 	<div class='videoOverlay'>
 		<div class='login'>
 		    <form id="login-form" class="form" action="./loginAf.jsp" method="post">
