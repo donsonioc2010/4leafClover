@@ -42,9 +42,9 @@
 			<!-- DateSelectBox -->
 			<div class='dateBox'>
 				거래일자 :
-				<select name='year' onchange='getMonthDay();'></select> 년
-				<select name='month' onchange='getMonthDay();'></select> 월
-				<select name='day'></select> 일
+				<select name='year'id='year'onchange='getMonthDay();'></select> 년
+				<select name='month'id='month'onchange='getMonthDay();'></select> 월
+				<select name='day'id='day'></select> 일
 				<input type='button'value='검색'onclick='searchList();' class="btn btn-primary">
 				<!-- 
 				<input type='button' value='확인'>
@@ -175,6 +175,7 @@
 			<input type='button'value='저장'id='orderSaveBtn'onclick="orderSave();" class="btn btn-primary">
 			<input type='button'value='수정'name='updateDetail'onclick='updateMoney();'disabled class="btn btn-primary">
 			<input type='button'value='삭제'id='deleteBtn'onclick='deleteList();'disabled class="btn btn-primary">
+			<input type='button'value='엑셀변환'id='convertExcel'onclick='translateExcel();'class='btn btn-primary'>
 		</form>
 		<script src="./order.js" type="text/javascript"></script>
 	</body>

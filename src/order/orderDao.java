@@ -16,6 +16,59 @@ import db.DBConnection;
 
 public class orderDao {
 	private static orderDao dao = new orderDao();
+	
+	//MainOrder.jsp 에서 Excel 로 보내기 위한 Data를 뽑는 Query
+	public List<excelDto> getExcelData(String buyerSeq, String orderDate){
+		List<excelDto> list = new ArrayList<excelDto>();
+		String sql ="select D.ORDER_NUM, B.SELLER_ID, P.PRODUCT_NAME, PU.PRODUCT_UNIT ,B.BUYER_COMPANY_NAME, L.ORDER_DATE," + 
+				"    L.ORDER_SUPPLY_PRICE, L.ORDER_TAX_VALUE, L.ORDER_TOTAL," + 
+				"    D.ORDER_COUNT, D.ORDER_PRICE, D.PRICE_TAX, D.PRICE_SUM, P.PRODUCT_SEQ " + 
+					"    FROM ORDER_LIST L, ORDER_DETAIL D, "+
+					"	 PRODUCT P,BUYER B ,PRODUCT_UNIT_CATE PU" + 
+						"    WHERE D.PRODUCT_SEQ = P.PRODUCT_SEQ " + 
+						"            AND P.PRODUCT_UNIT = PU.SEQ_NUM" + 
+						"            AND D.ORDER_NUM = L.ORDER_NUM" + 
+						"            AND B.BUYER_SEQ = L.BUYER_SEQ" + 
+						"            AND L.BUYER_SEQ = ?" + 
+						"            AND ORDER_DATE = ?";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.getConnection();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, Integer.parseInt(buyerSeq));
+			psmt.setString(2, orderDate);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				excelDto dto = new excelDto();
+				dto.setOrderNum(rs.getString(1));
+				dto.setSellerId(rs.getString(2));
+				dto.setProductName(rs.getString(3));
+				dto.setProductUnit(rs.getString(4));
+				dto.setBuyerCompanyName(rs.getString(5));
+				dto.setOrderDate(rs.getString(6));
+				dto.setListSupplyPrice(rs.getInt(7));
+				dto.setListTaxValue(rs.getInt(8));
+				dto.setListTotal(rs.getInt(9));
+				dto.setDetailCount(rs.getInt(10));
+				dto.setDetailPrice(rs.getInt(11));
+				dto.setDetailPriceTax(rs.getInt(12));
+				dto.setDetailPriceSum(rs.getInt(13));
+				dto.setProductSeq(rs.getInt(14));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}	
+		return list;
+	}
+	
 	//검새간 날짜의 주문내역을 가져오는 메소드
 	public List<Object> getDetailList(orderDto dto){
 		//ORDER_DETAIL의 TABLE을  BUYER_SEQ와 DATE로 가져와야함
@@ -146,7 +199,7 @@ public class orderDao {
 					psmt.setInt(3, dto.getOrderCount());
 					psmt.setInt(4, dto.getOrderPrice());
 					psmt.setInt(5, dto.getPriceTax());
-					psmt.setInt(6, dto.getOrderPrice());
+					psmt.setInt(6, dto.getPriceSum());
 					psmt.addBatch();
 				}
 				psmt.executeBatch();

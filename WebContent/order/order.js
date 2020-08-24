@@ -303,7 +303,6 @@ var form = ''
 	//둘다 날짜와 buyerSeq만 피룡함
 //거래명세서 yyyymmdd
 	function tradingStatement(){
-	
 	$.ajax({
 		type:'POST',
 		url:'../orderlistbills/informCheck.jsp',
@@ -478,4 +477,23 @@ var form = ''
 			strNum='0'+strNum
 		}
 		return strNum
+	}
+	
+	function translateExcel(){
+		let orderDate = $('#year').val()+changeNumber($('month').val())+changeNumber($('day').val())
+		let buyerSeq = document.getElementsByName('buyerSeq')[0].value
+		$.ajax({
+				type:'POST',
+				url:'./orderListToExcel.jsp',
+				data:{
+					'buyerSeq':buyerSeq,
+					'orderDate':orderDate
+				},
+				success:function(){
+					console.log('zz')
+				},error:function(){
+					alert('에러')
+				}
+			})
+		
 	}
