@@ -44,7 +44,7 @@ $('#insertProduct').click(function(){
 $("#addProductbtn").click(function(){
 	let openUrl = 'http://'+location.host + '/ProductManagementSystem/product/productAdd.jsp'
 	let popTitle = "AddProduct"
-	let popOption = "width=550,height=250,left=500,top=50,status=no,scrollbars=yes"
+	let popOption = "width=550,height=450,left=500,top=50,status=no,scrollbars=yes"
 	window.open(openUrl,popTitle,popOption)	 
 });
 

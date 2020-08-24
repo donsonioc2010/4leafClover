@@ -1,13 +1,16 @@
+
 .productWrap1{
 	width : 900px;
 	margin-left : 60px;
 	margin-top : 20px;
 	overflow : auto;
 }
+.prductWrap2{
+	text-align: -webkit-center;
+}
 
 .shadow {
-	margin-left : 250px;
-	margin-top: 50px;
+	margin-top:3%;
 	width : 700px;
 	height : 600px;
 	background-color : white;

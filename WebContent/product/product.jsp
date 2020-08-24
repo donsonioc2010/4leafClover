@@ -29,6 +29,7 @@
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
+	<div class='productWrap2'>
 	<div class="shadow">
 		<div class='productWrap1'>
 			<form action='' id='productForm'>
@@ -76,6 +77,7 @@
 			</form>
 		</div>
 	</div>	
+	</div>
 		<script src="./product.js"></script>
 	</body>
 </html>
