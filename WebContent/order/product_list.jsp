@@ -23,8 +23,8 @@ int inputNum = Integer.parseInt(request.getParameter("inputNum"));
 	
 	<body>
 		<div align="left">
-			<input type="text" id="searchWord" onkeyup="enterKey();"> 
-			<input type="button" name="product_Search" onclick="SearchProduct();" value="상품명검색">
+			<input type="text"id="searchProductWord" > 
+			<input type="button" name="product_Search"id='searchProductBtn'value="상품명검색">
 			<input type="button" value="전달하기" id="sendBtn" name="sendBtn" onclick="SendProductInfo(<%=inputNum%>);">
 		</div>
 
@@ -40,35 +40,46 @@ int inputNum = Integer.parseInt(request.getParameter("inputNum"));
 					<th align="center">도매가</th>
 					<th align="center">규격</th>
 				</tr>
-			<%
-				if(list == null || list.size() == 0){
-			%>
-				<tr>
-					<td colspan="4" align="center">거래처목록이 없습니다</td>
-				</tr>
-			<%
-				}else{
-					for(int i = 0; i < list.size(); i++){
-						productDto dto = list.get(i);
-			%>
+				<tbody id='productList'>
+				<%
+					if(list == null || list.size() == 0){
+				%>
 					<tr>
-						<th><input type="radio" name="chkBox"  value="<%=dto.getProductSeq() %>"></th>
-						<td><span name="productName"> <%=dto.getProductName() %> </span></td>
-						<!-- <td><span name="<%=dto.getProductSeq()%>"> <%=dto.getProductUnit()%></span></td>  -->
-						<td><span name="productSupply"> <%=dto.getProductTradePrice() %></span></td>
-						<td>
-							<span name="productStandard"> <%=dto.getProductStandard() %></span>
-						</td>
+						<td colspan="4" align="center">거래처목록이 없습니다</td>
 					</tr>
-			<% 
-					}
-				}
-			%>
+				<%}else{
+						for(int i = 0; i < list.size(); i++){
+							productDto dto = list.get(i);%>
+						<tr>
+							<th><input type="radio" name="chkBox"  value="<%=dto.getProductSeq() %>"></th>
+							<td><span name="productName"> <%=dto.getProductName() %> </span></td>
+							<!-- <td><span name="<%=dto.getProductSeq()%>"> <%=dto.getProductUnit()%></span></td>  -->
+							<td><span name="productSupply"> <%=dto.getProductTradePrice() %></span></td>
+							<td>
+								<span name="productStandard"> <%=dto.getProductStandard() %></span>
+							</td>
+						</tr>
+				<% 		}
+					}%>
+				</tbody>
 			</table>
 		</div>
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="./order.js"></script>
-
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#searchProductWord').keypress(function(){
+					 if (window.event.keyCode == 13) {
+			 
+			             // 엔터키가 눌렸을 때 실행할 내용
+			             searchProduct()
+			        }
+				})
+				$('#searchProductBtn').click(function(){
+					searchProduct()
+				})
+			})
+		</script>
 	</body>
 </html>

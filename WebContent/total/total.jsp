@@ -24,14 +24,14 @@ seller = (sellerDto)ologin;
 
 %> --%>   
 <%
-/* String id = (String)session.getAttribute("login");
-if(id==null){
-	response.sendRedirect("./login/login.jsp");
-} */
+	String id = (String)session.getAttribute("login");
+	if(id==null){
+		response.sendRedirect("../login/login.jsp");
+	} 
 
    	totalDao dao = totalDao.getInstance();
-  	List<totalMMDto> list_month =  dao.getMonthTotalAvg("test1");
-  	List<totalYYYYDto> list_year =dao.getYearTotalAvg("test1");
+  	List<totalMMDto> list_month =  dao.getMonthTotalAvg(id);
+  	List<totalYYYYDto> list_year =dao.getYearTotalAvg(id);
   	totalYYYYDto dto_year = null;
   	totalMMDto dto_month = null;
 
@@ -47,53 +47,57 @@ if(id==null){
    %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>총 매출 조회</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-<link rel="stylesheet" href="./totalCss.css" />
-<link rel="stylesheet" href="./init.css" />
-</head>
-<body style="background-color: #A6B1E1">
-<%--if(id!=null){ --%>
-		<jsp:include page="./navigation.jsp"></jsp:include>
-<%--} --%>
-<center class="container">
-<form class="totalClass" >
-<div class="input-group input-group-sm mb-3" id="mypageTable">
-<h3>매출 현황</h3>
-	<div class="input-group-prepend">
-	<table class="table table-sm">
-	<tr>
-		<th class="word">금년 매출</th>
-		<th class="word">금년 수금</th>
-		<th class="word">금년 미수금</th>
-	</tr>
-	<tr>
-		<td>\<%=df.format(dto_month.getMonth_total_avg()) %></td>
-		<td>\<%=df.format(dto_month.getMonth_collect_money_avg()) %></td>
-		<td>\<%=df.format(dto_month.getMonth_not_conllect_money_avg()) %></td>
-	</tr>
-	<tr>
-	<td colspan="3"></td>
-	</tr>
-	<tr>
-		<th class="word">금월 매출</th>
-		<th class="word">금월 수금</th>
-		<th class="word">금월 미수금</th>
-	<tr>	
-
-		<td>\<%=df.format(dto_year.getYear_total_avg()) %></td>
-		<td>\<%=df.format(dto_year.getYear_collect_money_avg()) %></td>
-		<td>\<%=df.format(dto_year.getYear_not_conllect_money_avg()) %></td>
-	</tr>
-
-	</table>
-	</div>
-</div>
-</form>
-</center>
-<script src="total.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>총 매출 조회</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+		<link rel="stylesheet" href="../init.css" />
+		<link rel="stylesheet" href="./totalCss.css" />
+	</head>
+	<body>
+	
+		<%if(id!=null){ %>
+			<jsp:include page="../navigation.jsp"></jsp:include>
+		<%} %>
+		<center class="container">
+			<form class="totalClass" >
+				<div class="input-group input-group-sm mb-3" id="mypageTable">
+				<h3>매출 현황</h3>
+					<div class="input-group-prepend">
+						<table class="table table-sm">
+							<tr>
+								<th class="word">금년 매출</th>
+								<th class="word">금년 수금</th>
+								<th class="word">금년 미수금</th>
+							</tr>
+							
+							<tr>
+								<td>\<%=df.format(dto_month.getMonth_total_avg()) %></td>
+								<td>\<%=df.format(dto_month.getMonth_collect_money_avg()) %></td>
+								<td>\<%=df.format(dto_month.getMonth_not_conllect_money_avg()) %></td>
+							</tr>
+							
+							<tr>
+								<td colspan="3"></td>
+							</tr>
+							
+							<tr>
+								<th class="word">금월 매출</th>
+								<th class="word">금월 수금</th>
+								<th class="word">금월 미수금</th>
+							
+							<tr>
+								<td>\<%=df.format(dto_year.getYear_total_avg()) %></td>
+								<td>\<%=df.format(dto_year.getYear_collect_money_avg()) %></td>
+								<td>\<%=df.format(dto_year.getYear_not_conllect_money_avg()) %></td>
+							</tr>
+					
+						</table>
+					</div>
+				</div>
+			</form>
+		</center>
+		<script src="total.js"></script>
+	</body>
 </html>

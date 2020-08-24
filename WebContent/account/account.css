@@ -1,17 +1,17 @@
-.searchclass{ /*°Ë»öÃ¢ ¹× ¹è°æ */
-align-content: center;
- margin: 80px;
- padding:70px;
- width: 1350px;
- height: 500px;
- border-radius: 10%;
- background-color : white;
- display : block;
-box-shadow : 3px 3px 3px 3px #999;
+.searchclass{ /*ï¿½Ë»ï¿½Ã¢ ï¿½ï¿½ ï¿½ï¿½ï¿½ */
+	align-content: center;
+	 margin: 80px;
+	 padding:70px;
+	 width: 1350px;
+	 height: 500px;
+	 border-radius: 10%;
+	 background-color : white;
+	 display : block;
+	box-shadow : 3px 3px 3px 3px #999;
  
 }
 
-.add{ /*Á¤º¸ ¹× ¼öÁ¤ css*/
+.add{ /*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ css*/
 	border-left: none;
 	border-right: none;
 	border-top: none;
@@ -20,14 +20,14 @@ box-shadow : 3px 3px 3px 3px #999;
 	width: 180px;
 	font-family: "Nanum Gothic", sans-serif;
 }
-/*text Å¬¸¯½Ã */
+/*text Å¬ï¿½ï¿½ï¿½ï¿½ */
 input:focus {outline:none;} 
 
-#address1{ /*¿ìÆíÁÖ¼Ò*/
+#address1{ /*ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½*/
 	width: 130px;
 }
 
-.list{/*°Å·¡Ã³¸í ¸®½ºÆ®*/
+.list{/*ï¿½Å·ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®*/
 padding-left: 30px;
 float: left;
 padding: 10px 30px;
@@ -41,7 +41,7 @@ table thead{
 	padding: 3px 10px;
 }
 /*------*/
-.addclass{ /*°Ë»öÃ¢ ¹× ¹è°æ */
+.addclass{ /*ï¿½Ë»ï¿½Ã¢ ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 
  margin: 80px;
  padding:70px;

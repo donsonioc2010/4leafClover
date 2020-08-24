@@ -16,9 +16,9 @@
 	List<clienthistoryDto> list =new ArrayList<clienthistoryDto>();
 	
 	if(term.equals("true")){
-	list = dao.getclienttradedateSearch("test1",seq,false,date1,date2);
+		list = dao.getclienttradedateSearch("test1",seq,false,date1,date2);
 	}else{
-	list = dao.getclienttradedateSearch("test1",seq,true,date,"");
+		list = dao.getclienttradedateSearch("test1",seq,true,date,"");
 	}
 	
 	Gson Jobj=new Gson();

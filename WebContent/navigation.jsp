@@ -5,48 +5,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
-.top{
-	background-color: ghostwhite;
-	position: relative;
-	left: 0;
-	padding: 0;
-	width: 100%;
-	height: 20px;
-	padding-top: 7px;
-}
-.top span{
-	font-size: 12px;
-	line-height: 20px;
-	color: black;
-}
-.top_bar{
-	display: inline;
-}
-.top_bar li{
-	display: inline-block;
-}
-.top_bar li{
-	float: right;
-	padding-right: 20px;
-}
-a {	text-decoration: none;}
-.category:hover{
-	color: white;
-}
-.category{
-	border: none;
-	outline: none;
-}
-
+	header table,
+	header table tr,
+	header table td{
+		border:0;
+	}
+	header .top{
+		background-color: ghostwhite;
+		position: relative;
+		left: 0;
+		padding: 0;
+		width: 100%;
+		height: 30px;
+		padding-top: 4px;
+	}
+	header .top span{
+		font-size: 16px;
+		line-height: 20px;
+		color: blue;
+	}
+	header .top span:hover{
+		color: red;
+	}
+	header .top_bar{
+		display: inline;
+	}
+	header .top_bar li{
+		display: inline-block;
+	}
+	header .top_bar li{
+		float: right;
+		padding-right: 20px;
+	}
+	header .top .top_bar a {text-decoration: none;}
+	#header .category :hover{
+		color: white;
+	}
+	header .category{
+		border: none;
+		outline: none;
+	}
+	header .top a .logo{
+		padding-left:10px;
+		width:100px;
+		height:30px;
+	}
 </style>
 </head>
 <body>
 <header>
 	<nav>
 	<div class="top">
+		<a href='/ProductManagementSystem/index.jsp'>
+			<img src="/ProductManagementSystem/image/logo.png"class='logo'>
+		</a>
 		<ul class="top_bar">
+			<li class="top_menu"><a href="/ProductManagementSystem/login/logout.jsp"><span>로그아웃</span></a></li>
 			<li class="top_menu"><a href="/ProductManagementSystem/myPage/myPage.jsp"><span>마이페이지</span></a></li>
 			<li class="top_menu"><a href="/ProductManagementSystem/total/total.jsp"><span>총매출</span></a></li>
 		</ul>
