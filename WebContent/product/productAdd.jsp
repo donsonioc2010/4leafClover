@@ -67,15 +67,15 @@ List<String> unitList = dao.getProductUnitType();
 				</tr>
 				<tr>
 					<th>박스당 낱개</th>
-					<td><input type='number'id='productPieceBox'name='productPieceBox'min='0'step='1'>개</td>
+					<td><input type='number'id='productPieceBox'name='productPieceBox'min='0'step='1'> 개</td>
 				</tr>
 				<tr>
 					<th>상품규격</th>
-					<td><input type='number'id='productStandard'name='productStandard'min='0'step='1'>ml</td>
+					<td><input type='number'id='productStandard'name='productStandard'min='0'step='1'> ml</td>
 				</tr>
 			</tbody>
 			<tr>
-				<table>
+				<table id="buttonTable">
 				<col width='250px'>
 				<col width='250px'>
 					<tr>
@@ -91,6 +91,6 @@ List<String> unitList = dao.getProductUnitType();
 		</table>
 	</div>
 	</form>
-	<script src="product.js"></script>
+	<script src="./product.js"></script>
 </body>
 </html>

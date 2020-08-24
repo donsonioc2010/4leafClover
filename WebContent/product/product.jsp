@@ -22,13 +22,14 @@
 		<title>productManageMent</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<link rel="stylesheet" href = "../init.css" />	
-		<link rel="stylesheet" href = "./product/productCss.css" />
+		<link rel="stylesheet" href = "./productCss.css" />
 	</head>
 	
 	<body>
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
+	<div class="shadow">
 		<div class='productWrap1'>
 			<form action='' id='productForm'>
 			   <table id='productTotalTable'>
@@ -38,7 +39,7 @@
 				               <option value='productName'>품목명</option>	
 				               <option value='productSort'>종류</option>
 				            </select>
-							검색 :<input type='text'id='searchWord'>		<!-- 검색하는 텍스트 박스 -->
+							검색 : <input type='text'id='searchWord'>		<!-- 검색하는 텍스트 박스 -->
 				            <input type='button'id='searchBtn'value='검색'>
 		  					<button type='button'id="addProductbtn">상품추가</button>
 				   		</td>
@@ -74,6 +75,7 @@
 			   </table>
 			</form>
 		</div>
-		<script src="product.js"></script>
+	</div>	
+		<script src="./product.js"></script>
 	</body>
 </html>

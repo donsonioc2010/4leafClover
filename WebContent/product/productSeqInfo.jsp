@@ -33,7 +33,7 @@
 		<link rel="stylesheet" href = "./productCss.css" />
 	</head>
 	<body>
-		<form action='./productUpdate.jsp'method='POST'>
+		<form action='./productUpdate.jsp'method='POST' class="seqInFoform">
 		<table id="InfoTable">
 				<col width='200px'>
 				<col width='400px'>
@@ -112,6 +112,6 @@
 				</tr>
 		   </table>
 		   </form>
-			<script src="product.js"></script>
+			<script src="./product.js"></script>
 	</body>
 </html>
