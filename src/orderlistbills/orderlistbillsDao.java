@@ -21,26 +21,6 @@ public class orderlistbillsDao {
 		return dao;
 	}
 	
-	/*
-	 ( SELECT BUYER_SEQ FROM BUYER WHERE BUYER_SEQ =? ),"
-	 + " ( SELECT PRODUCT_SEQ FROM PRODUCT WHERE PRODUCT_NAME = ? )
-	*/
-	/*
-	this.buyer_seq = buyer_seq;
-	this.order_date = order_date;
-	this.order_supply_price = order_supply_price;
-	this.order_tax_value = order_tax_value;
-	this.order_collect_money = order_collect_money;
-	this.order_not_collect_money = order_not_collect_money;
-	this.order_total = order_total;
-	this.product_seq = product_seq;
-	this.order_count = order_count;
-	this.order_num = order_num;
-	this.product_name = product_name;
-	this.order_del = order_del;
-	this.product_standard = product_standard;
-	this.product_trade_price = product_trade_price;
-*/
 	public List<orderlistbillsDto> get_order_list_bills(String ORDER_DATE, int seq) {
 		String sql = "SELECT" + 
 							" o.order_num," + 
@@ -245,7 +225,6 @@ public class orderlistbillsDao {
 		start = 1+ 10 * page;
 		end = 10 + 10 * page;
 		
-		System.out.println(start+" "+end + " " + page);
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;

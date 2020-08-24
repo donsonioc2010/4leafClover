@@ -12,7 +12,6 @@
 	header #header #nav_UnderBar table{
 		position: absolute;
 		margin-left: 35px;
-		padding:3px;
 	}
 	header #header #nav_UnderBar table,
 	header #header #nav_UnderBar table tr,
@@ -20,7 +19,7 @@
 		border:0;
 	}
 	header #header #nav_UnderBar table td{
-		padding:10px;
+		padding:8px;
 		padding-bottom:0px;
 	}
 	header #header #nav_UnderBar table td input{
@@ -48,8 +47,6 @@
 	}
 	header .top_bar li{
 		display: inline-block;
-	}
-	header .top_bar li{
 		float: right;
 		padding-right: 20px;
 	}

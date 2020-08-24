@@ -10,8 +10,6 @@
 	orderlistbillsDao dao = orderlistbillsDao.getInstance();
 	boolean confirm = dao.confirmId(ordernum, seq);
 	
-	System.out.println("confirm" + confirm);
-	
 	JsonObject jobj = new JsonObject();
 	jobj.addProperty("result", confirm);
 	response.setContentType("application/json");
