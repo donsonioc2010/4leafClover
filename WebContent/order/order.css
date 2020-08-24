@@ -10,15 +10,6 @@
 
 /*--------------------------------*/
 
-.no-write{
-border-left: none;
-border-right: none;
-border-top: none;
-border-bottom-color: #BDBDBD;
-width: 180px;
-font-family: "Nanum Gothic", sans-serif;
-size: 30px;
-}
 -write2{ /*수금미수금 text*/
 	border-left: none;
 	border-right: none;
