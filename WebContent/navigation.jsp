@@ -21,6 +21,7 @@
 	}
 	header #header #nav_UnderBar table td{
 		padding:10px;
+		padding-bottom:0px;
 	}
 	header #header #nav_UnderBar table td input{
 		background-color: gray;
