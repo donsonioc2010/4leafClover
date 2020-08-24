@@ -13,46 +13,6 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./login.css" />
-    <style type="text/css">
-    .body{
-    	width:1920px;
-    	height:1080px;
-    }
-    #backImg {
-     	bottom: 0;
-	    width: 1920px;
-	    height: 1080px;
-	    z-index: 0;
-	    display: inline-block;
-	    position: fixed;
-	    opacity: 0.5;
-	}
-	#logoImg{
-		width:200px;
-		height:100px;
-	}
-	.videoOverlay{
-		width: 350px;
-	    height: 100%;
-	    z-index: 1;
-	    right: 0;
-		position: absolute;
-	    display: inline-block;
-	    background-color: white;
-	    border:5px solid green;
-	}
-	.videoOverlay .login{
-	 	width:80%;
-	 	height:100%;
-	 	z-index:2;
-	}
-	.videoOverlay .login form{
-		padding-left:15%;
-		padding-top:15%; 
-	}
-
-
-    </style>
   </head>
   <body lang="ko">
   
