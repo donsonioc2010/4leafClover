@@ -11,45 +11,9 @@ if(id==null){
 	<head>
 		<meta charset="UTF-8">
 		<title>Main</title>
-		<link rel="stylesheet" href="./init.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <style>
-        .extendHeight{
-            height:90%;
-        }
-        .quickMenu{
-            position:absolute;
-            left:15%;
-            top : 80px;
-            width:70%;
-            background-color:white;
-            border-radius: 10%;
-            border:3px;
-            padding:20px;
-        }
-        .quickMenu table{
-            width:100%;
-            height:70%;
-            border:0;
-        }
-        .quickMenu table th{
-         	height:0;
-         }
-        .quickMenu table th .extendHeight{
-            height: 90%;
-            width:100%;
-        }
-        .quickMenu table th img{
-        	height:100%;
-        	width:100%;
-        }
-        .quickMenu table th a{
-        	text-decoration: none;
-        }
-        .quickMenu table th span{
-            height:10%;
-        }  
-        </style>
+        <link rel="stylesheet" href="./init.css" />
+		<link rel="stylesheet" href="./index.css" />
 	</head>
 	<body>
 		<%if(id!=null){ %>
