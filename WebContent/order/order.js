@@ -303,9 +303,40 @@ var form = ''
 	//둘다 날짜와 buyerSeq만 피룡함
 //거래명세서 yyyymmdd
 	function tradingStatement(){
-		//링크만 타깃하면 끝남
-		form.action=''
+	
+	$.ajax({
+		type:'POST',
+		url:'../orderlistbills/informCheck.jsp',
+		data:{
+			"orderNum":form.orderNum.value,
+			"seq":form.buyerSeq.value
+		},
+		success:function(data){
+			if(data.result == false){
+				location.href="MainOrder.jsp"
+			}else{
+				form.action='../orderlistbills/orderlistbills.jsp'
+				form.submit()
+			}
+		},
+	
+	
+	})
+
+
+
+/*	
+	//링크만 타깃하면 끝남
+		form.action='../orderlistbills/orderlistbills.jsp'
 		form.submit()
+		
+		window.name = "Mainorder.jsp";
+
+    	window.open("../orderlistbills/orderlistbills.jsp", "insert",
+        "width = 450, height = 800, resizable = yes, scrollbars = no, status = no");
+	*/
+
+
 	}
 	
 	
