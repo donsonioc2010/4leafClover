@@ -19,13 +19,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>companyList</title>
-	<link rel="stylesheet" href="../init.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<%--<link rel="stylesheet" href="../init.css">--%>
 	<link rel="stylesheet" href="./order.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 	<!-- 검색기능 미구현 -->
+	<div align="center" class="companylist">
 	<select id='searchType'>
 			<option value="1">전체</option>
 			<option value="2">거래처명</option>
@@ -34,10 +36,10 @@
 			<option value="5">전화번호</option>
 	</select> 
 	<input type="text"id='searchWord' > 
-	<input type="button"value="검색"id='searchCompanyBtn'>
+	<input type="button"value="검색"id='searchCompanyBtn' class="btn btn-primary">
 	
 	
-	<input type="button" value="완료" id="CompanySendBtn" name="sendBtn" onclick="SendCompanyInfo();">
+	<input type="button" value="완료" id="CompanySendBtn" name="sendBtn" onclick="SendCompanyInfo();" class="btn btn-primary">
 
 	<br><br>
 
@@ -46,7 +48,7 @@
 			<col width="50">
 			<col width="300">
 			<col width="150">
-			<tr>
+			<tr id="listhead">
 				<th align="center">선택</th>
 				<th align="center">거래처명</th>
 				<th align="center">대표자</th>
@@ -72,6 +74,7 @@
 					}%>
 				</tbody>
 		</table>
+	</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="./order.js"></script>
