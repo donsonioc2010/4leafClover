@@ -1,12 +1,4 @@
- .top{
-	background-color: ghostwhite;
-	position: relative;
-	left: 0;
-	padding: 0;
-	width: 100%;
-	
-	padding-top: 7px;
-}
+
 .top span{
 	font-size: 12px;
 	line-height: 20px;
@@ -22,7 +14,7 @@
 	float: right;
 	padding-right: 20px;
 }
-/*a {	text-decoration: none;}*/
+a {	text-decoration: none;}
 .category:hover{
 	color: white;
 }
@@ -30,31 +22,40 @@
 	border: none;
 	outline: none;
 }
-
+.btn btn-default{
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
 .panel panel-default{
 	border: 10px solid;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100px; height: 300px;
+  align-items: center;
+  justify-content: center;
+  width: 100px; height: 300px;
 }
-
-.table-wrap {
+ .table-wrap {
 	width: 1200px;
 }
-
+table, th, tr, td {
+	border: 1px solid #bcbcbc;
+	table-layout:fixed;
+	border-color: gray;
+}
 .fixed_top {
 	display: inline-table;
 	position: absolute;
 	top: 0;
 	width: calc(100% - 15px);
 	height: 36px;
-	background: #eef7ff;
+	background: #2B2E7E;
+	color: white;
 }
 button{
 	font-size:1px;padding:1px 1px;
 }
 .tb_box {
+	
 	max-height: 300px;
 	overflow-y: scroll;
 	border-bottom: 1px solid #dedede;
@@ -63,6 +64,7 @@ button{
 .table-wrap td:last-child {
 	bottom: 0;
 } 
+
 
 .table-condensed {
   height:150px;
@@ -74,14 +76,27 @@ button{
     width: 120px;
     height: 40px;
     background:darksalmon;
-    color:#fff;
+    background-color : #2B2E7E;
 }
 .tab { white-space: pre-wrap; }
 body {
+   
 	padding: 0px;
   margin: 0 auto;
 }
-
+.searchclass {
+    align-content: center;
+    margin-left: 150px;
+    margin-top: 50px;
+    
+    padding: 70px;
+    width: 1350px;
+    height: 900px;
+    border-radius: 10%;
+    background-color: white;
+    display: block;
+    box-shadow: 3px 3px 3px 3px #999;
+}
 tr.highlighted td {
 	background: white;
 }
@@ -97,11 +112,16 @@ tr.highlighted td {
 .table-condensed tbody tr:hover td, .table tbody tr:hover th {
 	background-color: #eeeeea;
 }
-
-table, th, tr, td {
-	border: 1px solid #bcbcbc;
-	 table-layout:fixed;
+.table-condensed{
+    border-top-width: 34px;
+	
 }
+#popbutton{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
 
 #jb-container {
 	border: 1px solid #bcbcbc;
@@ -138,8 +158,8 @@ table, th, tr, td {
 
 .box:focus {
 	outline: none;
+/* } */
 }
-
 input:focus::-webkit-input-placeholder {
 	color: transparent;
 }
@@ -155,3 +175,4 @@ input:focus:-ms-input-placeholder {
 input:focus::-ms-input-placeholder {
 	color: transparent;
 }
+
