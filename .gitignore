@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web
-# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,java-web
+# Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,java-web,visualstudiocode
 
 ### Eclipse ###
 .metadata
@@ -97,4 +97,16 @@ hs_err_pid*
 ## ignoring target file
 target/
 
-# End of https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web,visualstudiocode
