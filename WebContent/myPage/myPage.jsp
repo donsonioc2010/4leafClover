@@ -43,22 +43,19 @@ for(int i = 0; i< list.size(); i++){
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- <link rel="stylesheet" href="./init.css" /> -->
-<link rel="stylesheet" href="./myPageCss.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@1,900&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../init.css" />
+<link rel="stylesheet" href="./myPageCss.css" />
 </head>
-<body String id = (String)session.getAttribute("login");
-if(id==null){
-	response.sendRedirect("./login/login.jsp");
-}
->
+<body >
 <!-- 
 form으로 감싸기
 가장 상위 div class="input-group input-group-sm mb-3"  id="mypageTable"
 table class="table table-sm"
  -->
 <%if(id!=null){ %>
-		<jsp:include page="./navigation.jsp"></jsp:include>
+		<jsp:include page="../navigation.jsp"></jsp:include>
 <%} %>
 <div class="container" align="center">
 <form action="myPage_save.jsp" class="myPageClass">
