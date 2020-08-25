@@ -77,11 +77,11 @@ if(session.getAttribute("login")==null){
                         </div>
                     </th>
                     <th>
-                        <a href='#'>
+                        <a href='/ProductManagementSystem/Introduction/introduction.jsp'>
                             <div class='extendHeight'>
-                                <img alt="" src="./image/quickMenu/sorryIcon.svg">
+                                <img alt="" src="./image/quickMenu/home.png">
                             </div>
-                            <span class='menuExp'>준비중 </span>
+                            <span class='menuExp'>회사 소개 </span>
                         </a>
                     </th>
                     <th>
