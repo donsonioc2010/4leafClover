@@ -5,14 +5,16 @@
     pageEncoding="UTF-8"%>
 
 <%
-	String id = (String)session.getAttribute("login");
-	if(id==null){
-		response.sendRedirect("../login/login.jsp");
-	}
+String id = null;
+if(session.getAttribute("login")==null){
+	response.sendRedirect("../login/login.jsp");
+}else{
+	id = (String)session.getAttribute("login");
+}
 
 	productDao dao = productDao.getInstance();
 	productDto dto = new productDto();
-	List<productDto> productList = dao.getAllProductList();
+	List<productDto> productList = dao.getAllProductList(id);
 %>
 
 <!DOCTYPE html>

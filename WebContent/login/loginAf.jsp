@@ -25,15 +25,15 @@
 		session.setMaxInactiveInterval(3600);
 		%>
 		 <script type="text/javascript">
-		 alert("로그인성공")
-		 location.href = "../index.jsp";
+			 alert("로그인성공")
+			 location.href = "../index.jsp";
 		 </script>
 		 <%
 	}else{
 		 %>
 		 <script type="text/javascript">
-		 alert("로그인실패")
-		 location.href = "./login.jsp";
+			 alert("로그인실패")
+			 location.href = "./login.jsp";
 		 </script>
 		 <%
 	 }

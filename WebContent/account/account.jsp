@@ -89,8 +89,8 @@ if(search == null){
 			</div>
 			<div align="right"> <%--거래처정보 수정및정보 --%>
 				<form action="accountupdateAf.jsp"method="post">
+				<input type='hidden'id='updateBuyerSeq'name='updateBuyerSeq'>
 				<table>
-					
 					<tr>
 						<td>거래처명:</td>
 						<td><input type="text"id="companyname"name="companyname"size="20"class="add"></td>
@@ -179,6 +179,7 @@ if(search == null){
 				data:{"seq":seqNum},        // 시퀀스로 받기(dao에 seq으로 받아오는거 만들기)
 				
 				success:function(data){  // document.getElementById("내가넣을태그의id값").value = data.(getBuyerInfo파일의 별명)
+					$('#updateBuyerSeq').val(seq)
 					$("#companyname").val(data.buyerCompanyName);	// 거래처명
 					$("#ceoname").val(data.buyerceoname);			// 대표자명
 					$("#condition").val(data.buyercondition);		// 업태

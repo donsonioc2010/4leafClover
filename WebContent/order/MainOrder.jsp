@@ -36,7 +36,7 @@
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
-		<center>
+		<div align='center'>
 		<!-- OrderList추가를 하거나 거래원장에 Date와 BuyerSeq를 보내기 위함 -->
 		<form action='./orderSave.jsp'method='post'id='dataForm'>
 			<!-- DateSelectBox -->
@@ -177,7 +177,7 @@
 			<input type='button'value='삭제'id='deleteBtn'onclick='deleteList();'disabled class="btn btn-primary">
 			<input type='button'value='엑셀변환'id='convertExcel'onclick='translateExcel();'class='btn btn-primary'>
 		</form>
+		</div>
 		<script src="./order.js" type="text/javascript"></script>
 	</body>
-	</center>
 </html>

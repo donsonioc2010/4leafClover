@@ -480,7 +480,7 @@ var form = ''
 	}
 	
 	function translateExcel(){
-		let orderDate = $('#year').val()+changeNumber($('month').val())+changeNumber($('day').val())
+		let orderDate = $('#year').val()+changeNumber($('#month').val())+changeNumber($('#day').val())
 		let buyerSeq = document.getElementsByName('buyerSeq')[0].value
 		/*$.ajax({
 				type:'POST',

@@ -26,6 +26,7 @@ public class totalDao {
 					+ " AVG(o.order_not_collect_money) "
 					+ " FROM ORDER_LIST O, buyer b "  
 					+ " WHERE substr(o.ORDER_DATE,1,6) = TO_CHAR(SYSDATE,'YYYYmm') " 
+					+ " AND B.BUYER_SEQ = O.BUYER_SEQ"
 					+ " AND b.seller_id = ? ";
 		
 		System.out.println("sql" + sql);
@@ -66,7 +67,8 @@ public class totalDao {
 					+ " AVG(o.order_collect_money), "
 					+ " AVG(o.order_not_collect_money) "
 					+ " FROM ORDER_LIST O, BUYER B "  
-					+ " WHERE substr(o.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') " 
+					+ " WHERE substr(o.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') "
+					+ " AND B.BUYER_SEQ = O.BUYER_SEQ" 
 					+ " AND b.seller_id = ? ";
 		
 		System.out.println("sql" + sql);
