@@ -36,12 +36,12 @@ if(dto == true){
 	%>
 	<script type="text/javascript">
 	alert("수정 성공");
-	location.href="../index.jsp";
+	location.href="./myPage.jsp";
 	</script>	
 <%}else{%>
 	<script type="text/javascript">
 	alert("수정 실패");
-	location.href="../index.jsp";
+	location.href="./myPage.jsp";
 	</script>
 <%}%>
 

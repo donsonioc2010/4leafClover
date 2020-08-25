@@ -111,25 +111,43 @@ table class="table table-sm"
 		<td scope="row"><input type="text" class="input" name="email" value="<%=dto.getEmail()%>"></td>
 	</tr>
 	<tr>
-		<td scope="col" colspan="2"><center>
+		<td scope="col" colspan="2" align="center">
 			<input type="submit" id="saveBtn" value="저장" class="btn btn-primary">
 			<input type="reset" id="cancelBtn" class="btn btn-secondary" value="취소">
-		</center></td>
+		</td>
+		
+
 	</tr>
 	</table>
+	</div>
+	<div align="right">
+			<a href="#none" id="deleteBtn" style="text-decoration: none; font-size: 10pt">회원탈퇴</a>
 	</div>
 </div>
 </form>
 </div>
 <script src="./myPage.js"></script>
+<script type="text/javascript">
+$('#deleteBtn').on("click",function(){
+	<%
+	boolean isS = dao.delSeller(id);
+	if(isS == true){
+		%>
 
+		alert("그동안 감사했습니다");
+		location.href="../login/login.jsp";
+
+	<%}else{%>
+
+		alert("탈퇴 실패");
+		location.href="./myPage.jsp";
+
+	<%}%>
+});
+</script>
 
 </body>
 </html>
-
-
-
-
 
 
 
