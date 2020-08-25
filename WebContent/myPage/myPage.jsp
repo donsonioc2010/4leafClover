@@ -133,19 +133,14 @@ $('#deleteBtn').on("click",function(){
 	boolean isS = dao.delSeller(id);
 	if(isS == true){
 		%>
-
 		alert("그동안 감사했습니다");
 		location.href="../login/login.jsp";
-
 	<%}else{%>
-
 		alert("탈퇴 실패");
 		location.href="./myPage.jsp";
-
 	<%}%>
 });
 </script>
-
 </body>
 </html>
 
