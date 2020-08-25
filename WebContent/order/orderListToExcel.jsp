@@ -27,8 +27,8 @@
 		id = (String)session.getAttribute("login");
 	}
 	request.setCharacterEncoding("utf-8");
-	String buyerSeq = "66";//request.getParameter("buyerSeq");
-	String orderDate = "20200824";//request.getParameter("orderDate");
+	String buyerSeq = request.getParameter("buyerSeq");
+	String orderDate = request.getParameter("orderDate");
 	
 	
 	orderDao dao = orderDao.getInstance();

@@ -4,14 +4,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+String id = null;
 if(session.getAttribute("login")==null){
 	response.sendRedirect("../login/login.jsp");
+}else{
+	id = (String)session.getAttribute("login");
 }
 
 String searchWord = request.getParameter("searchWord");
 
 productDao dao = productDao.getInstance();
-List<productDto> list = dao.searchProductList(searchWord);
+List<productDto> list = dao.searchProductList(searchWord,id);
 %>    
     
     

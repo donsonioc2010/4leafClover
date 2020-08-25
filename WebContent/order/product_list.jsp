@@ -3,13 +3,15 @@
 <%@page import="product.productDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%
+String id = null;
 if(session.getAttribute("login")==null){
 	response.sendRedirect("../login/login.jsp");
+}else{
+	id = (String)session.getAttribute("login");
 }
 productDao dao = productDao.getInstance();
-List<productDto> list = dao.getAllProductList();
+List<productDto> list = dao.getAllProductList(id);
 int inputNum = Integer.parseInt(request.getParameter("inputNum"));
 %>
 <!DOCTYPE html>
@@ -28,7 +30,6 @@ int inputNum = Integer.parseInt(request.getParameter("inputNum"));
 			<input type="button" value="전달하기" id="sendBtn" name="sendBtn" onclick="SendProductInfo(<%=inputNum%>);">
 		</div>
 
-		
 		<br>
 		
 		<div class="popup_LeftBox">
