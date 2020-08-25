@@ -16,7 +16,7 @@
 	productDao dao = productDao.getInstance();
 	String searchType = request.getParameter("searchType");
 	String searchWord = request.getParameter("searchWord");
-	List<productDto> productList = dao.searchProductList(searchType, searchWord,id);
+	List<productDto> productList = dao.searchProductList(searchType, searchWord, id);
 	for(int i = 0; i <productList.size(); i++){
 	%>
        <tr >

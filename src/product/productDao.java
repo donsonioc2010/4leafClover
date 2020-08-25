@@ -61,9 +61,9 @@ public class productDao {
 		String sqlplus = null;
 					
 		if(dataType.equals("productName")) {//상품명검색
-			sqlplus= " WHERE PRODUCT_NAME LIKE ? AND SERRER_ID = ? ORDER BY PRODUCT_SEQ";
+			sqlplus= " WHERE PRODUCT_NAME LIKE ? AND SELLER_ID = ? ORDER BY PRODUCT_SEQ";
 		}else {								//종류로 검색
-			sqlplus = " WHERE PRODUCT_SORT LIKE ? AND SERRER_ID = ? ORDER BY PRODUCT_SEQ";
+			sqlplus = " WHERE PRODUCT_SORT LIKE ? AND SELLER_ID = ? ORDER BY PRODUCT_SEQ";
 		}
 		sql += sqlplus;
 		
