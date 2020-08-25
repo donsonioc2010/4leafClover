@@ -7,11 +7,15 @@
 	pageEncoding="UTF-8"%>
 
 <%
+String id = (String)session.getAttribute("login");
+if(id==null){
+	response.sendRedirect("../login/login.jsp");
+}
 	int seq = Integer.parseInt(request.getParameter("seq"));
 	String searchWord = request.getParameter("search");
 	clienthistoryDao dao = clienthistoryDao.getInstance();	
 	List<clienthistoryDto> list = new ArrayList<clienthistoryDto>();
-	list = dao.getclienttradeSearch("test1",seq,searchWord);
+	list = dao.getclienttradeSearch(id,seq,searchWord);
 	Gson Jobj = new Gson();
 	
 	out.print(Jobj.toJson(list));
