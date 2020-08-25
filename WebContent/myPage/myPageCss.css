@@ -1,0 +1,73 @@
+form{
+ 	margin: 100px; 
+ 	margin-left: 100px;
+	background-color : white;
+/* 	padding : 30px; */
+	border-radius : 10%;
+	display : block;
+	box-shadow : 3px 3px 3px 3px #999;
+}
+.myPageClass {/* 마이페이지 */
+  width: 600px;
+  height: 560px;
+
+}
+.totalClass {/* 총매출 */
+  margin: 50px;
+  width: 600px;
+  height: 360px;
+  background-color: GRAY;
+  border-radius: 10%;
+}
+
+/* div태그 */
+#mypageTable{
+	display: table;
+	padding-top:50px;
+	float: left;
+	width: 500px; 
+	font:  11pt;
+	font-family: "Nanum Gothic", sans-serif;
+}
+.input-group-prepend{
+	margin-left: 100px;
+}
+p{
+	margin-left:80px;
+	font-size: 20pt;
+	font-weight: bold;
+	font-family: 'Epilogue', sans-serif;
+}
+/* input text */
+.input{
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom-color: #a6b1e1;
+	font-size: 10pt;
+	width: 200px;
+}
+/* 우편번호 input text */
+#address1{
+	width: 140px;
+
+}
+/* input text 클릭시 outline 없음 */
+input:focus {outline:none;}
+#postBtn{
+	width: 45px;
+	height: 20px;
+	font-size: 8pt;
+	text-align: left;
+	line-height: 1px;
+	padding-left: 0;
+
+}
+
+/* 저장 취소 버튼 크기 */
+#saveBtn, #cancelBtn{
+	width: 50px;
+	height: 30px;
+	font-size: 8pt;
+
+}

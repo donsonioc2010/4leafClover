@@ -1,0 +1,22 @@
+body {
+ margin : 0px;
+ padding : 0px;
+ background-color : #A6B1E1;
+}
+
+.no-write{
+	border-left : none;
+	border-right : none;
+	border-top : none;
+	border-bottom-color : #BDBDBD;
+	width : 180px;
+	font-family : "Nanum Gothic", sans-serif;
+	size : 30px;
+}
+
+.no-write2{ 
+	border : 1px solid darkgray;
+	background-color : darkgray;
+	color : white;
+	border-radius : 5px; 
+}

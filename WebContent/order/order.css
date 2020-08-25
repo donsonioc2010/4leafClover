@@ -1,0 +1,125 @@
+#dataForm{ /*흰배경 */
+ align-content: center;
+ margin: 100px;
+ padding:70px;
+ width: 1200px;
+ height:1000px;
+ background-color: white;
+ border-radius: 10%;
+}
+
+/*--------------------------------*/
+
+-write2{ /*수금미수금 text*/
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom-color: #A6B1E1;
+	font-size: 10pt;
+	width: 180px;
+	font-family: "Nanum Gothic", sans-serif;
+}
+input:focus {outline:none;} 
+
+#buyerCompanyName{ /*거래처 text크기*/
+width: 160px;
+}
+#buyerCeo, #buyerTelNum,#buyerCompanyNum{/*대표자, 사업자,전화번호 text크기*/
+width: 250px;
+}
+
+#orderTotalPrice, #orderSupplyPrice, #orderTaxPrice, #notCollectMoney,#CollectMoney{
+width: 250px;
+}
+
+
+table {
+  border: 1px solid #444444;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #444444;
+  padding: 10px;																												
+}
+
+/*======================================================*/
+.BuyerInfoBox{
+	width:900px;
+}
+.BuyerInfoBox table{
+	width:100%;
+}
+.BuyerInfoBox table input{
+	width:100%;
+}
+.BuyerInfoBox table tr th{
+	width:100px;
+}
+
+.BuyerInfoBox table tr:nth-child(1) td:last-child{
+	width:200px;
+}
+.BuyerInfoBox table tr:nth-child(2) td:last-child{
+	width:40%;
+}
+
+/*======================================================*/
+ .orderDetail{
+  	border: 1px solid black;
+ 	width:900px;
+ } 
+
+.orderDetail table thead, .orderDetail table tfoot{
+ 	float:left;
+ 	width:899px;
+ }
+ .orderDetail table tbody{
+ 	overflow-y: auto; 
+ 	overflow-x:hidden; 
+ 	float: left; 
+ 	width: 900px; 
+ 	height:400px;
+ }
+ 
+ .orderDetail table tbody tr{
+ 	display:table;
+	width:900px;
+	height:50px;
+ }
+.orderDetail table input{
+	border:1px solid black;
+	padding:0px;
+	width:87%;
+	text-align : center;
+}
+.orderDetail .cell1,
+.orderDetail .cell3,
+.orderDetail .cell4,
+.orderDetail .cell5,
+.orderDetail .cell6,
+.orderDetail .cell7{
+	width:100px;
+	text-align : center;
+}
+.orderDetail .cell2{
+	width:350px;
+	text-align : center;
+}
+.orderDetail .tf1{
+	width:150px;
+}
+.orderDetail .tf2{
+	width:300px;
+}
+
+.cell2 button{
+	margin-left : 8px;
+	padding:0;
+	float:right;
+	width:10px;
+}
+
+.orderDetail table thead tr{/*tr 배경색*/
+    background-color: #2B2E7E;
+    color: white;
+  }

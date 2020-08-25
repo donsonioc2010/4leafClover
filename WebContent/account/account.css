@@ -1,0 +1,58 @@
+.searchclass{ /*검색창 및 배경 */
+align-content: center;
+ margin: 80px;
+ padding:70px;
+ width: 1350px;
+ height: 600px;
+ border-radius: 10%;
+ background-color : white;
+ display : block;
+box-shadow : 3px 3px 3px 3px #999;
+ 
+}
+
+.add{ /*정보 및 수정 css*/
+
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom-color: #A6B1E1;
+	font-size: 10pt;
+	width: 180px;
+	font-family: "Nanum Gothic", sans-serif;
+}
+/*text 클릭시 */
+input:focus {outline:none;} 
+
+#address1{ /*우편주소*/
+	width: 130px;
+}
+
+.list{/*거래처명 리스트*/
+padding-left: 30px;
+float: left;
+padding: 10px 20px 40px;
+
+}
+
+#listhead{ /*거래처 리스트 head*/
+	background-color : #2B2E7E;
+	color : white;
+}
+
+#searchbtn{
+	padding: 3px 10px;
+}
+/*accountadd.jsp------------*/
+.addclass{ /*검색창 및 배경 */
+
+ margin: 80px;
+ padding:70px;
+ width: 1350px;
+ height: 500px;
+ border-radius: 10%;
+ background-color : white;
+ display : block;
+ box-shadow : 3px 3px 3px 3px #999;
+ 
+}

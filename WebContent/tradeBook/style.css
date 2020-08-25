@@ -1,0 +1,157 @@
+ .top{
+	background-color: ghostwhite;
+	position: relative;
+	left: 0;
+	padding: 0;
+	width: 100%;
+	
+	padding-top: 7px;
+}
+.top span{
+	font-size: 12px;
+	line-height: 20px;
+	color: black;
+}
+.top_bar{
+	display: inline;
+}
+.top_bar li{
+	display: inline-block;
+}
+.top_bar li{
+	float: right;
+	padding-right: 20px;
+}
+/*a {	text-decoration: none;}*/
+.category:hover{
+	color: white;
+}
+.category{
+	border: none;
+	outline: none;
+}
+
+.panel panel-default{
+	border: 10px solid;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100px; height: 300px;
+}
+
+.table-wrap {
+	width: 1200px;
+}
+
+.fixed_top {
+	display: inline-table;
+	position: absolute;
+	top: 0;
+	width: calc(100% - 15px);
+	height: 36px;
+	background: #eef7ff;
+}
+button{
+	font-size:1px;padding:1px 1px;
+}
+.tb_box {
+	max-height: 300px;
+	overflow-y: scroll;
+	border-bottom: 1px solid #dedede;
+}
+
+.table-wrap td:last-child {
+	bottom: 0;
+} 
+
+.table-condensed {
+  height:150px;
+ table-layout: fixed;
+ 
+}
+.table-box-wrap .table-box table thead tr th {
+    font-weight: normal;
+    width: 120px;
+    height: 40px;
+    background:darksalmon;
+    color:#fff;
+}
+.tab { white-space: pre-wrap; }
+body {
+	padding: 0px;
+  margin: 0 auto;
+}
+
+tr.highlighted td {
+	background: white;
+}
+
+.highlight {
+	background-color: red;
+}
+
+.table-condensed tbody tr td:visited {
+	color: graytext;
+}
+
+.table-condensed tbody tr:hover td, .table tbody tr:hover th {
+	background-color: #eeeeea;
+}
+
+table, th, tr, td {
+	border: 1px solid #bcbcbc;
+	 table-layout:fixed;
+}
+
+#jb-container {
+	border: 1px solid #bcbcbc;
+}
+
+.jb-header {
+	display: inline-block;
+	border: 1px solid #bcbcbc;
+}
+
+#jb-content {
+	border: 1px solid #bcbcbc;
+	width: 100%; height: 40px;
+}
+
+#jb-content1 {
+	border: 1px solid #bcbcbc;
+	width: 100%; height: 40px;
+}
+
+#jb-sidebar {
+	display: inline-block;
+}
+
+.box {
+	border: 0;
+	background: white;
+}
+
+.box:focus {
+	border: 0;
+	outline: none;
+}
+
+.box:focus {
+	outline: none;
+}
+
+input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+input:focus::-moz-placeholder {
+	color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+	color: transparent;
+}
+
+input:focus::-ms-input-placeholder {
+	color: transparent;
+}

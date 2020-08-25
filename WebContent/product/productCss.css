@@ -1,0 +1,263 @@
+
+.productWrap1{
+	width : 900px;
+	margin-left : 60px;
+	margin-top : 20px;
+	overflow : auto;
+}
+.productWrap2{
+	text-align: -webkit-center;
+}
+.shadow {
+	margin-top:3%;
+	width : 700px;
+	height : 600px;
+	background-color : white;
+	padding : 3%;
+	border-radius : 10%;
+	display : block;
+	box-shadow : 3px 3px 3px 3px #999;
+}
+.PlasePrettyCss{
+	margin-left : 47px;
+	margin-top : 65px;
+	width : 400px;
+	height : 250px;
+	background-color : white;
+	padding : 5%;
+	border-radius : 10%;
+	box-shadow : 3px 3px 3px 3px #999;
+}
+
+.seqInFoform{
+	margin-top: 39px;
+    margin-left: 46px;
+	width : 400px;
+	height : 380px;
+	background-color : white;
+	padding : 5%;
+	border-radius : 10%;
+	box-shadow : 3px 3px 3px 3px #999;
+}
+
+table{
+	border : 1;
+	border-collapse: collapse;
+	
+}
+
+body{
+	background-color : #A6B1E1;
+}
+
+table thead{
+	background-color : #2B2E7E;
+	color : white;
+}
+
+#searchBtn, #popExitBtn {
+	border : 1px solid #e6e6e6;
+	background-color: #e6e6e6;
+	border-radius: 5px;
+}
+
+ #insertProduct, #addProductbtn,
+ #ProductUpdateBtn, #deleteBtn {
+	border : 1px solid #286090;
+	background-color: #286090;
+	border-radius: 5px;
+	color : white;
+}
+
+#productTotalTable{
+	padding : 0;
+	margin-top : 10px;
+	width : 600px;
+	height : 500px;
+	float : left;
+	border : 1px solid black;
+	background-color : white;
+}
+#productListTable{
+	padding : 0;
+	width : 100%;
+	height : 450px;
+	border : 1px solid black;
+	background-color : white;
+
+}
+#searchType{
+	margin-top : 5px;
+	height : 25px;
+}
+#productListTable thead tr{
+	text-align : center;
+	height : 40px;
+}
+#productListTable thead th{
+	text-align : center;
+	position: sticky;
+	top: 0;
+}
+#productListTable thead{
+	text-align : center;
+	display : inline-block;
+	width : 100%;
+}
+
+#InfoTable{
+	 width : 400px;
+	 height : 380px;
+	 float : left;
+	border : 1px solid black;
+	background-color : white;
+}
+#InfoTable thead tr{
+	height:30px;
+}
+
+#InfoTable tbody tr td input,
+#InfoTable tbody tr td select{
+	width : 95%;
+	table-layout: fixed;
+	text-align : center; 
+	border : 1px solid black;
+}
+#saveSelectSort,
+#productUnit{
+	text-align-last : center;
+}
+#productListTable tbody{
+	display: block;
+	width : 100%;
+    height: 450px;
+    overflow: auto;
+}
+#productListTable tbody tr:hover{ 
+    display: table-row;
+} 
+
+#addProductTable {
+	margin-top : 25px;
+	border : 1px solid black;
+	background-color : white;
+}
+
+#addProductTable tbody td input{
+	width : 85%;
+}
+#addProductTable tbody td select{
+	width : 85%;
+	border-top: 0;
+}
+#searchBar{
+	height : 50px;
+}
+#productListTable td:nth-child(1) {
+ 	width:70px;
+}
+#productListTable td:nth-child(2) {
+ 	width:435px;
+}
+#productListTable td:nth-child(3) {
+ 	width:150px;
+}
+ 			
+#productListTable th:nth-child(1) {
+ 	width: 69px;
+}
+ 			
+#productListTable th:nth-child(2) {
+	width: 415px;
+}
+ 			
+#productListTable th:nth-child(3) {
+ 	width: 160px;
+}
+
+#buttonTable{
+	width : 401px;
+	border : 1px solid black;
+	background-color : white;
+}
+
+#productImg{
+	width : 220px;
+	hieght : 100px;
+	margin-left : 510px;
+	margin-top: 15px;
+}
+
+#productAddImg{
+	width : 200px;
+	hieght : 100px;
+	margin-left : 183px;
+	margin-top : 15px;
+}
+
+#seqInfoImg{
+	width : 200px;
+	hieght : 100px;
+	margin-left : 180px;
+	margin-top : 3px;
+}
+
+.top{
+	background-color: ghostwhite;
+	position: relative;
+	left: 0;
+	padding: 0;
+	width: 100%;
+	height: 20px;
+}
+
+.top span{
+	font-size: 12px;
+	line-height: 20px;
+	color: black;
+}
+
+.top_bar{
+	display: inline;
+}
+
+.top_bar li{
+	display: inline-block;
+}
+
+.top_bar li{
+	float: right;
+	padding-right: 20px;
+}
+
+a {	
+	text-decoration: none;
+}
+
+.category:hover{
+	color: white;
+}
+
+.category{
+	border: none;
+	outline: none;
+}
+
+.gray{
+	background-color : gray;
+}
+.infoTable{
+	border : 1px solid black;
+	background-color : white;
+}
+
+#productTotalTable td, #productTotalTable tr, #productTotalTable th,
+#productListTable td, #productListTable tr, #productListTable th,
+#addProductTable td, #addProductTable tr, #addProductTable th,
+#buttonTable td, #buttonTable tr, #buttonTable th,
+#InfoTable td, #InfoTable tr, #InfoTable th,
+#infoTable td, #infoTable tr, #infoTable th {
+	text-align : center; 
+	border : 1px solid black;
+
+}

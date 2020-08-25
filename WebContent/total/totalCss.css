@@ -1,0 +1,33 @@
+
+.totalClass {/* 총매출 */
+/*   margin: 25%; */
+  width: 600px;
+  height: 360px;
+/*   background-color: white;
+  border-radius: 10%; */
+}
+
+/* div태그 */
+#mypageTable{
+	display: table;
+/* 	padding-top:10px; */
+	width: 500px; 
+	font:  11pt;
+	font-family: "Nanum Gothic", sans-serif;
+	padding-right: 70px;
+}
+
+.container .totalClass{
+	margin : 100px;
+	background-color : white;
+	padding : 90px;
+	border-radius : 10%;
+	display : block;
+	box-shadow : 3px 3px 3px 3px #999;
+}
+
+.container .totalClass table thead{
+	background-color : #2B2E7E;
+	color : white;
+}
+
