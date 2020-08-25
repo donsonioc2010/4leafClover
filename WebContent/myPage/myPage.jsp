@@ -21,12 +21,12 @@ seller = (sellerDto)ologin;
 
 String id = (String)session.getAttribute("login");
 if(id==null){
-	response.sendRedirect("./login/login.jsp");
+	response.sendRedirect("../login/login.jsp");
 }
 
 
 sellerDao dao = sellerDao.getInstance();
-List<sellerDto> list = dao.getSellerInform("test2");
+List<sellerDto> list = dao.getSellerInform(id);
 
 sellerDto dto = null;
 int count =0;

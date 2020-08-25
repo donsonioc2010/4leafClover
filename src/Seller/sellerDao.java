@@ -25,6 +25,7 @@ public class sellerDao {
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		boolean confirm = false;
+		
 		try {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -33,7 +34,7 @@ public class sellerDao {
 			psmt.setString(2, dto.getPw());
 			
 			//정보를 확인해서 널값인지 아닌지만 확인한다
-			if(psmt.executeQuery()!=null) {
+			if(psmt.executeQuery().next()) {
 				confirm = true;
 			}	
 		} catch (Exception e) {

@@ -16,11 +16,11 @@ public class productDao {
 	public static productDao getInstance() {return dao;}
 	
 	//물품명으로만 검색함
-	public List<productDto> searchProductList(String searchWord){
+	public List<productDto> searchProductList(String searchWord, String sellerId){
 		List<productDto> list = new ArrayList<productDto>();
 		
 		String sql = "SELECT PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_SORT, PRODUCT_TRADE_PRICE, PRODUCT_STANDARD "
-				+ " FROM PRODUCT WHERE PRODUCT_NAME LIKE ? ORDER BY PRODUCT_SEQ ";
+				+ " FROM PRODUCT WHERE PRODUCT_NAME LIKE ? AND SELLER_ID = ?  ORDER BY PRODUCT_SEQ ";
 		Connection conn = null;
 		PreparedStatement psmt  = null;
 		ResultSet rs = null;
@@ -30,7 +30,7 @@ public class productDao {
 			psmt = conn.prepareStatement(sql);
 			
 			psmt.setString(1, "%"+searchWord+"%");
-			
+			psmt.setString(2, sellerId);
 			rs  = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -55,15 +55,15 @@ public class productDao {
 	
 	//상품명 또는 Sort의 검색문구를 입력하여 분류하여 검색함
 	//0819 06:22AM 수정중
-	public List<productDto> searchProductList(String dataType, String searchWord) {
+	public List<productDto> searchProductList(String dataType, String searchWord,String sellerId) {
 		List<productDto> list = new ArrayList<productDto>();
 		String sql = " SELECT PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_SORT FROM PRODUCT";
 		String sqlplus = null;
 					
 		if(dataType.equals("productName")) {//상품명검색
-			sqlplus= " WHERE PRODUCT_NAME LIKE '%"+searchWord+"%' ORDER BY PRODUCT_SEQ";
+			sqlplus= " WHERE PRODUCT_NAME LIKE ? AND SELLER_ID = ? ORDER BY PRODUCT_SEQ";
 		}else {								//종류로 검색
-			sqlplus = " WHERE PRODUCT_SORT LIKE '%"+searchWord+"%' ORDER BY PRODUCT_SEQ";
+			sqlplus = " WHERE PRODUCT_SORT LIKE ? AND SELLER_ID = ? ORDER BY PRODUCT_SEQ";
 		}
 		sql += sqlplus;
 		
@@ -74,6 +74,9 @@ public class productDao {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
 	
+			psmt.setString(1, "%"+searchWord+"%");
+			psmt.setString(2, sellerId);
+			
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -157,12 +160,12 @@ public class productDao {
 	}
 	// 물품의 세부사항을 적어서 저장하는 기능
 	//0819 02:50 수정
-	public boolean addproduct(productDto dto) {
+	public boolean addproduct(productDto dto,String sellerId) {
 		String sql[] = { 
 				"SELECT PRODUCT_SEQ FROM PRODUCT WHERE PRODUCT_NAME = ? AND PRODUCT_UNIT = (SELECT SEQ_NUM FROM PRODUCT_UNIT_CATE WHERE PRODUCT_UNIT = ?) AND PRODUCT_SORT = ?"
-				," INSERT INTO PRODUCT( PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_UNIT, PRODUCT_TRADE_PRICE, PRODUCT_SORT, PRODUCT_PIECE_BOX, PRODUCT_STANDARD) "
+				," INSERT INTO PRODUCT( PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_UNIT, PRODUCT_TRADE_PRICE, PRODUCT_SORT, PRODUCT_PIECE_BOX, PRODUCT_STANDARD,SELLER_ID) "
 				+ " VALUES( PRODUCT_SEQ.NEXTVAL, ?, (SELECT SEQ_NUM FROM PRODUCT_UNIT_CATE WHERE PRODUCT_UNIT = ?)"
-				+ ", ?, ?, ?, ?)"};
+				+ ", ?, ?, ?, ?, ?)"};
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -189,6 +192,7 @@ public class productDao {
 				psmt.setString(4, dto.getProductSort());
 				psmt.setInt(5, dto.getProductPieceBox());
 				psmt.setString(6, dto.getProductStandard()+"ml");
+				psmt.setString(7, sellerId);
 				
 				count = psmt.executeUpdate();
 			}
@@ -289,9 +293,9 @@ public class productDao {
 	
 	//모든 Product항목을 검색해서 List로 Return 해줌 Seq,Name,Sort만 가져간다 
 	//20200819 01:00수정완료
-	public List<productDto> getAllProductList(){
+	public List<productDto> getAllProductList(String sellerId){
 		String sql = "SELECT PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_SORT, PRODUCT_TRADE_PRICE, PRODUCT_STANDARD "
-				+ " FROM PRODUCT ORDER BY PRODUCT_SEQ";
+				+ " FROM PRODUCT WHERE SELLER_ID = ? ORDER BY PRODUCT_SEQ";
 		
 		List<productDto> list = new ArrayList<>();
 		
@@ -302,6 +306,8 @@ public class productDao {
 		try {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, sellerId);
 			
 			rs  = psmt.executeQuery();
 			
