@@ -104,7 +104,7 @@
 							</tr>
 							<tr>
 								<th colspan='2'>
-									<button type='button'id="popExitBtn"style="width:100%">삭제</button>
+									<button type='button'id="popExitBtn"style="width:100%">닫기</button>
 								</th>
 							</tr>
 						</table>

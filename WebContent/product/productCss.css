@@ -14,7 +14,6 @@
 	height : 600px;
 	background-color : white;
 	padding : 3%;
-	border-radius : 10%;
 	display : block;
 	box-shadow : 3px 3px 3px 3px #999;
 }
@@ -25,7 +24,6 @@
 	height : 250px;
 	background-color : white;
 	padding : 5%;
-	border-radius : 10%;
 	box-shadow : 3px 3px 3px 3px #999;
 }
 
@@ -36,7 +34,6 @@
 	height : 380px;
 	background-color : white;
 	padding : 5%;
-	border-radius : 10%;
 	box-shadow : 3px 3px 3px 3px #999;
 }
 
@@ -71,7 +68,6 @@ table thead{
 
 #productTotalTable{
 	padding : 0;
-	margin-top : 10px;
 	width : 600px;
 	height : 500px;
 	float : left;
