@@ -5,13 +5,12 @@
  width: 1200px;
  height:1000px;
  background-color: white;
- border-radius: 10%;
  box-shadow : 3px 3px 3px 3px #999;
 }
 
 /*--------------------------------*/
 
--write2{ /*수금미수금 text*/
+no-write2{ /*수금미수금 text*/
 	border-left: none;
 	border-right: none;
 	border-top: none;
@@ -124,7 +123,9 @@ th, td {
     background-color: #2B2E7E;
     color: white;
   }
-  
+ #detailList tr:hover{
+  	background-color: #dcdcdc;
+  }
   input[type="number"]::-webkit-outer-spin-button,
  input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
