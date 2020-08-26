@@ -83,9 +83,18 @@ if(dto.getProduct_standard() == null){
 	
 	<body>
 		<div align='center'>
-			<div id="command_bar">
-			  A4용지를 준비하고 인쇄버튼을 클릭하세요. &nbsp; <input type="button" value="인쇄하기" onclick="printNow()" /> <input type="button" value="뒤로" onclick="javascript:history.back();" />
+		<table>
+		<tr>
+		<td>
+			<div id="command_bar" align="left">
+			  A4용지를 준비하고 인쇄버튼을 클릭하세요. &nbsp; <input type="button" value="인쇄하기" onclick="printNow()" /> 
 			</div>
+		</td>
+		<td>
+			<input type="button" value="뒤로" onclick="javascript:history.back();" />
+		</td>
+		</tr>
+		</table>
 			<input type="hidden" id="seq" value="<%=seq %>">
 			<input type="hidden"id='dtoPageNum'value='<%=pageNumber%>'>
 			<input type="hidden"id='dtoOrderDate'value='<%=dto.getOrder_date()%>'>
