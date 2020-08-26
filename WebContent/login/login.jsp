@@ -31,7 +31,7 @@
 		      <div class="form-group">
 		        <label for="password" class="text-info">Password:</label>
 		        <br />
-		        <input type="password"name="password"id="password"class="form-control" />
+		        <input type="password"name="password"id="password"class="form-control"onkeypress='enterLogin();' />
 		      </div>
 		      <div class="form-group">
 		      <span id="alert"></span>
@@ -46,19 +46,41 @@
 		    </form>
 	    </div>
 	</div>
-
     <script src="../util.js"></script>
 	<script type="text/javascript">
 	//로그인폼 체크
+	function enterLogin(){
+		if(window.event.keyCode==13){
+			loginFormCheck()
+		}
+	}
 	function loginFormCheck(){
 		let id = document.getElementById("userid");
 		let pw = document.getElementById("password");
-		
+
 		if(id.value.trim()==""||pw.value.trim()==""){
 			document.getElementById("alert").innerText="ID,PW를 입력해주십시오";
 			id.focus();
 		}else{
-			document.getElementById("login-form").submit();
+			//document.getElementById("login-form").submit();
+			$.ajax({
+			type:'POST',
+			url:'./loginAf.jsp',
+			data:{
+				"userid":id.value,
+				"password":pw.value
+			},
+			success:function(data){
+				if(data.result == true){
+					 alert("로그인성공")
+					 location.href = "../index.jsp";
+				}else{
+					document.getElementById('alert').innerText = 'ID 또는 PW가 잘못되었습니다.'
+					pw.value=''
+					id.focus();
+				}
+			},
+		})
 		}
 	}
 	</script>
