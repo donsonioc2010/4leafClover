@@ -24,7 +24,7 @@ if(session.getAttribute("login")==null){
 		<title>productManageMent</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<link rel="stylesheet" href = "../init.css" />	
-		<link rel="stylesheet" href = "./productCss.css" />
+		<link rel="stylesheet" href = "./productCss.css"type='text/css' />
 	</head>
 	
 	<body>
@@ -61,7 +61,7 @@ if(session.getAttribute("login")==null){
 					               
 					               <tbody>
 				               		<%for(int i = 0; i <productList.size(); i++){%>
-							            <tr onclick='productTrClick();'>
+							            <tr >
 							            	<td ><%=productList.get(i).getProductSeq() %></td>
 							        		<td><%=productList.get(i).getProductName() %></td>
 							        		<td><%=productList.get(i).getProductSort() %></td>

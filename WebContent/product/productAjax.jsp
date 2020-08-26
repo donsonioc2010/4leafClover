@@ -18,7 +18,7 @@
 	String searchWord = request.getParameter("searchWord");
 	List<productDto> productList = dao.searchProductList(searchType, searchWord, id);
 	for(int i = 0; i <productList.size(); i++){%>
-       <tr onclick='productTrClick();'>
+       <tr >
            	<td ><%=productList.get(i).getProductSeq() %></td>
        		<td><%=productList.get(i).getProductName() %></td>
        		<td><%=productList.get(i).getProductSort() %></td>

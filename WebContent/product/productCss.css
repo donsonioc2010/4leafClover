@@ -179,21 +179,21 @@ table thead{
 
 #productImg{
 	width : 220px;
-	hieght : 100px;
+	height : 100px;
 	margin-left : 510px;
 	margin-top: 15px;
 }
 
 #productAddImg{
 	width : 200px;
-	hieght : 100px;
+	height : 100px;
 	margin-left : 183px;
 	margin-top : 15px;
 }
 
 #seqInfoImg{
 	width : 200px;
-	hieght : 100px;
+	height : 100px;
 	margin-left : 180px;
 	margin-top : 3px;
 }
@@ -246,6 +246,10 @@ a {
 	border : 1px solid black;
 	background-color : white;
 }
+#productListTable tbody :hover{
+	background-color: #dcdcdc;
+}
+
 
 #productTotalTable td, #productTotalTable tr, #productTotalTable th,
 #productListTable td, #productListTable tr, #productListTable th,
@@ -255,5 +259,4 @@ a {
 #infoTable td, #infoTable tr, #infoTable th {
 	text-align : center; 
 	border : 1px solid black;
-
 }
