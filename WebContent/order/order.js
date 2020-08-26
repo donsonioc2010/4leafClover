@@ -457,25 +457,31 @@ var form = ''
 //productList.jsp=======================
 	//검색버튼 눌렀을대 검색되는 기능 추가하기
 
-	function searchProduct(){
-		let searchWord = $('#searchProductWord').val().trim()
-		
-		if(searchWord!=''){
-			$.ajax({
-				type:'GET',
-				url:'./searchProductList.jsp',
-				datatype:'html',
-				data:{
-					'searchWord':searchWord
-				},
-				success:function(data){
-					$('.popup_LeftBox table #productList').html(data)
-				},error:function(){
-					alert('에러')
-				}
-			})
-		}
+$('#searchProductBtn').click(function(){
+	searchProduct()
+})
+function enterSearchProduct(){
+	searchProduct()
+}
+function searchProduct(){
+	let searchWord = $('#searchProductWord').val().trim()
+	
+	if(searchWord!=''){
+		$.ajax({
+			type:'GET',
+			url:'./searchProductList.jsp',
+			datatype:'html',
+			data:{
+				'searchWord':searchWord
+			},
+			success:function(data){
+				$('.popup_LeftBox table #productList').html(data)
+			},error:function(){
+				alert('에러')
+			}
+		})
 	}
+}
 	
 	
 	//product_list.jsp => order.jsp로 Value를 보내는 기능

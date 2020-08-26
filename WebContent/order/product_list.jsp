@@ -22,13 +22,14 @@ if(session.getAttribute("login")==null){
 	<head>
 		<meta charset="UTF-8">
 		<title>상품목록</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="../init.css">
 		<link rel="stylesheet" href="./order.css">
 	</head>
 	
 	<body>
 		<div align="left">
-			<input type="text"id="searchProductWord" > 
+			<input type="text"id="searchProductWord"onkeypress='enterSearchProduct();' > 
 			<input type="button" name="product_Search"id='searchProductBtn'value="상품명검색">
 			<input type="button" value="전달하기"id='sendBtn'name="sendBtn" onclick="SendProductInfo(<%=inputNum%>);">
 		</div>
@@ -59,31 +60,14 @@ if(session.getAttribute("login")==null){
 							<td><span name="productName"> <%=dto.getProductName() %> </span></td>
 							<!-- <td><span name="<%=dto.getProductSeq()%>"> <%=dto.getProductUnit()%></span></td>  -->
 							<td><span name="productSupply"> <%=dto.getProductTradePrice() %></span></td>
-							<td>
-								<span name="productStandard"> <%=dto.getProductStandard() %></span>
-							</td>
+							<td><span name="productStandard"> <%=dto.getProductStandard() %></span></td>
 						</tr>
 				<% 		}
 					}%>
 				</tbody>
 			</table>
 		</div>
-	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="./order.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('#searchProductWord').keypress(function(){
-					 if (window.event.keyCode == 13) {
-			 
-			             // 엔터키가 눌렸을 때 실행할 내용
-			             searchProduct()
-			        }
-				})
-				$('#searchProductBtn').click(function(){
-					searchProduct()
-				})
-			})
-		</script>
 	</body>
 </html>
