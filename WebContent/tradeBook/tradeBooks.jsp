@@ -21,7 +21,6 @@ BuyerDao dao = BuyerDao.getInstance(); // 거래처dao의 인스턴스를불러�
 List<BuyerDto> clientList = dao.getBuyerList(id);//동작을 학인 하고자 테스트ID 를사용하였다.
 
 //거래처의 거래내역들을 조회한다.
-clienthistoryDto clientdto = null;
 clienthistoryDao clientInfodao = clienthistoryDao.getInstance();
 
 //서치
@@ -43,8 +42,11 @@ if (searchWord == null) {
 	searchWord = ""; //검색어를 지워버린다.
 	choice = "sel";//셀렉옵션은 전체옵션으로 되돌려준다
 
-} //검색어에 해당하는 거래처정보를 가져온다
-List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID세션변경예정 
+}
+List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID세션변경예정
+if(searchWord !=null){
+	searchWord = "";
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -66,10 +68,16 @@ List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
-	
+	<form action=''id='gotoOrderDetail'method='POST'>
+		<input type='hidden'name='detailSeq'id='detailSeq'>
+		<input type='hidden'name='detailYear'id='detailYear'>
+		<input type='hidden'name='detailMonth'id='detailMonth'>
+		<input type='hidden'name='detailDay'id='detailDay'>
+	</form>
 	<!-- 특정한 시퀀스를 담아두기위해 히든을 사용함   --> 
 		<div>
 		<input type="hidden" id="frm" value="#" />
+		<input type="hidden" id="companyName" value="#" />
 		</div>
 
 
@@ -83,20 +91,19 @@ List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID
 					<label>거래처정보</label> <input type="text" placeholder="거래처입력란"class="searchword" value="<%=searchWord%>">
 					<button onclick="searchbooks()">검색</button> <!--클릭시검색함수로이동하여 처리한다. -->
 					<!--검색옵션을 주어 해당하는 개별검색할수있게 함 -->
-								<select class="choice">
-									<option value="allselect">전체</option>
-									<option value="seller">거래처명</option>
-									<option value="ceo">대표자</option>
-									<option value="number">사업자 번호</option>
-								</select>
+					<select class="choice">
+						<option value="allselect">---선택---</option>
+						<option value="seller">거래처명</option>
+						<option value="ceo">대표자</option>
+						<option value="number">사업자 번호</option>
+					</select>
 					<!--거래처 모달형태 신규거래처를 추가적으로 기입하고 DB에 INSERT함--> 
 					<button class="btn btn-primary"id='addBuyerModalBtn'data-target="#layerpop1" data-toggle="modal">거래처추가</button>
-								
-							거래일자 :<select name='year'id='year'onload='getMonthDay();'></select> 년
-									<select name='month'id='month'onload='getMonthDay();'></select> 월
-									<select name='day'id='day'></select> 일
+					<button class="btn btn-primary"id="deleteBuyerModalBtn" onclick="deleteclient()">거래처삭제</button>&nbsp;&nbsp;
+					<label>거래일자</label> <select name='year'id='year'onload='getMonthDay();'></select> 년
+					<select name='month'id='month'onload='getMonthDay();'></select> 월
+					<select name='day'id='day'></select> 일
 					<button class="btn btn-primary"id="stateMentOutputModalBtn" data-target="#layerpop2" data-toggle="modal">명세서출력</button>
-					<button class="btn btn-primary"id="deleteBuyerModalBtn"data-target="#layerpop3" data-toggle="modal">거래처삭제</button>
 				</div>
 
 			
@@ -109,7 +116,7 @@ List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID
     		 				<thead>
 					<!-- 거래처정보를 테이블화 -->
 						<tr class="fixed_top">
-							<th>No</th>
+							<th class="col1">번호</th>
 							<th>업체구분</th>
 							<th>거래처명</th>
 							<th>대표자명</th>
@@ -126,8 +133,8 @@ List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID
 							for (int i = 0; i < list.size(); i++) {
 						%> <!--헤더 상단부분 거래처정보 데이터를 db를 통해 받아와서 for문으로 뿌려주는 작업  -->
 						   <!-- 클릭한 태그 에 해당하는 거래처의 이름 값을 가공을 거치지않고 바로 전달 한다.  -->
-						<tr class='seq1'onclick="buySeqGetBtn('<%=list.get(i).getBuyer_seq()%>')">
-							<td><%=i + 1%></td>
+						<tr class='seq1'onclick="buySeqGetBtn('<%=list.get(i).getBuyer_seq()%>','<%=list.get(i).getBuyer_company_name()%>')">
+							<td class="col1"><%=i + 1%></td>
 							<td><%=list.get(i).getBuyer_business_condition()%></td>
 							<td><%=list.get(i).getBuyer_company_name()%></td>
 							<td><%=list.get(i).getBuyer_ceo()%></td>
@@ -171,15 +178,15 @@ List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID
 					<table class="table table-condensed">
 						<thead><!--스코프 왜줫는지 까먹음 기억나는데로 작성함  -->
 							<tr class="fixed_top">
-								<th scope="col">번호</th>
-								<th scope="col">거래일</th>
-								<th scope="col">구분</th>
-								<th scope="col">거래내역</th>
-								<th scope="col">공급가</th>
-								<th scope="col">세액</th>
-								<th scope="col">합계금액</th>
-								<th scope="col">수금액</th>
-								<th scope="col">미수금액</th>
+								<th class="col1">번호</th>
+								<th >거래일</th>
+								<th>구분</th>
+								<th >거래내역</th>
+								<th >공급가</th>
+								<th >세액</th>
+								<th >합계금액</th>
+								<th >수금액</th>
+								<th >미수금액</th>
 
 							</tr>
 						</thead>
@@ -187,17 +194,18 @@ List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID
 				
 							<%
 								for (int i = 0; i < clientInfoList.size(); i++) {
+									clienthistoryDto cdto = clientInfoList.get(i);
 							%><!-- 헤더 상단부 거래처 상세내역 전부 땡겨와서 뿌려주는 작업 리플레쉬 or뷰로 넘어 오게되면 바로확인할수있다-->
-							<tr>
-								<td><%=i + 1%></td>
-								<td><%=clientInfoList.get(i).getLedgerdate()%></td>
-								<td><%=clientInfoList.get(i).getLedgersort()%></td>
-								<td><%=clientInfoList.get(i).getLedgerproductname()%></td>
-								<td><%=clientInfoList.get(i).getLedgersupplyprice()%>
-								<td><%=clientInfoList.get(i).getLedgertaxvalue()%></td>
-								<td><%=clientInfoList.get(i).getLedgertotal()%></td>
-								<td><%=clientInfoList.get(i).getLedgercollectmoney()%></td>
-								<td><%=clientInfoList.get(i).getLedgernotcollectmoney()%></td>
+							<tr name='<%=cdto.getBuyerseq()%>'>
+								<td ><%=i + 1%></td>
+								<td><%=cdto.getLedgerdate()%></td>
+								<td><%=cdto.getLedgersort()%></td>
+								<td><%=cdto.getLedgerproductname()%></td>
+								<td><%=cdto.getLedgersupplyprice()%>
+								<td><%=cdto.getLedgertaxvalue()%></td>
+								<td><%=cdto.getLedgernotcollectmoney()%></td>
+								<td><%=cdto.getLedgercollectmoney()%></td>
+								<td><%=cdto.getLedgertotal()%></td>
 							</tr>
 
 							<%
@@ -231,7 +239,10 @@ List<BuyerDto> list = clientInfodao.getSearchClient(choice, searchWord, id);//ID
 		<div class="modal fade" id="layerpop3"></div>
 
 
-	<script src="./tradeBook.js"></script>
+	<script src="./tradeBook.js"> </script>
+	
+	
+		
 </body>
 </html>
 
