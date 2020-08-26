@@ -32,8 +32,8 @@ if(search == null){
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>             <%--우편추가 --%>
 		<script src='./getPostNum.js'></script>
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">	  
- 		<link rel="stylesheet" href="../init.css"/>  
- 		<link rel="stylesheet" href="./account.css"/>  
+ 		<link rel="stylesheet" href="../init.css?after"/>  
+ 		<link rel="stylesheet" href="./account.css?after"/>  
  
 	</head>
 	<body>
@@ -74,11 +74,9 @@ if(search == null){
 							for(int i = 0; i < list.size(); i++){
 								BuyerDto dto = list.get(i);
 					%>
-					<tr>
+					<tr id="a" onclick="getInfo(<%=dto.getBuyer_seq()%>)">
 						<td align="center"><%=i + 1 %></td>
-						<td align="center">
-							<span onclick="getInfo(<%=dto.getBuyer_seq()%>)"><%=dto.getBuyer_company_name()%></span>
-						</td>
+						<td align="center"><%=dto.getBuyer_company_name()%></td>
 						<td align="center"><%=dto.getBuyer_ceo()%></td>
 						<td align="center"><%=dto.getBuyer_company_num() %></td>	
 					</tr>

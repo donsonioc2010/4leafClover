@@ -35,6 +35,6 @@ if (isS) { %>
 <%} else {%>
 	<script>
 		alert("다시 기입해주세요");
-		location.href='./account.jsp'
+		location.href='./accountadd.jsp'
 		</script>
 <%}%>
