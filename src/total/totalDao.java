@@ -21,7 +21,7 @@ public class totalDao {
 	} 
 	
 	public List<totalMMDto> getMonthTotalAvg(String sellerId) {
-		String sql = "SELECT AVG(o.order_total), "
+		String sql = "SELECT SUM(o.order_total), "
 					+ " SUM(o.order_collect_money), "
 					+ " SUM(o.order_not_collect_money) "
 					+ " FROM ORDER_LIST O, buyer b "  
@@ -64,7 +64,7 @@ public class totalDao {
 	}
 
 	public List<totalYYYYDto> getYearTotalAvg(String sellerId) {
-		String sql = " SELECT AVG(o.order_total), "
+		String sql = " SELECT SUM(o.order_total), "
 					+ " SUM(o.order_collect_money), "
 					+ " SUM(o.order_not_collect_money) "
 					+ " FROM ORDER_LIST O, BUYER B "  
