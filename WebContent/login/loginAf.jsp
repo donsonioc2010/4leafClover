@@ -11,6 +11,11 @@
 	sellerDao dao = sellerDao.getInstance();
 	boolean loginConfirm = dao.sellerLogin(new sellerDto(id,pw));
 	
+	if(loginConfirm){
+		session.setAttribute("login", id);
+		session.setMaxInactiveInterval(3600);
+	}
+	
 	JsonObject jobj = new JsonObject();
 	jobj.addProperty("result", loginConfirm);
 	response.setContentType("application/json");
@@ -28,8 +33,6 @@
 	<%
 	if(loginConfirm){
 		//로그인성공
-		session.setAttribute("login", id);
-		session.setMaxInactiveInterval(3600);
 		%>
 		 <script type="text/javascript">
 			 alert("로그인성공")
