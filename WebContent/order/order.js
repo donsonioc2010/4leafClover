@@ -258,11 +258,11 @@ var form = ''
 	}
 	function noHaveData(){
 		document.getElementsByName('orderNum')[0].value=''
-		document.getElementsByName('orderTotalPrice')[0].value=''
-		document.getElementsByName('orderSupplyPrice')[0].value=''
-		document.getElementsByName('orderTaxPrice')[0].value=''
-		document.getElementsByName('notCollectMoney')[0].value=''
-		document.getElementsByName('CollectMoney')[0].value=''
+		document.getElementsByName('orderTotalPrice')[0].value='0'
+		document.getElementsByName('orderSupplyPrice')[0].value='0'
+		document.getElementsByName('orderTaxPrice')[0].value='0'
+		document.getElementsByName('notCollectMoney')[0].value='0'
+		document.getElementsByName('CollectMoney')[0].value='0'
 		document.getElementById('detailList').innerHTML=''
 		
 		document.getElementById('deleteBtn').setAttribute('disabled',true)
@@ -354,11 +354,29 @@ var form = ''
 		}
 	}		
 	
-//MainOrder.jsp 저장버튼누를시에 DB로 데이터 Submit
+//MainOrder.jsp 저장버튼누를시에 DB로 데이터 Submit 유효성검사 실시하기
 	function orderSave(){
 		let companyName = document.getElementsByName('buyerCompanyName')[0].value.trim()
 		if(companyName!=''){
-			document.getElementById("dataForm").submit()
+			let totalPrice = document.getElementsByName('orderTotalPrice')[0].value.trim()
+			let supplyPrice = document.getElementsByName('orderSupplyPrice')[0].value.trim()
+			let taxPrice = document.getElementsByName('orderTaxPrice')[0].value.trim()
+			let notCollectMoney = document.getElementsByName('notCollectMoney')[0].value
+			let collectMoney = document.getElementsByName('CollectMoney')[0].value
+
+			if(totalPrice ==''||totalPrice =='0'){
+				if(supplyPrice ==''||supplyPrice =='0'){
+					if(taxPrice ==''||taxPrice =='0'){
+						if(notCollectMoney!=''){
+							if(collectMoney!=''){
+								alert('최소합계 0원 이상이어야 합니다.')
+							}
+						}
+					}
+				}
+			}else{
+				document.getElementById("dataForm").submit()
+			}
 		}else{
 			alert('거래처를 선택해주세요')
 		}
