@@ -395,6 +395,7 @@ function termdatesaerchBtn() {
         },
             success: function (data) {
                alert("삭제성공");
+               
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
@@ -402,4 +403,3 @@ function termdatesaerchBtn() {
             },
         });
     });
-    
