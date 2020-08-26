@@ -5,9 +5,10 @@
 .quickMenu{
     position:absolute;
     left:15%;
-    top : 130px;
+    top : 80px;
     width:70%;
     background-color:white;
+    border-radius: 10%;
     border:3px;
     padding:20px;
 }
