@@ -42,10 +42,11 @@ for(int i = 0; i< list.size(); i++){
 <title>회원 정보 조회/수정</title>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="./init.css" /> -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@1,900&family=Nanum+Gothic&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../init.css?after" />
-<link rel="stylesheet" href="./myPageCss.css?after" />
+<link rel="stylesheet" href="../init.css" />
+<link rel="stylesheet" href="./myPageCss.css" />
 </head>
 <body >
 <!-- 
@@ -120,13 +121,30 @@ table class="table table-sm"
 	</table>
 	</div>
 	<div align="right">
-			<a href="myPagedel.jsp" id="deleteBtn" style="text-decoration: none; font-size: 10pt">회원탈퇴</a>
+			<a href="#none" id="deleteBtn" style="text-decoration: none; font-size: 10pt">회원탈퇴</a>
 	</div>
 </div>
 </form>
 </div>
-<script src="./myPage.js"> </script>
+<script src="./myPage.js"></script>
+<script type="text/javascript">
+$('#deleteBtn').on("click",function(){
+	<%
+	boolean isS = dao.delSeller(id);
+	if(isS == true){
+		%>
 
+		alert("그동안 감사했습니다");
+		location.href="../login/login.jsp";
+
+	<%}else{%>
+
+		alert("탈퇴 실패");
+		location.href="./myPage.jsp";
+
+	<%}%>
+});
+</script>
 
 </body>
 </html>
