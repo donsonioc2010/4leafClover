@@ -69,6 +69,7 @@ $('#deleteBtn').click(function(){
 	}
 })
 //상품정보들이 있는 테이블을 클릭했을시에 작동되는 함수
+
 $('#productListTable tbody tr').click(function(e){
 	// 1.상품번호 뽑기 ProductNum
 	let productSeq=e.currentTarget.children[0].innerText;

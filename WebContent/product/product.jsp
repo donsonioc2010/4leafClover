@@ -60,17 +60,13 @@ if(session.getAttribute("login")==null){
 				               </thead>
 				               
 				               <tbody>
-				               		<%
-									for(int i = 0; i <productList.size(); i++){
-									%>
-							            <tr >
-							            	<td ><%=productList.get(i).getProductSeq() %></td>
-							        		<td><%=productList.get(i).getProductName() %></td>
-							        		<td><%=productList.get(i).getProductSort() %></td>
-						              	</tr>
-					              	<%
-									}
-					              	%>
+			               		<%for(int i = 0; i <productList.size(); i++){%>
+						            <tr onclick='productTrClick();'>
+						            	<td ><%=productList.get(i).getProductSeq() %></td>
+						        		<td><%=productList.get(i).getProductName() %></td>
+						        		<td><%=productList.get(i).getProductSort() %></td>
+					              	</tr>
+				              	<%}%>
 				               </tbody>
 				         </table>
 				      </td> 

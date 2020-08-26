@@ -17,13 +17,11 @@
 	String searchType = request.getParameter("searchType");
 	String searchWord = request.getParameter("searchWord");
 	List<productDto> productList = dao.searchProductList(searchType, searchWord, id);
-	for(int i = 0; i <productList.size(); i++){
-	%>
-       <tr >
+	for(int i = 0; i <productList.size(); i++){%>
+       <tr onclick='productTrClick();'>
            	<td ><%=productList.get(i).getProductSeq() %></td>
        		<td><%=productList.get(i).getProductName() %></td>
        		<td><%=productList.get(i).getProductSort() %></td>
        </tr>
-    <%
-	}
-    %>
+       <script src="./product.js"></script>
+    <%} %>
