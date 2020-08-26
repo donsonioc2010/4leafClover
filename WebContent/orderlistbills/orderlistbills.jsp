@@ -1,12 +1,12 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="orderlistbills.orderlistbillsDto"%>
 <%@page import="orderlistbills.companyInform"%>
+<%@page import="util.UtilEx"%>
+<%@page import="orderlistbills.orderlistbillsDto"%>
 <%@page import="java.util.List"%>
 <%@page import="orderlistbills.orderlistbillsDao"%>
-<%@page import="util.UtilEx"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <%
 String id = "";
 if(session.getAttribute("login")==null){
@@ -14,19 +14,23 @@ if(session.getAttribute("login")==null){
 }else{
 	id = (String)session.getAttribute("login");
 }
-orderlistbillsDto dto= null;
-companyInform cDto = null;
 request.setCharacterEncoding("utf-8");
-String year=request.getParameter("year");
-String month=request.getParameter("month");
-String day=request.getParameter("day");
-System.out.println(year+""+month+""+day);
-String rdate = year + UtilEx.two(month) + UtilEx.two(day);
-int seq = Integer.parseInt(request.getParameter("seq"));
-System.out.println(seq);
-orderlistbillsDao dao = orderlistbillsDao.getInstance();
-List<companyInform> infomList = dao.getBillsInform(rdate,seq);
 
+// 날짜 한 자리에서 두 자리 수로
+String year = request.getParameter("year");
+String month = request.getParameter("month");
+String day = request.getParameter("day");
+String rdate = year + UtilEx.two(month) + UtilEx.two(day);
+
+//System.out.println("rdate -"+ rdate);
+
+String BuyerSeq = request.getParameter("buyerSeq");
+int seq = Integer.parseInt(BuyerSeq);
+
+orderlistbillsDao dao = orderlistbillsDao.getInstance();
+List<companyInform> infomList = dao.getBillsInform(rdate, seq);
+
+// 페이지 개수 받아오는 부분
 String spageNumber = request.getParameter("pageNumber");
 
 int pageNumber = 0;
@@ -42,7 +46,7 @@ int listPage = len/10;
 if(len % 10 > 0){
 	listPage++;
 }
-
+orderlistbillsDto dto = null;
 for(int i = 0; i< list.size(); i++){
 	System.out.println("list"+list.get(i).toString());
 	dto = list.get(i);
@@ -55,7 +59,7 @@ if(dto.getOrder_total() == 0){
 DecimalFormat df = new DecimalFormat("###,###");
 int total = dto.getOrder_total();
 
-
+companyInform cDto = null;
 for(int i = 0; i< infomList.size(); i++){
 	cDto = infomList.get(i);
 }
@@ -67,28 +71,22 @@ if(dto.getProduct_standard() == null){
 }else{
 	standard = dto.getProduct_standard();
 }
-%>
-
-<link rel="stylesheet" href="./orderlistbills.css" />
-
-<div class="modal-dialog">
-	<div class="modal-content">
-	   	<!-- header -->
-		<div class="modal-header">
-		<!-- header title -->
-			<h4 class="modal-title">거래처 명세서출력</h4>
-			<!-- 닫기(x) 버튼 -->
-			<button type="button" class="close" onclick="modelheaderline()" data-dismiss="modal">×</button>
-		</div>
-		<!-- body -->
-		<div class="modal-body">
-		<!--부트스트랩을 사용하여 위 태그들은 초기태그들 입니다  -->
-		<!--분리완료후 정렬예정  -->					
-	  <div align='center' id="printer">
+%>    
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>거래 명세서 조회</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="./orderlistbills.css" />
+	</head>
+	
+	<body>
+		<div align='center'>
 			<div id="command_bar">
-			  A4용지를 준비하고 인쇄버튼을 클릭하세요. &nbsp; <input type="button" value="인쇄하기" onclick="printNow()" /> <input type="button" value="뒤로" onclick="window.close()" />
+			  A4용지를 준비하고 인쇄버튼을 클릭하세요. &nbsp; <input type="button" value="인쇄하기" onclick="printNow()" /> <input type="button" value="뒤로" onclick="javascript:history.back();" />
 			</div>
-			<input type="hidden" id="seq" value="<%=seq%>">
+			<input type="hidden" id="seq" value="<%=seq %>">
 			<input type="hidden"id='dtoPageNum'value='<%=pageNumber%>'>
 			<input type="hidden"id='dtoOrderDate'value='<%=dto.getOrder_date()%>'>
 			
@@ -298,32 +296,23 @@ if(dto.getProduct_standard() == null){
 			}%>
 			</div>
 		</div>
-		</div>
-	</div>
-</div>
-<script type="text/javascript">
+		<script type="text/javascript">
 		window.resizeTo (800, 570);
 		window.focus();
 		
 		function printNow() {
 		  document.getElementById('command_bar').style.display = 'none';
-		  
-		  window.onbeforeprint =function(){
-			  document.body.innerHTML = document.getElementById('printer').innerHTML;
-			    $('body').css("background", "white");
-		  }
-		  
 		  window.print();
 		}
 		function goPage(pageNum) {
-			location.href = "statement.jsp?buyerSeq="+<%=seq%>+"&year="+<%=year%>+"&month="+<%=month %>+"&day="+<%=day%>+"&pageNumber="+pageNum;
+			location.href = "orderlistbills.jsp?buyerSeq="+<%=seq%>+"&year="+<%=year%>+"&month="+<%=month %>+"&day="+<%=day%>+"&pageNumber="+pageNum;
 		}
 		
 		$(document).ready(function(){
 			//let order_date = order_date;
 			$.ajax({
 				type : 'POST',
-				url : '../orderlistbills/addOrderBillList.jsp',
+				url : './addOrderBillList.jsp',
 				datatype:'json',
 				data:{
 					"order_date":$('#dtoOrderDate').val().trim(),
@@ -331,7 +320,7 @@ if(dto.getProduct_standard() == null){
 					"seq": $('#seq').val().trim()
 					},
 				success:function(data){
-					alert(data);
+					//alert(data);
 					console.log(data)
 					let indexNum = document.getElementsByName('productName').length;	//productName 몇개있는지?
 					let productName = document.getElementsByName('productName');
@@ -345,7 +334,7 @@ if(dto.getProduct_standard() == null){
 						if(data[i].product_standard == null){data[i].product_standard = null}
 						productName[i].innerHTML = data[i].product_name 
 						productUnit[i].innerHTML = data[i].product_unit 
-						productStandard[i].innerHTML = data[i].product_standard
+						productStandard[i].innerHTML = data[i].product_standard 
 						productCount[i].innerHTML = data[i].order_count 
 						producTrPrice[i].innerHTML = data[i].product_trade_price 
 						productPrice[i].innerHTML = data[i].price_sum  
@@ -355,3 +344,11 @@ if(dto.getProduct_standard() == null){
 			});
 		});
 		</script>
+	</body>
+</html>
+
+
+
+
+
+

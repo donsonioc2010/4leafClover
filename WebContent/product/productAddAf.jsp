@@ -4,7 +4,13 @@
 <%@page import="product.productDao"%>
 
  <!-- 상품추가~ -->
-<%
+<%	
+	String id = null;
+	if(session.getAttribute("login")==null){
+		response.sendRedirect("../login/login.jsp");
+	}else{
+		id = (String)session.getAttribute("login");
+	}
 	productDao dao = productDao.getInstance();
 	
 	request.setCharacterEncoding("utf-8");
@@ -16,7 +22,7 @@
 	dto.setProductPieceBox(Integer.parseInt(request.getParameter("productPieceBox")));//int
 	dto.setProductStandard(request.getParameter("productStandard"));//string
 	
-	boolean confirm = dao.addproduct(dto);
+	boolean confirm = dao.addproduct(dto,id);
 	//true 성공 false 실패
 	if(confirm){
 		%>

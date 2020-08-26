@@ -1,15 +1,45 @@
-#CompanySendBtn{
-	position:absolute;
-	right:10px;
-	top:10px;
+#dataForm{ /*흰배경 */
+ align-content: center;
+ margin: 100px;
+ padding:70px;
+ width: 1200px;
+ height:1000px;
+ background-color: white;
+ border-radius: 10%;
 }
+
+/*--------------------------------*/
+
+-write2{ /*수금미수금 text*/
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom-color: #A6B1E1;
+	font-size: 10pt;
+	width: 180px;
+	font-family: "Nanum Gothic", sans-serif;
+}
+input:focus {outline:none;} 
+
+#buyerCompanyName{ /*거래처 text크기*/
+width: 160px;
+}
+#buyerCeo, #buyerTelNum,#buyerCompanyNum{/*대표자, 사업자,전화번호 text크기*/
+width: 250px;
+}
+
+#orderTotalPrice, #orderSupplyPrice, #orderTaxPrice, #notCollectMoney,#CollectMoney{
+width: 250px;
+}
+
+
 table {
   border: 1px solid #444444;
   border-collapse: collapse;
 }
 th, td {
   border: 1px solid #444444;
-  padding: 10px;
+  padding: 10px;																												
 }
 
 /*======================================================*/
@@ -27,10 +57,10 @@ th, td {
 }
 
 .BuyerInfoBox table tr:nth-child(1) td:last-child{
-	width:250px;
+	width:200px;
 }
 .BuyerInfoBox table tr:nth-child(2) td:last-child{
-	width:50%;
+	width:40%;
 }
 
 /*======================================================*/
@@ -38,12 +68,10 @@ th, td {
   	border: 1px solid black;
  	width:900px;
  } 
-.orderDetail table thead tr{
- 	background-color:yellow;
-  }
+
 .orderDetail table thead, .orderDetail table tfoot{
  	float:left;
- 	width:900px;
+ 	width:899px;
  }
  .orderDetail table tbody{
  	overflow-y: auto; 
@@ -61,7 +89,8 @@ th, td {
 .orderDetail table input{
 	border:1px solid black;
 	padding:0px;
-	width:100%;
+	width:87%;
+	text-align : center;
 }
 .orderDetail .cell1,
 .orderDetail .cell3,
@@ -70,9 +99,11 @@ th, td {
 .orderDetail .cell6,
 .orderDetail .cell7{
 	width:100px;
+	text-align : center;
 }
 .orderDetail .cell2{
-	width:250px;
+	width:350px;
+	text-align : center;
 }
 .orderDetail .tf1{
 	width:150px;
@@ -82,8 +113,13 @@ th, td {
 }
 
 .cell2 button{
-	margin-top:3px;
+	margin-left : 8px;
 	padding:0;
 	float:right;
 	width:10px;
 }
+
+.orderDetail table thead tr{/*tr 배경색*/
+    background-color: #2B2E7E;
+    color: white;
+  }

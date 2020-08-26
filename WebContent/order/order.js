@@ -303,9 +303,39 @@ var form = ''
 	//둘다 날짜와 buyerSeq만 피룡함
 //거래명세서 yyyymmdd
 	function tradingStatement(){
-		//링크만 타깃하면 끝남
-		form.action=''
+	$.ajax({
+		type:'POST',
+		url:'../orderlistbills/informCheck.jsp',
+		data:{
+			"orderNum":form.orderNum.value,
+			"seq":form.buyerSeq.value
+		},
+		success:function(data){
+			if(data.result == false){
+				location.href="MainOrder.jsp"
+			}else{
+				form.action='../orderlistbills/orderlistbills.jsp'
+				form.submit()
+			}
+		},
+	
+	
+	})
+
+
+
+/*	
+	//링크만 타깃하면 끝남
+		form.action='../orderlistbills/orderlistbills.jsp'
 		form.submit()
+		
+		window.name = "Mainorder.jsp";
+
+    	window.open("../orderlistbills/orderlistbills.jsp", "insert",
+        "width = 450, height = 800, resizable = yes, scrollbars = no, status = no");
+	*/
+
+
 	}
 	
 	
@@ -447,4 +477,27 @@ var form = ''
 			strNum='0'+strNum
 		}
 		return strNum
+	}
+	
+	function translateExcel(){
+		let orderDate = $('#year').val()+changeNumber($('#month').val())+changeNumber($('#day').val())
+		let buyerSeq = document.getElementsByName('buyerSeq')[0].value
+		/*$.ajax({
+				type:'POST',
+				url:'./orderListToExcel.jsp',
+				data:{
+					'buyerSeq':buyerSeq,
+					'orderDate':orderDate
+				},
+				success:function(data){
+					
+				},error:function(){
+					alert('에러')
+				}
+			})*/
+		let openUrl = "orderListToExcel.jsp?buyerSeq="+buyerSeq+"&orderDate="+orderDate
+		let popTitle = "excelDownload"
+		let popOption = "width = 400, height = 200, top = 300, status = no, scrollbars = yes"
+		
+		window.open(openUrl, popTitle, popOption);
 	}

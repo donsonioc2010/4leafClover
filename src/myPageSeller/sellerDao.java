@@ -217,6 +217,46 @@ public class sellerDao {
 		}
 		return count>0?true:false;
 	}
+
+	public boolean delSeller(String sellerId){
+		
+		String sql[] = {" ALTER TABLE BUYER DISABLE CONSTRAINT FK_BUYER_SELLER_ID ",
+				 "DELETE FROM SELLER WHERE SELLER_ID=? " ,
+				 "ALTER TABLE BUYER ENABLE NOVALIDATE CONSTRAINT FK_BUYER_SELLER_ID"
+		};
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		System.out.println("1/6 delSeller success");
+		
+		int count = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("2/6 delSeller success");
+			for(int i=0; i<sql.length;i++) {
+				psmt =conn.prepareStatement(sql[i]);
+				
+				if(i==1) {
+					psmt.setString(1, sellerId);
+					System.out.println("3/6 delSeller success");
+					count = psmt.executeUpdate();
+					System.out.println(i);
+				}else {
+					psmt.executeUpdate();
+				}
+				
+				
+			}
+			System.out.println("4/6 accountdel success");
+		} catch (Exception e) {
+			System.out.println("fail accountdel");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, null);
+		}
+		return count>0?true:false;
+	}
+
 }
 
 

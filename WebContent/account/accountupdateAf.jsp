@@ -20,6 +20,7 @@ seller = (sellerDto)ologin;
 
 request.setCharacterEncoding("utf-8");
 
+int buyerSeq = Integer.parseInt(request.getParameter("updateBuyerSeq"));
 String companyname = request.getParameter("companyname");
 String ceoname = request.getParameter("ceoname");
 String condition = request.getParameter("condition");
@@ -38,7 +39,7 @@ BuyerDao dao = BuyerDao.getInstance();
 boolean dto = dao.updateaccount(
 		new BuyerDto(companyname,ceoname,condition,
 		kinds,companynum,address1,address2,address3,admin,email,telnum,
-		memo,homepage),62);  // 나중에 id로바꾸기 
+		memo,homepage),buyerSeq);  // 나중에 id로바꾸기 
 
 
 if(dto == true){
