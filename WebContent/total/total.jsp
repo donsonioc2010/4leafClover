@@ -32,6 +32,9 @@ seller = (sellerDto)ologin;
    	totalDao dao = totalDao.getInstance();
   	List<totalMMDto> list_month =  dao.getMonthTotalAvg(id);
   	List<totalYYYYDto> list_year =dao.getYearTotalAvg(id);
+  	List<totalMMDto> listCor = dao.getCompanyTotal(id);
+  	
+
   	totalYYYYDto dto_year = null;
   	totalMMDto dto_month = null;
 
@@ -52,8 +55,8 @@ seller = (sellerDto)ologin;
 		<title>총 매출 조회</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-		<link rel="stylesheet" href="../init.css" />
-		<link rel="stylesheet" href="./totalCss.css" />
+		<link rel="stylesheet" href="../init.css?after" />
+		<link rel="stylesheet" href="./totalCss.css?after" />
 	</head>
 	<body>
 	
@@ -96,6 +99,40 @@ seller = (sellerDto)ologin;
 						</table>
 					</div>
 				</div>
+							<div class="list" id="listDiv" style="overflow:auto; width:500px; height:350px;"> 
+				<table border="1"  class="list">
+					<col width="50"><col width="150"><col width="150"><col width="150">
+					<thead>
+					<tr id="listhead">
+						<th>번호</th>
+						<th>거래처명</th>
+						<th>총 매출</th>
+						<th>수금액</th>
+						<th>미수금액</th>
+					</tr>
+					</thead>
+					<%if(listCor == null || listCor.size() == 0){%>
+					<tr>
+						<td colspan="4" align="center">거래처목록이 없습니다</td>
+					</tr>
+					<%}else{
+							for(int i = 0; i < listCor.size(); i++){
+								totalMMDto dto_cor = listCor.get(i);
+					%>
+					<tr>
+						<td align="center"><%=i + 1 %></td>
+						<td align="center">
+							<%=dto_cor.getCompanyName()%>
+						</td>
+						<td align="center">&#8361;<%=df.format(dto_cor.getCompanyTotal())%></td>
+						<td align="center">&#8361;<%=df.format(dto_cor.getCompanyCollect())%></td>
+						<td align="center">&#8361;<%=df.format(dto_cor.getCompanyNotCollect()) %></td>	
+					</tr>
+					<% }
+					}
+					%>
+				</table>
+			</div>
 			</form>
 		</center>
 		<script src="total.js"></script>
