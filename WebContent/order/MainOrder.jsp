@@ -172,7 +172,7 @@
 							<tr>
 								<th class='tf1'>외상(미수금)</th>
 								<td class='tf2'>
-									<input type='number'name='notCollectMoney'disabled>
+									<input type='number'name='notCollectMoney'readonly>
 								</td>
 								<th class='tf1'>지불금액(수금)</th>
 								<td class='tf2'>
