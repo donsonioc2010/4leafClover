@@ -124,3 +124,9 @@ th, td {
     background-color: #2B2E7E;
     color: white;
   }
+  
+  input[type="number"]::-webkit-outer-spin-button,
+ input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

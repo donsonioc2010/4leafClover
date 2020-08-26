@@ -1,18 +1,21 @@
 <%@page import="product.productDto"%>
-<%@page import="java.util.List"%>
 <%@page import="product.productDao"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 String id = null;
+int inputNum=-1;
+List<productDto> list =null;
 if(session.getAttribute("login")==null){
 	response.sendRedirect("../login/login.jsp");
 }else{
 	id = (String)session.getAttribute("login");
+	productDao dao = productDao.getInstance();
+	list = dao.getAllProductList(id);
+	inputNum = Integer.parseInt(request.getParameter("inputNum"));
 }
-productDao dao = productDao.getInstance();
-List<productDto> list = dao.getAllProductList(id);
-int inputNum = Integer.parseInt(request.getParameter("inputNum"));
+
 %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +30,7 @@ int inputNum = Integer.parseInt(request.getParameter("inputNum"));
 		<div align="left">
 			<input type="text"id="searchProductWord" > 
 			<input type="button" name="product_Search"id='searchProductBtn'value="상품명검색">
-			<input type="button" value="전달하기" id="sendBtn" name="sendBtn" onclick="SendProductInfo(<%=inputNum%>);">
+			<input type="button" value="전달하기"id='sendBtn'name="sendBtn" onclick="SendProductInfo(<%=inputNum%>);">
 		</div>
 
 		<br>

@@ -7,12 +7,11 @@
 
 	orderDto order = new orderDto();
 
+
 	order.setOrderNum(request.getParameter("orderNum"));
 	order.setOrderCollectMoney(Integer.parseInt(request.getParameter("CollectMoney")));
 	order.setOrderNotCollectMoney(Integer.parseInt(request.getParameter("notCollectMoney")));
-
 	orderDao dao = orderDao.getInstance();
-	
 	boolean confirm = dao.updateOrder(order);
 %>
 

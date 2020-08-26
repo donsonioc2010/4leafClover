@@ -297,7 +297,7 @@ public class productDao {
 		String sql = "SELECT PRODUCT_SEQ, PRODUCT_NAME, PRODUCT_SORT, PRODUCT_TRADE_PRICE, PRODUCT_STANDARD "
 				+ " FROM PRODUCT WHERE SELLER_ID = ? ORDER BY PRODUCT_SEQ";
 		
-		List<productDto> list = new ArrayList<>();
+		List<productDto> list = new ArrayList<productDto>();
 		
 		Connection conn = null;
 		PreparedStatement psmt  = null;

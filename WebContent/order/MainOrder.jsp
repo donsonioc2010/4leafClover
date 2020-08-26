@@ -1,3 +1,6 @@
+<%@page import="buyer.BuyerDao"%>
+<%@page import="buyer.BuyerDto"%>
+<%@page import="order.detailDto"%>
 <%@page import="orderlistbills.orderlistbillsDao"%>
 <%@page import="order.orderDto"%>
 <%@page import="java.util.List"%>
@@ -13,13 +16,28 @@
 	}
 	
 	//Date가 없으면 Null
-	String strBuyerSeq = request.getParameter("buyerSeq");
+	
+	request.setCharacterEncoding("utf-8");
+	String buyerSeq = request.getParameter("detailSeq");
+	String syear = request.getParameter("detailYear");
+	String smonth = request.getParameter("detailMonth");
+	String sday = request.getParameter("detailDay");
+	boolean swBody = false;
+	int year = 0 ,month = 0 ,day = 0,seq = 0;
+	List<Object> list = null;
+	
+	BuyerDto buyer = null;
 	//list ???
-	if(!(strBuyerSeq == null || strBuyerSeq.equals(""))){
-		//getParameter가 있을경우에 list로 받아오기
-		
+	if(buyerSeq != null && syear!=null && smonth!=null && sday!=null){
+		//parameter가 한개라도 Null이면 실행안함
+		swBody = true;
+		seq = Integer.parseInt(buyerSeq);
+		year = Integer.parseInt(syear);
+		month = Integer.parseInt(smonth);
+		day = Integer.parseInt(sday);
+		BuyerDao dao = BuyerDao.getInstance();
+		buyer = dao.getBuyerInfo(seq);
 	}
-
 %>
 
 <!DOCTYPE html>
@@ -32,7 +50,11 @@
 		<link rel="stylesheet" href="./order.css?after">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
-	<body onload='createDate();'>
+	<%if(swBody){%>
+		<body onload='loadDate(<%=year%>,<%=month%>,<%=day%>,<%=seq%>);'>
+	<%}else{ %>
+		<body onload='createDate();'>
+	<%} %>
 	<%if(id!=null){ %>
 		<jsp:include page="../navigation.jsp"></jsp:include>
 	<%} %>
@@ -45,7 +67,7 @@
 				<select name='year'id='year'onchange='getMonthDay();'></select> 년
 				<select name='month'id='month'onchange='getMonthDay();'></select> 월
 				<select name='day'id='day'></select> 일
-				<input type='button'value='검색'onclick='searchList();' class="btn btn-primary">
+				<input type='button'id='getSearchList'value='검색'onclick='searchList();'class="btn btn-primary">
 				<!-- 
 				<input type='button' value='확인'>
 				 -->
@@ -56,6 +78,28 @@
 			<div class='BuyerInfoBox'>
 				<table >
 					<tr>
+					<%if(buyer !=null){%>
+						<th >거래처</th>
+						<td > 
+							<input type='hidden'name='buyerSeq'>
+							<input type='text'value='<%=buyer.getBuyer_company_name()%>'class='no-write'name='buyerCompanyName'style="width:70%;"readonly>
+							<input type='button'value='목록'onclick='popCompanyList()'style="width:20%;" class="btn btn-primary">
+						</td>
+						<th>대표자</th>
+						<td>
+							<input type='text'value='<%=buyer.getBuyer_ceo()%>'class='no-write'name='buyerCeo'readonly>
+						</td>
+					</tr>
+					<tr>
+						<th>전화번호</th>
+						<td>
+							<input type='text'value='<%=buyer.getBuyer_tel_num()%>'class='no-write'name='buyerTelNum'size='15'readonly>
+						</td>
+						<th>사업자번호</th>
+						<td>
+							<input type='text'value='<%=buyer.getBuyer_company_num()%>'class='no-write'name='buyerCompanyNum'id='buyerCompanyNum'size='13'readonly>
+						</td>
+					<%}else{ %>
 						<th >거래처</th>
 						<td > 
 							<input type='hidden'name='buyerSeq'>
@@ -76,6 +120,7 @@
 						<td>
 							<input type='text'class='no-write'name='buyerCompanyNum'id='buyerCompanyNum'size='13'readonly>
 						</td>
+					<%} %>
 					</tr>
 					
 				</table>
@@ -99,83 +144,53 @@
 					<tbody id='detailList' onchange='calculTotal();'>
 						<!-- list Size가 없으면 1개 있으면 목록으로 -->
 						<!-- onChangeEvent = tbody에 해보기 -->
-						<%//if(list.size()==null||list.size()==0){//데이터가없을때 %>
-						
-						<!-- 
-						<tr>
-							<td class='cell1'>
-								<input type='text'name='productSeq'class='no-write'readonly>
-							</td>
-							<td class='cell2'>
-								<input type='text'name='productName'class='no-write'style='width:94%'readonly>
-								<button type='button'onclick='popProductList(this)'value='0'name='popProduct'>..</button>
-							</td>
-							<td class='cell3'>
-								<input type='text'name='productStandard'readonly>
-							</td>
-							<td class='cell4'>
-								<input type='number'name='orderCount'class='no-write'min="0"step="1"disabled>
-							</td>
-							<td class='cell5'>
-								<input type='text'name='orderSupply'class='no-write'readonly>
-							</td>
-							<td class='cell6'>
-								<input type='text'name='orderTax'class='no-write'readonly>
-							</td>
-							<td class='cell7'>
-								<input type='text'name='orderTotal'class='no-write'readonly>
-							</td>
-						</tr> 
-						-->
-						
-						<%//}else{//데이터가 있을떄 %>
-						
-						<%//} %>
-						
-						
+
 					</tbody>
 					<tfoot id='orderResult'>
 						<!-- 리스트가 있을때 없을때 나누기 -->
+	
+							<tr>
+								<th >총 합계 </th>
+								<td colspan='2'>
+									<input type='hidden'name='orderNum'>
+									<input type='text'class='no-write'name='orderTotalPrice'readonly>
+								</td>
+								<td>
+									<input type='button'value='추가'id='addTdBtn'onclick='addRow();' class="btn btn-primary">
+								</td>
+							</tr>
+							<tr>
+								<th class='tf1'>총 도매가</th>
+								<td class='tf2'>
+									<input type='text'class='no-write'name='orderSupplyPrice'readonly>
+								</td>
+								<th class='tf1'>총 세액</th>
+								<td class='tf2'>
+									<input type='text'class='no-write'name='orderTaxPrice'readonly>
+								</td>
+							</tr>
+							<tr>
+								<th class='tf1'>외상(미수금)</th>
+								<td class='tf2'>
+									<input type='number'name='notCollectMoney'disabled>
+								</td>
+								<th class='tf1'>지불금액(수금)</th>
+								<td class='tf2'>
+									<input type='number'name='CollectMoney'onchange='takeMoney();'disabled>
+								</td>
+							</tr>
 						
-						<tr>
-							<th >총 합계 </th>
-							<td colspan='2'>
-								<input type='hidden'name='orderNum'>
-								<input type='text'class='no-write'name='orderTotalPrice'readonly>
-							</td>
-							<td>
-								<input type='button'value='추가'id='addTdBtn'onclick='addRow();' class="btn btn-primary">
-							</td>
-						</tr>
-						<tr>
-							<th class='tf1'>총 도매가</th>
-							<td class='tf2'>
-								<input type='text'class='no-write'name='orderSupplyPrice'readonly>
-							</td>
-							<th class='tf1'>총 세액</th>
-							<td class='tf2'>
-								<input type='text'class='no-write'name='orderTaxPrice'readonly>
-							</td>
-						</tr>
-						<tr>
-							<th class='tf1'>외상(미수금)</th>
-							<td class='tf2'>
-								<input type='number'name='notCollectMoney'>
-							</td>
-							<th class='tf1'>지불금액(수금)</th>
-							<td class='tf2'>
-								<input type='number'name='CollectMoney'onchange='takeMoney();'disabled>
-							</td>
-						</tr>
 					</tfoot>
 				</table>
 			</div>
 			<hr>
-			<input type='button'value='거래명세서'onclick="tradingStatement();" class="btn btn-primary">
-			<input type='button'value='저장'id='orderSaveBtn'onclick="orderSave();" class="btn btn-primary">
-			<input type='button'value='수정'name='updateDetail'onclick='updateMoney();'disabled class="btn btn-primary">
-			<input type='button'value='삭제'id='deleteBtn'onclick='deleteList();'disabled class="btn btn-primary">
-			<input type='button'value='엑셀변환'id='convertExcel'onclick='translateExcel();'class='btn btn-primary'>
+			
+			<input type='button'value='거래명세서'id='statement'onclick="tradingStatement();"class="btn btn-primary"disabled>
+			<input type='button'value='저장'id='orderSaveBtn'onclick="orderSave();"class="btn btn-primary">
+			<input type='button'value='수정'name='updateDetail'onclick='updateMoney();'class="btn btn-primary"disabled>
+			<input type='button'value='삭제'id='deleteBtn'onclick='deleteList();'class="btn btn-primary"disabled>
+			<input type='button'value='엑셀변환'id='convertExcel'onclick='translateExcel();'class='btn btn-primary'disabled>
+			
 		</form>
 		</div>
 		<script src="./order.js" type="text/javascript"></script>

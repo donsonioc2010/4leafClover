@@ -35,7 +35,7 @@
 			<option value="4">사업자 번호</option>
 			<option value="5">전화번호</option>
 	</select> 
-	<input type="text"id='searchWord' > 
+	<input type="text"id='searchWord'onkeypress='searchEnter();' > 
 	<input type="button"value="검색"id='searchCompanyBtn' class="btn btn-primary">
 	
 	

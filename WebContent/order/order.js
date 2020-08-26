@@ -3,6 +3,58 @@ var openPage = opener.document
 var form = ''
 // ==================MainOrder.jsp SetDate==========================
 	//페이지가 로드시 Select박스의 날짜를 생성
+	function loadDate(y,m,d,seq){
+		settingYearload(y);
+		settingMonthload(m);
+		settingDayload(d);
+		document.getElementsByName('buyerSeq')[0].value = seq
+		searchList();
+		form = document.getElementById('dataForm')
+	}
+		function settingYearload(y){
+		let yearSelect = document.getElementsByName('year')[0]
+		//범위 오늘년도기준 -5 ~ +2
+		let startYear = nowDate.getFullYear() - 5
+		let lastYear = nowDate.getFullYear() + 2
+		let yearStr=""
+		for(i=startYear; i<=lastYear; i++){
+			if(y==i){
+				yearStr+="<option value="+i+" selected>"+i+"</option>"
+			}else{
+				yearStr+="<option value="+i+">"+i+"</option>"
+			}
+		}
+		yearSelect.innerHTML = yearStr
+	}
+	function settingMonthload(m){
+		let monthSelect = document.getElementsByName('month')[0]
+		let startMonth = 1
+		let lastMonth = 12
+		let monthStr=""
+		for(i=startMonth; i<=lastMonth; i++){
+			if(m == i){
+				monthStr+="<option value="+i+" selected>"+i+"</option>"
+			}else{
+				monthStr+="<option value="+i+">"+i+"</option>"
+			}
+		}
+		monthSelect.innerHTML = monthStr
+	}
+	function settingDayload(d){
+		let dateSelect = document.getElementsByName('day')[0]
+		let startDate = 1
+		let today=nowDate.getDate()
+		let lastDate = new Date(nowDate.getFullYear(),nowDate.getMonth()+1,0).getDate()
+		let dayStr=''
+		for(i=startDate; i<=lastDate; i++){
+			if(i==d){
+				dayStr+="<option value="+i+" selected>"+i+"</option>"
+			}else{
+				dayStr+="<option value="+i+">"+i+"</option>"
+			}
+		}	
+		dateSelect.innerHTML = dayStr
+	}
 	
 	function createDate(){
 		settingYear();
@@ -108,12 +160,13 @@ var form = ''
 				openPage.getElementsByName("buyerCeo")[0].value = Buyer[3].innerHTML.trim()
 				openPage.getElementsByName("buyerCompanyNum")[0].value = Buyer[0].value
 				openPage.getElementsByName("buyerTelNum")[0].value = Buyer[1].value
+				opener.$('#getSearchList').trigger('click')//오픈페이지 실행
 				break
 			}
 		} //버튼을누르면 선택을 했건 안했건 팝업을 끔
 		window.close()
 	}
-
+	
 //MainOrder.jsp 파일에서 검색버튼을 클릭시에 해당 일자의 주문내역을 전부 가져옴
 	function searchList(){
 		//1.BuyerSeq확인하기
@@ -195,10 +248,13 @@ var form = ''
 		}
 		document.getElementsByName('CollectMoney')[0].removeAttribute('disabled')
 		document.getElementsByName('updateDetail')[0].removeAttribute('disabled')
+		document.getElementById('statement').removeAttribute('disabled')
+		document.getElementById('convertExcel').removeAttribute('disabled')
 		document.getElementById('deleteBtn').removeAttribute('disabled')
 		document.getElementById('orderSaveBtn').setAttribute('disabled',true)
 		document.getElementById('addTdBtn').setAttribute('disabled',true)
 		document.getElementById('detailList').innerHTML = row;
+
 	}
 	function noHaveData(){
 		document.getElementsByName('orderNum')[0].value=''
@@ -208,10 +264,14 @@ var form = ''
 		document.getElementsByName('notCollectMoney')[0].value=''
 		document.getElementsByName('CollectMoney')[0].value=''
 		document.getElementById('detailList').innerHTML=''
+		
+		document.getElementById('deleteBtn').setAttribute('disabled',true)
 		document.getElementsByName('CollectMoney')[0].setAttribute('disabled',true)
 		document.getElementsByName('updateDetail')[0].setAttribute('disabled',true)
 		document.getElementById('addTdBtn').removeAttribute('disabled')
 		document.getElementById('orderSaveBtn').removeAttribute('disabled')
+		document.getElementById('statement').setAttribute('disabled',true)
+		document.getElementById('convertExcel').setAttribute('disabled',true)
 	}
 //tbody에 이벤트추가하기
 	//tbody의 하위 tr,td의 Value가 변경이 있을때마다 dayResult안의 컴포넌트들에 변경사항에 맞게 값바꾸기
@@ -243,7 +303,12 @@ var form = ''
 		let totalPrice = document.getElementsByName('orderTotalPrice')[0].value
 		let notCollectMoney = Number(document.getElementsByName('notCollectMoney')[0].value)
 		let collectMoney = Number(document.getElementsByName('CollectMoney')[0].value)
-		document.getElementsByName('notCollectMoney')[0].value = totalPrice-collectMoney
+		if(collectMoney<=totalPrice){
+			document.getElementsByName('notCollectMoney')[0].value = totalPrice-collectMoney
+		}else{
+			alert('총합계보다 많은 금액 입력이 불가능 합니다')
+			document.getElementsByName('CollectMoney')[0].value = 0
+		}
 	}
 	
 	function updateMoney(){
@@ -303,39 +368,20 @@ var form = ''
 	//둘다 날짜와 buyerSeq만 피룡함
 //거래명세서 yyyymmdd
 	function tradingStatement(){
-	$.ajax({
-		type:'POST',
-		url:'../orderlistbills/informCheck.jsp',
-		data:{
-			"orderNum":form.orderNum.value,
-			"seq":form.buyerSeq.value
-		},
-		success:function(data){
-			if(data.result == false){
-				location.href="MainOrder.jsp"
-			}else{
-				form.action='../orderlistbills/orderlistbills.jsp'
-				form.submit()
-			}
-		},
-	
-	
-	})
-
-
-
-/*	
-	//링크만 타깃하면 끝남
-		form.action='../orderlistbills/orderlistbills.jsp'
-		form.submit()
-		
-		window.name = "Mainorder.jsp";
-
-    	window.open("../orderlistbills/orderlistbills.jsp", "insert",
-        "width = 450, height = 800, resizable = yes, scrollbars = no, status = no");
-	*/
-
-
+		$.ajax({
+			type:'POST',
+			url:'../orderlistbills/informCheck.jsp',
+			data:{
+				"orderNum":form.orderNum.value,
+				"seq":form.buyerSeq.value
+			},
+			success:function(data){
+				if(data.result){
+					form.action='../orderlistbills/orderlistbills.jsp'
+					form.submit()
+				}
+			},
+		})
 	}
 	
 	
@@ -359,6 +405,14 @@ var form = ''
 	}	
 	
 //Company_List.jsp 에서 검색에 따른 검색결과
+	//엔터키로 조회
+	function searchEnter(){
+		if(window.event.keyCode==13){
+			searchCompany()
+		}
+	}
+
+
 		function SearchCompany(){
 			//비동기로 가져와야함
 		let searchWord = $('#searchWord').val().trim()
