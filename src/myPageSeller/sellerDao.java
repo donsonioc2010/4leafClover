@@ -211,6 +211,7 @@ public class sellerDao {
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("updateSeller failed");
 			e.printStackTrace();
 		}finally {
 			DBClose.close(psmt, conn, null);
@@ -221,7 +222,9 @@ public class sellerDao {
 	public boolean delSeller(String sellerId){
 		
 		String sql[] = {" ALTER TABLE BUYER DISABLE CONSTRAINT FK_BUYER_SELLER_ID ",
+				" ALTER TABLE PRODUCT DISABLE CONSTRAINT FK_SELLERID ",
 				 "DELETE FROM SELLER WHERE SELLER_ID=? " ,
+				 "ALTER TABLE PRODUCT ENABLE NOVALIDATE CONSTRAINT FK_SELLERID",
 				 "ALTER TABLE BUYER ENABLE NOVALIDATE CONSTRAINT FK_BUYER_SELLER_ID"
 		};
 		Connection conn = null;
@@ -235,12 +238,12 @@ public class sellerDao {
 			System.out.println("2/6 delSeller success");
 			for(int i=0; i<sql.length;i++) {
 				psmt =conn.prepareStatement(sql[i]);
-				
-				if(i==1) {
+
+				if(i==2) {
 					psmt.setString(1, sellerId);
 					System.out.println("3/6 delSeller success");
 					count = psmt.executeUpdate();
-					System.out.println(i);
+
 				}else {
 					psmt.executeUpdate();
 				}

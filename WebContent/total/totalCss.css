@@ -1,16 +1,16 @@
-
-.totalClass {/* 총매출 */
-/*   margin: 25%; */
+/* 
+.totalClass {총매출
+  margin: 25%;
   width: 600px;
   height: 360px;
-/*   background-color: white;
-  border-radius: 10%; */
+  background-color: white;
+  border-radius: 10%;
 }
 
-/* div태그 */
+div태그
 #mypageTable{
 	display: table;
-/* 	padding-top:10px; */
+	padding-top:10px;
 	width: 500px; 
 	font:  11pt;
 	font-family: "Nanum Gothic", sans-serif;
@@ -27,7 +27,65 @@
 }
 
 .container .totalClass table thead{
-	background-color : #2B2E7E;
+	background-color : #F2F2F2;
 	color : white;
 }
 
+ */
+ 
+ 
+.totalClass {/* 총매출 */
+/*   margin: 25%; */
+  width: 1100px;
+  height: 500px;
+/*   background-color: white;
+  border-radius: 10%; */
+}
+
+/* div태그 */
+#mypageTable{
+	display: table;
+/* 	padding-top:10px; */
+	width: 500px; 
+	font:  11pt;
+	font-family: "Nanum Gothic", sans-serif;
+	padding-left: 30px;
+	float: left;
+/* 	padding: 10px 20px 40px; */
+	
+}
+
+.container .totalClass{
+	margin : 100px;
+	background-color : white;
+	padding-top:80px;
+	padding-right:10px;
+	padding-left: 5px;
+	display : block;
+	box-shadow : 3px 3px 3px 3px #999;
+}
+
+.container .totalClass table thead{
+	background-color : #D8D8D8;
+	color : black
+	;
+}
+.container .totalClass table tbody{
+	background-color : white;
+}
+.list{
+	float: right;
+}
+#listDiv{
+	border: 2px black solid;
+	margin-left: 0px;
+
+}
+
+
+
+
+
+
+
+ 

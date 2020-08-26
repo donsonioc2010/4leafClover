@@ -3,7 +3,7 @@ form{
  	margin-left: 100px;
 	background-color : white;
 /* 	padding : 30px; */
-	border-radius : 10%;
+/* 	border-radius : 10%; */
 	display : block;
 	box-shadow : 3px 3px 3px 3px #999;
 }
@@ -12,14 +12,14 @@ form{
   height: 560px;
 
 }
-.totalClass {/* 총매출 */
+/* .totalClass {총매출
   margin: 50px;
   width: 600px;
   height: 360px;
   background-color: GRAY;
   border-radius: 10%;
 }
-
+ */
 /* div태그 */
 #mypageTable{
 	display: table;
@@ -43,7 +43,7 @@ p{
 	border-left: none;
 	border-right: none;
 	border-top: none;
-	border-bottom-color: #a6b1e1;
+	border-bottom-color: gray;
 	font-size: 10pt;
 	width: 200px;
 }

@@ -17,6 +17,12 @@ if(ologin == null){
 seller = (sellerDto)ologin;
 %> --%>
 <%
+
+String id = (String)session.getAttribute("login");
+if(id==null){
+	response.sendRedirect("../login/login.jsp");
+}
+
 String companyName = request.getParameter("companyName");
 String companyNumber = request.getParameter("companyNumber");
 String businessCondition = request.getParameter("businessCondition");
@@ -30,7 +36,7 @@ String phone = request.getParameter("phone");
 String email = request.getParameter("email");
 
 sellerDao dao = sellerDao.getInstance();
-boolean dto = dao.updateSeller(new sellerDto(companyName,ceo, companyNumber, businessCondition, businessKind, address1, address2, address3, tel, phone, email), "test2");
+boolean dto = dao.updateSeller(new sellerDto(companyName,ceo, companyNumber, businessCondition, businessKind, address1, address2, address3, tel, phone, email), id);
 
 if(dto == true){
 	%>
