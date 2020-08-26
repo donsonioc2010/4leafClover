@@ -331,8 +331,8 @@ if(dto.getProduct_standard() == null){
 					"seq": $('#seq').val().trim()
 					},
 				success:function(data){
-					alert(data);
-					console.log(data)
+					
+					
 					let indexNum = document.getElementsByName('productName').length;	//productName 몇개있는지?
 					let productName = document.getElementsByName('productName');
 					let productUnit = document.getElementsByName('productUnit');

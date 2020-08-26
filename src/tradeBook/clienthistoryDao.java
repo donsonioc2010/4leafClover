@@ -230,10 +230,11 @@ public class clienthistoryDao {
 				+ " WHERE BU.BUYER_SEQ = OL.BUYER_SEQ(+) "
 				+ " AND OL.ORDER_NUM = OD.ORDER_NUM "
 				+ " AND OD.PRODUCT_SEQ = PR.PRODUCT_SEQ "
-				+ " AND BU.SELLER_ID = ? "
-				+ " AND PR.PRODUCT_NAME = ? ";
+				+ " AND BU.SELLER_ID = ? ";
+				
 		String sqlword = "";
 		if(seq != 0) {
+			 sqlword += " AND  PR.PRODUCT_NAME LIKE '%" + word.trim() + "%' ";
 			 sqlword += " AND BU.BUYER_SEQ = "+seq+" ";
 			
 		}
@@ -256,7 +257,7 @@ public class clienthistoryDao {
 			System.out.println("2/6 getclienthistory success");
 
 			psmt.setString(1, ID);
-			psmt.setNString(2, word);
+			
 			
 			
 
