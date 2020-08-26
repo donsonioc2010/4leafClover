@@ -1,7 +1,18 @@
 var form = document.getElementById('productForm')
+//검색창에서 enter키 눌렀을시에 검색구현
+function enterSearchProduct(){
+	if(window.event.keyCode==13){
+			searchList()
+			return false
+	}
+	return true
+}
 
 $('#searchBtn').click(function(){
 	//검색하는 기능 구현하기 Ajax로 데이터 가져와서 뿌려주기
+	searchList()
+})
+function searchList(){
 	let word = $('#searchWord');
 	if(word.val().trim()!=''){
 		let searchType = $('#searchType').val()
@@ -22,13 +33,11 @@ $('#searchBtn').click(function(){
 	}else{
 		location.href = './product.jsp';
 	}
-})
-
+}
 //
 $('#popExitBtn').click(function(){
 	window.self.close();
 })
-
 //productAdd.jsp에서 등록버튼을 누를시에 Db에 보내기전에 유효성검사를 하는 기능
 $('#insertProduct').click(function(){
 	if($('#productName').val().trim()!=''){
