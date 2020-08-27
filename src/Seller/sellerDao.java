@@ -24,6 +24,7 @@ public class sellerDao {
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
+		ResultSet rs = null;
 		boolean confirm = false;
 		
 		try {
@@ -32,15 +33,15 @@ public class sellerDao {
 			
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());
-			
+			rs = psmt.executeQuery();
 			//정보를 확인해서 널값인지 아닌지만 확인한다
-			if(psmt.executeQuery().next()) {
+			if(rs.next()) {
 				confirm = true;
 			}	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBClose.close(psmt, conn, null);
+			DBClose.close(psmt, conn, rs);
 		}
 		return confirm;
 	}

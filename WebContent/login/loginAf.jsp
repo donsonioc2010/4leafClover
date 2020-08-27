@@ -10,7 +10,7 @@
 	String pw = request.getParameter("password");
 	sellerDao dao = sellerDao.getInstance();
 	boolean loginConfirm = dao.sellerLogin(new sellerDto(id,pw));
-	
+	System.out.println(loginConfirm);
 	if(loginConfirm){
 		session.setAttribute("login", id);
 		session.setMaxInactiveInterval(3600);
