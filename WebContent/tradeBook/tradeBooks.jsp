@@ -85,8 +85,6 @@ if(searchWord !=null){
 		<!--거래처정보를 얻어오기위해 텍스트input 생성 -->
 <div class="searchclass">
 	<div class="panel-default">
-	
-	
 				<div id="jb-content">
 					<label>거래처정보</label> <input type="text" placeholder="거래처입력란"class="searchword" value="<%=searchWord%>">
 					<button class="glyphicon glyphicon-search"onclick="searchbooks()">검색</button> <!--클릭시검색함수로이동하여 처리한다. -->
@@ -99,7 +97,7 @@ if(searchWord !=null){
 					</select>
 					<!--거래처 모달형태 신규거래처를 추가적으로 기입하고 DB에 INSERT함--> 
 					<button class="btn btn-primary"id='addBuyerModalBtn'data-target="#layerpop1" data-toggle="modal">거래처추가</button>
-					<button class="btn btn-primary"id="deleteBuyerModalBtn" onclick="deleteclient()">거래처삭제</button>&nbsp;&nbsp;
+					<button class="btn btn-primary"id="deleteBuyerModalBtn"data-target="#layerpop3" data-toggle="modal">거래처삭제</button>&nbsp;&nbsp;
 					<label>거래일자</label> <select name='year'id='year'onload='getMonthDay();'></select> 년
 					<select name='month'id='month'onload='getMonthDay();'></select> 월
 					<select name='day'id='day'></select> 일
@@ -109,8 +107,8 @@ if(searchWord !=null){
 			
 
 			
-					<!-- 스타일 뭉칠예정 -->  
-				 <div style="width: 100%; height: 300px;  padding-top: 1px; position: relative">
+					
+				 <div class="componet">
 					 <div class="tb_box">
     					<table class="table table-condensed">
     		 				<thead>
@@ -173,7 +171,7 @@ if(searchWord !=null){
 <!--  END  -->
 			</div>
 			<!--스타일 한군데 뭉칠예정  -->
-			<div style="width: 100%; height: 300px; padding-top: 1px; position: relative">
+			<div class="componet">
 				<div class="tb_box">				
 					<table class="table table-condensed">
 						<thead><!--스코프 왜줫는지 까먹음 기억나는데로 작성함  -->
@@ -197,7 +195,7 @@ if(searchWord !=null){
 									clienthistoryDto cdto = clientInfoList.get(i);
 							%><!-- 헤더 상단부 거래처 상세내역 전부 땡겨와서 뿌려주는 작업 리플레쉬 or뷰로 넘어 오게되면 바로확인할수있다-->
 							<tr name='<%=cdto.getBuyerseq()%>'>
-								<td ><%=i + 1%></td>
+								<td><%=i + 1%></td>
 								<td><%=cdto.getLedgerdate()%></td>
 								<td><%=cdto.getLedgersort()%></td>
 								<td><%=cdto.getLedgerproductname()%></td>
@@ -226,11 +224,12 @@ if(searchWord !=null){
 				Ledgernotcollectmoney += clientInfoList.get(i).getLedgernotcollectmoney();
 			}
 			%>
-				
+			<br>
+			<div align="center">	
 			<input class="button-input-inline" type="button" value="매출합계" /><input class="button-input-inline" type="text" value="<%=Ledgertotal%>"readonly="readonly" /> 
 			<input class="button-input-inline" type="button" value="수금합계" /><input class="button-input-inline" type="text"value="<%=Ledgercollectmoney%>" readonly="readonly" /> 
 			<input class="button-input-inline" type="button" value="미수금계" /><input class="button-input-inline" type="text"value="<%=Ledgernotcollectmoney%>" readonly="readonly" />
-		
+			</div>
 		
 </div>
 

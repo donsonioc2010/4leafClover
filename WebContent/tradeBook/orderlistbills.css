@@ -23,7 +23,7 @@
       }
       table {
         border-collapse: collapse;
-        page-break-after: always;
+        /* page-break-after: always; */
       }
       .gridlines td {
         border: 1px dotted black;

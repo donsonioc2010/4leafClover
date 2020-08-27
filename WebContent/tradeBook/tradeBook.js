@@ -1,3 +1,4 @@
+
 var nowDate = new Date();
 
 // ==================MainOrder.jsp SetDate==========================
@@ -386,5 +387,22 @@ function termdatesaerchBtn() {
     });
     $("#deleteBuyerModalBtn").click(function () {
     const companyclient=document.querySelector("#companyName").value
-    location.href="deletetradeclient.jsp?companyName=" + companyclient;
+    
+    $.ajax({
+        type: "post",
+        url: "./deletetradeclient.jsp",
+        dataType: "html",
+        data: {
+        	companyclient: companyclient,
+          
+        },
+        success: function (data) {
+            $("#layerpop3").html(data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            location.reload(true);
+            alert("통신실패");
+        },
     });
+});
