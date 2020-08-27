@@ -86,7 +86,7 @@ if(dto.getProduct_standard() == null){
 		<!--분리완료후 정렬예정  -->					
 	  <div align='center' id="printer">
 			<div id="command_bar">
-			  A4용지를 준비하고 인쇄버튼을 클릭하세요. &nbsp; <input type="button" value="인쇄하기" onclick="printNow()" /> <input type="button" value="뒤로" onclick="window.close()" />
+			  A4용지를 준비하고 인쇄버튼을 클릭하세요. &nbsp; <input type="button" value="인쇄하기" onclick="printNow()" />
 			</div>
 			<input type="hidden" id="seq" value="<%=seq%>">
 			<input type="hidden"id='dtoPageNum'value='<%=pageNumber%>'>

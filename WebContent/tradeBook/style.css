@@ -1,101 +1,130 @@
+.componet {
+	width: 100%;
+	height: 300px;
+	position: relative;
+	align: center;
+}
 
-.top span{
+.top span {
 	font-size: 12px;
 	line-height: 20px;
 	color: black;
 }
-.top_bar{
+
+.top_bar {
 	display: inline;
 }
-.top_bar li{
+
+.top_bar li {
 	display: inline-block;
 }
-.top_bar li{
+
+.top_bar li {
 	float: right;
 	padding-right: 20px;
 }
-a {	text-decoration: none;}
-.category:hover{
+
+a {
+	text-decoration: none;
+}
+
+.category:hover {
 	color: white;
 }
-.category{
+
+.category {
 	border: none;
 	outline: none;
 }
-.btn btn-default{
-    color: #fff;
-    background-color: #286090;
-    border-color: #204d74;
+
+.btn btn-default {
+	color: #fff;
+	background-color: #286090;
+	border-color: #204d74;
 }
-.panel panel-default{
+
+.panel panel-default {
 	border: 10px solid;
 	display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px; height: 300px;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	height: 300px;
 }
- .table-wrap {
+
+.table-wrap {
 	width: 1200px;
 }
+
 table, th, tr, td {
 	border: 1px solid #bcbcbc;
-	table-layout:fixed;
+	table-layout: fixed;
 	border-color: gray;
 }
+
 .fixed_top {
 	display: inline-table;
 	position: absolute;
 	top: 0;
 	width: calc(100% - 15px);
-	height: 36px;
 	background: #2B2E7E;
 	color: white;
 }
-button{
+.modalfixed_top {
+	 top: 88px;
+	 display: inline-table;
+	 position: fixed;
+	 width: calc(100% - 48px);
+	 background: #2B2E7E;
+	 color: white;
+}
+button {
 	font-size: 14px;
 }
+
 .tb_box {
-	
 	max-height: 300px;
 	overflow-y: scroll;
-	border-bottom: 1px solid #dedede;
+	padding-top: 28px;
 }
 
 .table-wrap td:last-child {
 	bottom: 0;
-} 
+}
 
 .table-condensed {
-  height:150px;
- table-layout: fixed;
- 
+	
+	table-layout: fixed;
 }
+
 .table-box-wrap .table-box table thead tr th {
-    font-weight: normal;
-    width: 120px;
-    height: 40px;
-    background:darksalmon;
-    background-color : #2B2E7E;
+	font-weight: normal;
+	width: 120px;
+	height: 40px;
+	background: darksalmon;
+	background-color: #2B2E7E;
 }
-.tab { white-space: pre-wrap; }
-body {
-   
-	padding: 0px;
-  margin: 0 auto;
-}
+
 .searchclass {
-    align-content: center;
-    margin-left: 150px;
-    margin-top: 50px;
-    
-    padding: 70px;
-    width: 1350px;
-    height: 900px;
-    border-radius: 10%;
-    background-color: white;
-    display: block;
-    box-shadow: 3px 3px 3px 3px #999;
+	align-content: center;
+	width: 80%;
+	margin-top: 3%;
+	margin-left: 10%;
+	padding: 7%;
+	background-color: white;
+	display: block;
+	box-shadow: 3px 3px 3px 3px #999;
 }
+
+.tab {
+	white-space: pre-wrap;
+}
+
+body {
+	padding: 0px;
+	margin: 0 auto;
+}
+
 tr.highlighted td {
 	background: white;
 }
@@ -111,16 +140,12 @@ tr.highlighted td {
 .table-condensed tbody tr:hover td, .table tbody tr:hover th {
 	background-color: #eeeeea;
 }
-.table-condensed{
-    border-top-width: 34px;
-	
-}
-#popbutton{
-    color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
-}
 
+#popbutton {
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+}
 
 #jb-container {
 	border: 1px solid #bcbcbc;
@@ -132,13 +157,12 @@ tr.highlighted td {
 }
 
 #jb-content {
-	
 	width: 100%;
 	height: 40px;
 }
 
 #jb-content1 {
-	margin-top: 16px;
+	margin-top: 4%;
 	width: 100%;
 	height: 40px;
 }
@@ -160,7 +184,11 @@ tr.highlighted td {
 .box:focus {
 	outline: none;
 }
-input:focus {outline:none;} 
+
+input:focus {
+	outline: none;
+}
+
 input:focus::-webkit-input-placeholder {
 	color: transparent;
 }
@@ -176,21 +204,29 @@ input:focus:-ms-input-placeholder {
 input:focus::-ms-input-placeholder {
 	color: transparent;
 }
+
 .clientAdd {
-	 width: 100px; 
-	 display: inline-block; 
+	width: 100px;
+	display: inline-block;
 }
+
 .add {
-    border-left: none;
-    border-top: none;
-    border-right: none;
-    border-bottom-color: #A6B1E1;
-    font-size: 10pt;
-    width: 150px;
-    font-family: "Nanum Gothic", sans-serif;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	border-bottom-color: #A6B1E1;
+	font-size: 10pt;
+	width: 150px;
+	font-family: "Nanum Gothic", sans-serif;
 }
-#if{
-            width: 0px;
-            height: 0px;
-            border: 0px;
-        }
+
+#if {
+	width: 0px;
+	height: 0px;
+	border: 0px;
+}
+.modals { background-color: #ffffff; cursor: pointer; }
+	#wrapper {  }
+	.mouseenter { background: #50BCDF; }
+	.mouseleave { background: white; }
+	.selected { background: #eeeeea; }
