@@ -152,7 +152,7 @@ function buySeqGetBtn(seq,companyName) {
     });
 }
 
-document.querySelector(".searchWordBtn").onclick = function () {
+document.querySelector("#searchWordBtn").onclick = function () {
     const seq = document.querySelector("#frm").value;
     var select = document.querySelector(".tradeselector").textContent; //올셀렉터로 시퀀스를 다가져오려햇으나 실패.... 다중입력되었을시엔 매개로받는것이 낫다..
     /* let a= document.querySelectorAll(".buyerseq");  
@@ -209,7 +209,7 @@ document.querySelector(".searchWordBtn").onclick = function () {
         },
     });
 };
-document.querySelector(".datesaerchBtn").onclick = function () {
+document.querySelector("#datesaerchBtn").onclick = function () {
     const seq = document.querySelector("#frm").value;
     const term = "false";
 
@@ -386,20 +386,5 @@ function termdatesaerchBtn() {
     });
     $("#deleteBuyerModalBtn").click(function () {
     const companyclient=document.querySelector("#companyName").value
-        $.ajax({
-            type: "post",
-            url: "./deletetradeclient.jsp",
-            dataType: "html",
-             data: {
-            companyName: companyclient,
-        },
-            success: function (data) {
-               alert("삭제성공");
-               
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                alert("삭제실패");
-            },
-        });
+    location.href="deletetradeclient.jsp?companyName=" + companyclient;
     });
