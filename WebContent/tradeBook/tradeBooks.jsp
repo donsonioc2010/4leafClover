@@ -89,7 +89,7 @@ if(searchWord !=null){
 	
 				<div id="jb-content">
 					<label>거래처정보</label> <input type="text" placeholder="거래처입력란"class="searchword" value="<%=searchWord%>">
-					<button onclick="searchbooks()">검색</button> <!--클릭시검색함수로이동하여 처리한다. -->
+					<button class="glyphicon glyphicon-search"onclick="searchbooks()">검색</button> <!--클릭시검색함수로이동하여 처리한다. -->
 					<!--검색옵션을 주어 해당하는 개별검색할수있게 함 -->
 					<select class="choice">
 						<option value="allselect">---선택---</option>
@@ -159,17 +159,17 @@ if(searchWord !=null){
 				<!-- 거래내역 날짜별검색 은 자바스크립트 함수로 받아오고 기간별검색만 온클릭 함수를 실행함  -->
 				<!--상품명별로 개별검색 한다  -->
 				<label>거래내역</label> 
-				<input class="tradeselector"type="text"id='searchWordJw'placeholder="거래내역입력란"> 
-				<input type="button"class='searchWordBtn'value="검색">
+				<input class="tradeselector"type="text"id='searchWordJw'placeholder="거래내역입력란">
+				<button type="button"id='searchWordBtn'><span class="glyphicon glyphicon-search" aria-hidden="true">검색</span></button>
 				<!--해당날짜별로 조회한다  -->
 				<label>날짜별검색</label> 
 				<input type="date"class='daydate'> 
-				<input class="datesaerchBtn"type="button"value="검색">
+				<button id="datesaerchBtn"type="button"><span class="glyphicon glyphicon-search" aria-hidden="true">검색</span></button>
 				 <!--기간별로 조회한다  -->
 				<label>기간별검색</label> 
 				<input type="date"class="termdate1"> ~ 
 				<input type="date"class="termdate2">
-				<input class="fromselect"type="button"onClick="termdatesaerchBtn()"value="검색">
+				<button class="fromselect"type="button"onClick="termdatesaerchBtn()"><span class="glyphicon glyphicon-search" aria-hidden="true">검색</span></button>
 <!--  END  -->
 			</div>
 			<!--스타일 한군데 뭉칠예정  -->
@@ -201,7 +201,7 @@ if(searchWord !=null){
 								<td><%=cdto.getLedgerdate()%></td>
 								<td><%=cdto.getLedgersort()%></td>
 								<td><%=cdto.getLedgerproductname()%></td>
-								<td><%=cdto.getLedgersupplyprice()%>
+								<td><%=cdto.getLedgersupplyprice()%></td>
 								<td><%=cdto.getLedgertaxvalue()%></td>
 								<td><%=cdto.getLedgernotcollectmoney()%></td>
 								<td><%=cdto.getLedgercollectmoney()%></td>
