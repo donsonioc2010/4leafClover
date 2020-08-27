@@ -45,10 +45,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>OrderDetail</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../init.css?after"/>
-		<link rel="stylesheet" href="./order.css?after">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../init.css"/>
+		<link rel="stylesheet" href="./order.css">
 	</head>
 	<%if(swBody){%>
 		<body onload='loadDate(<%=year%>,<%=month%>,<%=day%>,<%=seq%>);'>
@@ -68,10 +68,6 @@
 				<select name='month'id='month'onchange='getMonthDay();'></select> 월
 				<select name='day'id='day'></select> 일
 				<input type='button'id='getSearchList'value='검색'onclick='searchList();'class="btn btn-primary">
-				<!-- 
-				<input type='button' value='확인'>
-				 -->
-				<!-- 확인버튼을 클릭시 회사명이 Null이 아니면 검색이 되게 할예정 -->
 			</div>
 			<hr>
 			<!-- BuyerInfoBox -->

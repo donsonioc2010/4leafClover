@@ -20,7 +20,7 @@
 	<meta charset="UTF-8">
 	<title>companyList</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<%--<link rel="stylesheet" href="../init.css">--%>
+	<link rel="stylesheet" href="../init.css">
 	<link rel="stylesheet" href="./order.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -46,10 +46,10 @@
 			<col width="50">
 			<col width="300">
 			<col width="150">
-			<tr id="listhead">
-				<th align="center">선택</th>
-				<th align="center">거래처명</th>
-				<th align="center">대표자</th>
+			<tr id="listhead"style='background-color:#2B2E7E;'>
+				<th style='color:white;text-align:center;'>선택</th>
+				<th style='color:white;text-align:center;'>거래처명</th>
+				<th style='color:white;text-align:center;'>대표자</th>
 			</tr>
 			<tbody id='companyList'>
 				<%if(list == null || list.size() == 0){%>

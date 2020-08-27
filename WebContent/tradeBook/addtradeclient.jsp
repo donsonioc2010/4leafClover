@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="stylesheet" href="./style.css" type="text/css">
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 	</head>

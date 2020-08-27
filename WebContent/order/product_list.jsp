@@ -58,7 +58,6 @@ if(session.getAttribute("login")==null){
 						<tr>
 							<th><input type="radio" name="chkBox"  value="<%=dto.getProductSeq() %>"></th>
 							<td><span name="productName"> <%=dto.getProductName() %> </span></td>
-							<!-- <td><span name="<%=dto.getProductSeq()%>"> <%=dto.getProductUnit()%></span></td>  -->
 							<td><span name="productSupply"> <%=dto.getProductTradePrice() %></span></td>
 							<td><span name="productStandard"> <%=dto.getProductStandard() %></span></td>
 						</tr>

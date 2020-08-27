@@ -29,8 +29,8 @@ for(int i = 0; i< list.size(); i++){
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@1,900&family=Nanum+Gothic&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="../init.css?after" />
-		<link rel="stylesheet" href="./myPageCss.css?after" />
+		<link rel="stylesheet" href="../init.css" />
+		<link rel="stylesheet" href="./myPageCss.css" />
 	</head>
 	<body >
 		<!-- 
