@@ -10,28 +10,18 @@ import db.DBClose;
 import db.DBConnection;
 
 public class totalDao {
-
 	private static totalDao dao = new totalDao();
-	
-	private totalDao() {
-		DBConnection.initConnection();
-	}
-	public static totalDao getInstance() {
-		return dao;
-	} 
+	private totalDao() {DBConnection.initConnection();}
+	public static totalDao getInstance() {return dao;} 
 	
 	public List<totalMMDto> getMonthTotalAvg(String sellerId) {
-		String sql = "SELECT SUM(o.order_total), "
-					+ " SUM(o.order_collect_money), "
-					+ " SUM(o.order_not_collect_money) "
-					+ " FROM ORDER_LIST O, buyer b "  
-					+ " WHERE  O.BUYER_SEQ=B.BUYER_SEQ " 
-					+ " AND  substr(o.ORDER_DATE,1,6) = TO_CHAR(SYSDATE,'YYYYmm') " 
-					+ " AND B.BUYER_SEQ = O.BUYER_SEQ"
-					+ " AND b.seller_id = ? ";
-		
-		System.out.println("sql" + sql);
-		
+		String sql = "SELECT SUM(O.ORDER_TOTAL), SUM(O.ORDER_COLLECT_MONEY), SUM(O.ORDER_NOT_COLLECT_MONEY) " 
+						+ " FROM ORDER_LIST O, BUYER B " 
+						+ " WHERE O.BUYER_SEQ=B.BUYER_SEQ " 
+							+ " AND SUBSTR(O.ORDER_DATE,1,6) = TO_CHAR(SYSDATE,'YYYYMM') " 
+							+ " AND B.BUYER_SEQ = O.BUYER_SEQ" 
+							+ " AND B.SELLER_ID = ? ";
+
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
@@ -47,39 +37,29 @@ public class totalDao {
 			
 			while (rs.next()) {
 				int i = 1;
-				totalMMDto dto = new totalMMDto(rs.getInt(i++),
-											rs.getInt(i++),
-											rs.getInt(i++));
+				totalMMDto dto 
+					= new totalMMDto(rs.getInt(i++), rs.getInt(i++), rs.getInt(i++));
 				list.add(dto);
 			}
 			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}
 		return list;
 	}
 
 	public List<totalYYYYDto> getYearTotalAvg(String sellerId) {
-		String sql = " SELECT SUM(o.order_total), "
-					+ " SUM(o.order_collect_money), "
-					+ " SUM(o.order_not_collect_money) "
-					+ " FROM ORDER_LIST O, BUYER B "  
-					+ " WHERE O.BUYER_SEQ=B.BUYER_SEQ "
-					+ " AND  substr(o.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') "
-					+ " AND B.BUYER_SEQ = O.BUYER_SEQ" 
-					+ " AND b.seller_id = ? ";
-		
-		System.out.println("sql" + sql);
-		
+		List<totalYYYYDto> list = new ArrayList<totalYYYYDto>();
+		String sql = " SELECT SUM(O.ORDER_TOTAL), SUM(O.ORDER_COLLECT_MONEY), SUM(O.ORDER_NOT_COLLECT_MONEY) " 
+						+ " FROM ORDER_LIST O, BUYER B " 
+							+ " WHERE O.BUYER_SEQ=B.BUYER_SEQ " 
+							+ " AND SUBSTR(O.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') " 
+							+ " AND B.BUYER_SEQ = O.BUYER_SEQ" 
+							+ " AND B.SELLER_ID = ? ";
+			
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		List<totalYYYYDto> list = new ArrayList<totalYYYYDto>();
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -90,38 +70,27 @@ public class totalDao {
 			
 			while (rs.next()) {
 				int i = 1;
-				totalYYYYDto dto = new totalYYYYDto(rs.getInt(i++),
-											rs.getInt(i++),
-											rs.getInt(i++));
+				totalYYYYDto dto 
+					= new totalYYYYDto(rs.getInt(i++), rs.getInt(i++), rs.getInt(i++));
 				list.add(dto);
 			}
 			
 			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}
 		return list;
 	}
 
 	public List<totalMMDto> getCompanyTotal(String id) {
-		String sql = " SELECT bcn, "
-				+ " sum(ot), "
-				+ " sum(oc), "
-				+ " sum(onc) " + 
-				" FROM " + 
-				" (SELECT "
-				+ " b.buyer_company_name as bcn, "
-				+ " ORDER_TOTAL as ot, "
-				+ " ORDER_COLLECT_MONEY as oc, "
-				+ " ORDER_NOT_COLLECT_MONEY as onc " + 
-				" FROM ORDER_LIST o, buyer b " + 
-				" WHERE b.seller_id = ? " + 
-					" AND substr(o.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') " + 
-						" AND O.BUYER_SEQ=B.BUYER_SEQ) "
-				+ " group by bcn ";
+		String sql = " SELECT BCN, SUM(OT), SUM(OC), SUM(ONC) " 
+				+ " FROM (SELECT B.BUYER_COMPANY_NAME AS BCN, ORDER_TOTAL AS OT, " 
+				+ " ORDER_COLLECT_MONEY AS OC, " 
+				+ " ORDER_NOT_COLLECT_MONEY AS ONC " 
+				+ " FROM ORDER_LIST O, BUYER B " 
+				+ " WHERE B.SELLER_ID = ? " 
+				+ " AND SUBSTR(O.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') " 
+				+ " AND O.BUYER_SEQ=B.BUYER_SEQ) " 
+				+ " GROUP BY BCN ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -138,33 +107,12 @@ public class totalDao {
 			
 			while (rs.next()) {
 				int i = 1;
-				
-				totalMMDto dto = new totalMMDto(rs.getString(i++),
-												rs.getInt(i++),
-												rs.getInt(i++),
-												rs.getInt(i++));
+				totalMMDto dto 
+					= new totalMMDto(rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getInt(i++));
 				list.add(dto);
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}
 		return list;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

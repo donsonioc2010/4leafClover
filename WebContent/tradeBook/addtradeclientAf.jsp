@@ -4,9 +4,12 @@
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("utf-8");
-String id = (String)session.getAttribute("login");
-if(id==null){response.sendRedirect("./login/login.jsp");}
-
+String id = null;
+if(session.getAttribute("login")==null){
+	response.sendRedirect("./login/login.jsp");
+}else{
+	id = (String)session.getAttribute("login");
+}
 String companyname = request.getParameter("companyname"); 	// 거래처명
 String ceoname = request.getParameter("ceoname"); 			// 대표자
 String condition = request.getParameter("condition"); 		// 업태
@@ -17,43 +20,43 @@ String address2 = request.getParameter("address2"); 		// 주소
 String address3 = request.getParameter("address3"); 		//상세주소
 String admin = request.getParameter("admin"); 				// 관리자
 String email = request.getParameter("email"); 				// 이메일
-String tel = request.getParameter("telnum"); 					// 전화번호
+String tel = request.getParameter("telnum"); 				// 전화번호
 String fday = request.getParameter("fday");					// 날짜
 String memo = request.getParameter("memo");					// 메모
 String homepage = request.getParameter("homepage"); 		// 홈페이지
 
 BuyerDao dao = BuyerDao.getInstance();
 	
-boolean isS = dao.addBuyer( new BuyerDto(id , companyname, ceoname, condition, kinds, companynum
-					, address1, address2, address3, admin, email, tel
-					, fday, memo, homepage ));
+boolean isS = dao.addBuyer( 
+		new BuyerDto(
+					id, 
+					companyname, 
+					ceoname, 
+					condition, 
+					kinds, 
+					companynum, 
+					address1, 
+					address2, 
+					address3, 
+					admin, 
+					email, 
+					tel, 
+					fday, 
+					memo, 
+					homepage 
+				));
 if (isS) { %>
-
 	<script>
-	
-alert("추가성공")
-	
+		alert("추가성공")
 	</script>
 <%} else {%>
 	<script>
-	
-alert("추가실패")
-	
+		alert("추가실패")
 	</script>
 <%}%>
- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 <%if (isS){ %>
 <script>
-
   parent.ifun();
-    
 </script>
 <%}%>
-</body>
-</html>   

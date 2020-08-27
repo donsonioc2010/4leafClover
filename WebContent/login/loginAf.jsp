@@ -10,7 +10,6 @@
 	String pw = request.getParameter("password");
 	sellerDao dao = sellerDao.getInstance();
 	boolean loginConfirm = dao.sellerLogin(new sellerDto(id,pw));
-	System.out.println(loginConfirm);
 	if(loginConfirm){
 		session.setAttribute("login", id);
 		session.setMaxInactiveInterval(3600);
@@ -22,32 +21,3 @@
 	out.print(jobj.toString());
 
 %>
-<%--
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<%
-	if(loginConfirm){
-		//로그인성공
-		%>
-		 <script type="text/javascript">
-			 alert("로그인성공")
-			 location.href = "../index.jsp";
-		 </script>
-		 <%
-	}else{
-		 %>
-		 <script type="text/javascript">
-			 alert("로그인실패")
-			 location.href = "./login.jsp";
-		 </script>
-		 <%
-	 }
-	 %>
-</body>
-</html>
- --%>

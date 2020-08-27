@@ -132,14 +132,4 @@ public class excelDto implements Serializable{
 		this.detailPriceSum = detailPriceSum;
 	}
 
-	@Override
-	public String toString() {
-		return "excelDto [orderNum=" + orderNum + ", sellerId=" + sellerId + ", productName=" + productName
-				+ ", productUnit=" + productUnit + ", buyerCompanyName=" + buyerCompanyName + ", orderDate=" + orderDate
-				+ ", productSeq=" + productSeq + ", ListSupplyPrice=" + ListSupplyPrice + ", ListTaxValue="
-				+ ListTaxValue + ", ListTotal=" + ListTotal + ", detailCount=" + detailCount + ", detailPrice="
-				+ detailPrice + ", detailPriceTax=" + detailPriceTax + ", detailPriceSum=" + detailPriceSum + "]";
-	}
-	
-
 }

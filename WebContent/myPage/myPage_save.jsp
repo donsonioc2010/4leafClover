@@ -3,25 +3,12 @@
 <%@page import="myPageSeller.sellerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%-
-Object ologin = session.getAttribute("login");
-sellerDto seller = null;
-if(ologin == null){
-	%>
-	<script type="text/javascript">
-	alert("로그인 해 주십시오");
-	location.href = "login.jsp";
-	</script>	
-	<%
-}
-seller = (sellerDto)ologin;
-%> --%>
-<%
 
-String id = (String)session.getAttribute("login");
-if(id==null){
-	response.sendRedirect("../login/login.jsp");
-}
+<%
+String id = null;
+
+if(session.getAttribute("login")==null){response.sendRedirect("../login/login.jsp");}
+else{id = (String)session.getAttribute("login");}
 
 String companyName = request.getParameter("companyName");
 String companyNumber = request.getParameter("companyNumber");

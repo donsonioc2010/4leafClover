@@ -32,9 +32,7 @@ public class sellerDto {
 	private String tel;
 	private String phone;
 	private String email;
-	public sellerDto() {
-		// TODO Auto-generated constructor stub
-	}
+	public sellerDto() {}
 	
 	public sellerDto(String id, String pw) {
 		super();

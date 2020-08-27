@@ -42,11 +42,6 @@ table{
 	border-collapse: collapse;
 	
 }
-
-body{
-	background-color : #A6B1E1;
-}
-
 table thead{
 	background-color : #2B2E7E;
 	color : white;
@@ -198,50 +193,7 @@ table thead{
 	margin-top : 3px;
 }
 
-.top{
-	background-color: ghostwhite;
-	position: relative;
-	left: 0;
-	padding: 0;
-	width: 100%;
-	height: 20px;
-}
 
-.top span{
-	font-size: 12px;
-	line-height: 20px;
-	color: black;
-}
-
-.top_bar{
-	display: inline;
-}
-
-.top_bar li{
-	display: inline-block;
-}
-
-.top_bar li{
-	float: right;
-	padding-right: 20px;
-}
-
-a {	
-	text-decoration: none;
-}
-
-.category:hover{
-	color: white;
-}
-
-.category{
-	border: none;
-	outline: none;
-}
-
-.gray{
-	background-color : gray;
-}
 .infoTable{
 	border : 1px solid black;
 	background-color : white;
@@ -249,7 +201,6 @@ a {
 #productListTable tbody :hover{
 	background-color: #dcdcdc;
 }
-
 
 #productTotalTable td, #productTotalTable tr, #productTotalTable th,
 #productListTable td, #productListTable tr, #productListTable th,

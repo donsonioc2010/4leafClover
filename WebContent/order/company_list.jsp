@@ -32,8 +32,6 @@
 			<option value="1">전체</option>
 			<option value="2">거래처명</option>
 			<option value="3">대표자</option>
-			<option value="4">사업자 번호</option>
-			<option value="5">전화번호</option>
 	</select> 
 	<input type="text"id='searchWord'onkeypress='searchEnter();' > 
 	<input type="button"value="검색"id='searchCompanyBtn' class="btn btn-primary">

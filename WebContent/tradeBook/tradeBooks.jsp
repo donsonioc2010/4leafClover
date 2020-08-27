@@ -104,45 +104,39 @@ if(searchWord !=null){
 					<button class="btn btn-primary"id="stateMentOutputModalBtn" data-target="#layerpop2" data-toggle="modal">명세서출력</button>
 				</div>
 
-			
-
-			
-					
 				 <div class="componet">
 					 <div class="tb_box">
     					<table class="table table-condensed">
     		 				<thead>
-					<!-- 거래처정보를 테이블화 -->
-						<tr class="fixed_top">
-							<th class="col1">번호</th>
-							<th>업체구분</th>
-							<th>거래처명</th>
-							<th>대표자명</th>
-							<th>사업자번호</th>
-							<th>회사전화번호</th>
-							<th>담당자</th>
-							<th>최종거래일</th>
-							<th>메모</th>
-						</tr>
+								<!-- 거래처정보를 테이블화 -->
+								<tr class="fixed_top">
+									<th class="col1">번호</th>
+									<th>업체구분</th>
+									<th>거래처명</th>
+									<th>대표자명</th>
+									<th>사업자번호</th>
+									<th>회사전화번호</th>
+									<th>담당자</th>
+									<th>최종거래일</th>
+									<th>메모</th>
+								</tr>
 							</thead><!--상단 td 태그 덮힘으로 강제 개행시켜버림  -->
 					
-						
-						<% 
-							for (int i = 0; i < list.size(); i++) {
-						%> <!--헤더 상단부분 거래처정보 데이터를 db를 통해 받아와서 for문으로 뿌려주는 작업  -->
-						   <!-- 클릭한 태그 에 해당하는 거래처의 이름 값을 가공을 거치지않고 바로 전달 한다.  -->
-						<tr class='seq1'onclick="buySeqGetBtn('<%=list.get(i).getBuyer_seq()%>','<%=list.get(i).getBuyer_company_name()%>')">
-							<td class="col1"><%=i + 1%></td>
-							<td><%=list.get(i).getBuyer_business_condition()%></td>
-							<td><%=list.get(i).getBuyer_company_name()%></td>
-							<td><%=list.get(i).getBuyer_ceo()%></td>
-							<td><%=list.get(i).getBuyer_company_num()%></td>
-							<td><%=list.get(i).getBuyer_tel_num()%></td>
-							<td><%=list.get(i).getBuyer_admin()%></td>
-							<td><%=list.get(i).getBuyer_date()%></td>
-							<td><%=list.get(i).getBuyer_memo()%></td>
-						</tr>
-						<%}%>
+							<tbody>
+								<%for (int i = 0; i < list.size(); i++) {%> 
+								<!--헤더 상단부분 거래처정보 데이터를 db를 통해 받아와서 for문으로 뿌려주는 작업 클릭한 태그 에 해당하는 거래처의 이름 값을 가공을 거치지않고 바로 전달 한다.-->
+								<tr class='seq1'onclick="buySeqGetBtn('<%=list.get(i).getBuyer_seq()%>','<%=list.get(i).getBuyer_company_name()%>')">
+									<td class="col1"><%=i + 1%></td>
+									<td><%=list.get(i).getBuyer_business_condition()%></td>
+									<td><%=list.get(i).getBuyer_company_name()%></td>
+									<td><%=list.get(i).getBuyer_ceo()%></td>
+									<td><%=list.get(i).getBuyer_company_num()%></td>
+									<td><%=list.get(i).getBuyer_tel_num()%></td>
+									<td><%=list.get(i).getBuyer_admin()%></td>
+									<td><%=list.get(i).getBuyer_date()%></td>
+									<td><%=list.get(i).getBuyer_memo()%></td>
+								</tr>
+								<%}%>
 							 </tbody>
 						</table>
 					</div>

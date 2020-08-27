@@ -190,132 +190,125 @@ var form = ''
 					}else{
 						noHaveData()
 					}
-				},error:function(){
-					alert('err')
-				}
+				},error:function(){alert('err')}
 			})
-		}else{
-			alert('거래처를 선택해주세요')
-		}
-		//2 만약 있으면 yyyymmdd형식으로 가져감과 동시에 Ajax로 리스트내역을 가져오기
-		//3 가져온 List를 orderList에 추가하기
+		}else{alert('거래처를 선택해주세요')}
 	}
 //검색했을때 데이터 열어주기
-	function settingOrder(data){
-		let order=data[0]
-		document.getElementsByName('orderNum')[0].value=order.OrderNum
-		document.getElementsByName('orderTotalPrice')[0].value=order.OrderTotal
-		document.getElementsByName('orderSupplyPrice')[0].value=order.OrderSupplyValue
-		document.getElementsByName('orderTaxPrice')[0].value=order.OrderTaxValue
-		document.getElementsByName('notCollectMoney')[0].value=order.OrderNotCollectMoney
-		document.getElementsByName('CollectMoney')[0].value=order.OrderCollectMoney
-	}		
-	function settingDetail(data){
-		let order=data
-		let row = ''
-		for(i=1;i<Object.keys(order).length;i++){
-			let detail=order[i]
-			
-			//"productSeq", "orderCount", "orderPrice", "PriceTax", "PriceSum"
-			let count = Number(detail.orderCount)
-			let orderPrice = Number(detail.orderPrice)/ count
-			let tax = Number(detail.PriceTax)/count
-			row+="<tr>"
-				+	"<td class='cell1'>"
-				+		"<input type='text'name='productSeq'value='"+detail.productSeq+"'class='no-write'readonly>"	
-				+	"</td>"
-				+	"<td class='cell2'>"
-				+		"<input type='text'name='productName'value='"+detail.productName+"'class='no-write'style='width:94%'readonly>"
-				+		"<button type='button'onclick='popProductList(this)'name='popProduct'>..</button>"			
-				+	"</td>"			
-				+	"<td class='cell3'>"
-				+		"<input type='text'value='"+detail.productStandard+"'name='productStandard'readonly>"			
-				+	"</td>"
-				+	"<td class='cell4'>"		
-				+		"<input type='number'value='"+count+"'name='orderCount'class='no-write'min='0'step='1'readonly>"			
-				+	"</td>"			
-				+	"<td class='cell5'>"
-				+		"<input type='text'value='"+orderPrice+"'name='orderSupply'class='no-write'readonly>"
-				+	"</td>"
-				+	"<td class='cell6'>"
-				+		"<input type='text'value='"+tax+"'name='orderTax'class='no-write'readonly>"
-				+	"</td>"
-				+	"<td class='cell7'>"
-				+		"<input type='text'value='"+detail.PriceSum+"'name='orderTotal'class='no-write'readonly>"
-				+	"</td>"
-				+"</tr>"
-				
-		}
-		document.getElementsByName('CollectMoney')[0].removeAttribute('disabled')
-		document.getElementsByName('updateDetail')[0].removeAttribute('disabled')
-		document.getElementById('statement').removeAttribute('disabled')
-		document.getElementById('convertExcel').removeAttribute('disabled')
-		document.getElementById('deleteBtn').removeAttribute('disabled')
-		document.getElementById('orderSaveBtn').setAttribute('disabled',true)
-		document.getElementById('addTdBtn').setAttribute('disabled',true)
-		document.getElementById('detailList').innerHTML = row;
-
-	}
-	function noHaveData(){
-		document.getElementsByName('orderNum')[0].value=''
-		document.getElementsByName('orderTotalPrice')[0].value='0'
-		document.getElementsByName('orderSupplyPrice')[0].value='0'
-		document.getElementsByName('orderTaxPrice')[0].value='0'
-		document.getElementsByName('notCollectMoney')[0].value='0'
-		document.getElementsByName('CollectMoney')[0].value='0'
-		document.getElementById('detailList').innerHTML=''
+function settingOrder(data){
+	let order=data[0]
+	document.getElementsByName('orderNum')[0].value=order.OrderNum
+	document.getElementsByName('orderTotalPrice')[0].value=order.OrderTotal
+	document.getElementsByName('orderSupplyPrice')[0].value=order.OrderSupplyValue
+	document.getElementsByName('orderTaxPrice')[0].value=order.OrderTaxValue
+	document.getElementsByName('notCollectMoney')[0].value=order.OrderNotCollectMoney
+	document.getElementsByName('CollectMoney')[0].value=order.OrderCollectMoney
+}		
+function settingDetail(data){
+	let order=data
+	let row = ''
+	for(i=1;i<Object.keys(order).length;i++){
+		let detail=order[i]
 		
-		document.getElementById('deleteBtn').setAttribute('disabled',true)
-		document.getElementsByName('CollectMoney')[0].setAttribute('disabled',true)
-		document.getElementsByName('updateDetail')[0].setAttribute('disabled',true)
-		document.getElementById('addTdBtn').removeAttribute('disabled')
-		document.getElementById('orderSaveBtn').removeAttribute('disabled')
-		document.getElementById('statement').setAttribute('disabled',true)
-		document.getElementById('convertExcel').setAttribute('disabled',true)
+		//"productSeq", "orderCount", "orderPrice", "PriceTax", "PriceSum"
+		let count = Number(detail.orderCount)
+		let orderPrice = Number(detail.orderPrice)/ count
+		let tax = Number(detail.PriceTax)/count
+		row+="<tr>"
+			+	"<td class='cell1'>"
+			+		"<input type='text'name='productSeq'value='"+detail.productSeq+"'class='no-write'readonly>"	
+			+	"</td>"
+			+	"<td class='cell2'>"
+			+		"<input type='text'name='productName'value='"+detail.productName+"'class='no-write'style='width:94%'readonly>"
+			+		"<button type='button'onclick='popProductList(this)'name='popProduct'>..</button>"			
+			+	"</td>"			
+			+	"<td class='cell3'>"
+			+		"<input type='text'value='"+detail.productStandard+"'name='productStandard'readonly>"			
+			+	"</td>"
+			+	"<td class='cell4'>"		
+			+		"<input type='number'value='"+count+"'name='orderCount'class='no-write'min='0'step='1'readonly>"			
+			+	"</td>"			
+			+	"<td class='cell5'>"
+			+		"<input type='text'value='"+orderPrice+"'name='orderSupply'class='no-write'readonly>"
+			+	"</td>"
+			+	"<td class='cell6'>"
+			+		"<input type='text'value='"+tax+"'name='orderTax'class='no-write'readonly>"
+			+	"</td>"
+			+	"<td class='cell7'>"
+			+		"<input type='text'value='"+detail.PriceSum+"'name='orderTotal'class='no-write'readonly>"
+			+	"</td>"
+			+"</tr>"	
 	}
+	document.getElementsByName('CollectMoney')[0].removeAttribute('disabled')
+	document.getElementsByName('updateDetail')[0].removeAttribute('disabled')
+	document.getElementById('statement').removeAttribute('disabled')
+	document.getElementById('convertExcel').removeAttribute('disabled')
+	document.getElementById('deleteBtn').removeAttribute('disabled')
+	document.getElementById('orderSaveBtn').setAttribute('disabled',true)
+	document.getElementById('addTdBtn').setAttribute('disabled',true)
+	document.getElementById('detailList').innerHTML = row;
+}
+//Data가 없을시 버튼을 비활성화 활성화 하는부분
+function noHaveData(){
+	document.getElementsByName('orderNum')[0].value=''
+	document.getElementsByName('orderTotalPrice')[0].value='0'
+	document.getElementsByName('orderSupplyPrice')[0].value='0'
+	document.getElementsByName('orderTaxPrice')[0].value='0'
+	document.getElementsByName('notCollectMoney')[0].value='0'
+	document.getElementsByName('CollectMoney')[0].value='0'
+	document.getElementById('detailList').innerHTML=''
+	
+	document.getElementById('deleteBtn').setAttribute('disabled',true)
+	document.getElementsByName('CollectMoney')[0].setAttribute('disabled',true)
+	document.getElementsByName('updateDetail')[0].setAttribute('disabled',true)
+	document.getElementById('addTdBtn').removeAttribute('disabled')
+	document.getElementById('orderSaveBtn').removeAttribute('disabled')
+	document.getElementById('statement').setAttribute('disabled',true)
+	document.getElementById('convertExcel').setAttribute('disabled',true)
+}
 //tbody에 이벤트추가하기
 	//tbody의 하위 tr,td의 Value가 변경이 있을때마다 dayResult안의 컴포넌트들에 변경사항에 맞게 값바꾸기
-	function calculTotal(){
-		let indexlength=document.getElementsByName('productSeq').length
-		let totalSupply=0
-		let totalTax=0
-		let totalPrice=0
-		for(i = 0; i<indexlength;i++){
-			//해당 tr변경
-			let orderCount = document.getElementsByName('orderCount')[i].value
-			let orderSupply = Number(document.getElementsByName('orderSupply')[i].value)
-			let orderTax = Number(document.getElementsByName('orderTax')[i].value)
-			let orderTotal = document.getElementsByName('orderTotal')[i]
-			totalSupply += orderSupply * orderCount
-			totalTax	+= orderTax * orderCount
-			totalPrice  += (orderSupply+orderTax)*orderCount
-			
-			orderTotal.value = (orderSupply+orderTax)*orderCount
-		}
-		document.getElementsByName('orderTotalPrice')[0].value=totalPrice
-		document.getElementsByName('orderSupplyPrice')[0].value=totalSupply
-		document.getElementsByName('orderTaxPrice')[0].value=totalTax
-		document.getElementsByName('notCollectMoney')[0].value=totalPrice
-		document.getElementsByName('CollectMoney')[0].value=0
-		document.getElementsByName('CollectMoney')[0].removeAttribute('disabled')
+function calculTotal(){
+	let indexlength=document.getElementsByName('productSeq').length
+	let totalSupply=0
+	let totalTax=0
+	let totalPrice=0
+	for(i = 0; i<indexlength;i++){
+		//해당 tr변경
+		let orderCount = document.getElementsByName('orderCount')[i].value
+		let orderSupply = Number(document.getElementsByName('orderSupply')[i].value)
+		let orderTax = Number(document.getElementsByName('orderTax')[i].value)
+		let orderTotal = document.getElementsByName('orderTotal')[i]
+		totalSupply += orderSupply * orderCount
+		totalTax	+= orderTax * orderCount
+		totalPrice  += (orderSupply+orderTax)*orderCount
+		
+		orderTotal.value = (orderSupply+orderTax)*orderCount
 	}
-	function takeMoney(){
-		let totalPrice = document.getElementsByName('orderTotalPrice')[0].value
-		let notCollectMoney = Number(document.getElementsByName('notCollectMoney')[0].value)
-		let collectMoney = Number(document.getElementsByName('CollectMoney')[0].value)
-		if(collectMoney<=totalPrice){
-			document.getElementsByName('notCollectMoney')[0].value = totalPrice-collectMoney
-		}else{
-			alert('총합계보다 많은 금액 입력이 불가능 합니다')
-			document.getElementsByName('CollectMoney')[0].value = 0
-		}
+	document.getElementsByName('orderTotalPrice')[0].value=totalPrice
+	document.getElementsByName('orderSupplyPrice')[0].value=totalSupply
+	document.getElementsByName('orderTaxPrice')[0].value=totalTax
+	document.getElementsByName('notCollectMoney')[0].value=totalPrice
+	document.getElementsByName('CollectMoney')[0].value=0
+	document.getElementsByName('CollectMoney')[0].removeAttribute('disabled')
+}
+function takeMoney(){
+	let totalPrice = document.getElementsByName('orderTotalPrice')[0].value
+	let notCollectMoney = Number(document.getElementsByName('notCollectMoney')[0].value)
+	let collectMoney = Number(document.getElementsByName('CollectMoney')[0].value)
+	if(collectMoney<=totalPrice){
+		document.getElementsByName('notCollectMoney')[0].value = totalPrice-collectMoney
+	}else{
+		alert('총합계보다 많은 금액 입력이 불가능 합니다')
+		document.getElementsByName('CollectMoney')[0].value = 0
 	}
-	
-	function updateMoney(){
-		//수정버튼을 누를시에 작용하는 function
-		form.action='updateOrderList.jsp'
-		form.submit()
-	}
+}
+
+function updateMoney(){
+	//수정버튼을 누를시에 작용하는 function
+	form.action='updateOrderList.jsp'
+	form.submit()
+}
 	
 //추가버튼 클릭시 tbodyRow추가
 	function addRow(){
@@ -347,11 +340,8 @@ var form = ''
 				+		"<input type='text'name='orderTotal'class='no-write'readonly>"
 				+	"</td>"
 				+"</tr>"
-				//쓰기싫었는데 ㅠㅠ
 				$(tbody).append(row);
-		}else{
-			alert('거래처를 선택해 주십시오')
-		}
+		}else{alert('거래처를 선택해 주십시오')}
 	}		
 	
 //MainOrder.jsp 저장버튼누를시에 DB로 데이터 Submit 유효성검사 실시하기
@@ -431,31 +421,12 @@ var form = ''
 	}
 
 
-		function SearchCompany(){
-			//비동기로 가져와야함
-		let searchWord = $('#searchWord').val().trim()
-		let type = $('#searchType').val()
-		if(type!='1'){
-			if(searchWord!=''){
-				$.ajax({
-					type:'GET',
-					url:'./searchCompanyList.jsp',
-					datatype:'html',
-					data:{
-						'searchWord':searchWord,
-						'type':type
-					},
-					success:function(data){
-						console.log('??')
-						$('.popup_LeftBox table #companyList').html(data)
-					},error:function(){
-						alert('에러')
-					}
-				})
-			}else{
-				$('#searchWord').focus()
-			}
-		}else{
+function SearchCompany(){
+		//비동기로 가져와야함
+	let searchWord = $('#searchWord').val().trim()
+	let type = $('#searchType').val()
+	if(type!='1'){
+		if(searchWord!=''){
 			$.ajax({
 				type:'GET',
 				url:'./searchCompanyList.jsp',
@@ -465,16 +436,34 @@ var form = ''
 					'type':type
 				},
 				success:function(data){
+					console.log('??')
 					$('.popup_LeftBox table #companyList').html(data)
 				},error:function(){
 					alert('에러')
 				}
 			})
+		}else{
+			$('#searchWord').focus()
 		}
+	}else{
+		$.ajax({
+			type:'GET',
+			url:'./searchCompanyList.jsp',
+			datatype:'html',
+			data:{
+				'searchWord':searchWord,
+				'type':type
+			},
+			success:function(data){
+				$('.popup_LeftBox table #companyList').html(data)
+			},error:function(){
+				alert('에러')
+			}
+		})
 	}
+}
 //productList.jsp=======================
 	//검색버튼 눌렀을대 검색되는 기능 추가하기
-
 $('#searchProductBtn').click(function(){
 	searchProduct()
 })
@@ -483,7 +472,6 @@ function enterSearchProduct(){
 }
 function searchProduct(){
 	let searchWord = $('#searchProductWord').val().trim()
-	
 	if(searchWord!=''){
 		$.ajax({
 			type:'GET',
@@ -500,82 +488,68 @@ function searchProduct(){
 		})
 	}
 }
-	
-	
+
 	//product_list.jsp => order.jsp로 Value를 보내는 기능
-	function SendProductInfo(inputNum){
-		let productListChkBox = document.getElementsByName("chkBox");
-		//선택된 checkbox index를 찾기
-		for(i=0; i<productListChkBox.length; i++){
-			if(productListChkBox[i].checked){
-				let companyName = openPage.getElementsByName('buyerCompanyName')[0].value.trim()
-				if(companyName != ''){
-					let productSeq = productListChkBox[i].value;
-					let productName = document.getElementsByName('productName')[i].innerText
-					let productSupply = document.getElementsByName('productSupply')[i].innerText
-					let productStandard = document.getElementsByName('productStandard')[i].innerText
-					
-					//열려있는 페이지
-					let openPagePrpductSeq = openPage.getElementsByName('productSeq')[inputNum]
-					let openPageProductName = openPage.getElementsByName('productName')[inputNum]
-					let openPageStandard = openPage.getElementsByName('productStandard')[inputNum]
-					let openPageSuplyPrice = openPage.getElementsByName('orderSupply')[inputNum]
-					
-					//금액 관련
-					let price = Number(productSupply)
-					let tax = price / 10
-					
-					//팝업창 => OrderList로 Value이동
-					openPagePrpductSeq.value = productSeq
-					openPageProductName.value = productName
-					openPageStandard.value = productStandard
-					openPage.getElementsByName('orderCount')[inputNum].value = 0
-					openPageSuplyPrice.value = price
-					openPage.getElementsByName('orderTax')[inputNum].value = tax
-					openPage.getElementsByName('orderTotal')[inputNum].value = 0
-					openPage.getElementsByName('orderCount')[inputNum].removeAttribute('disabled')
-				}else{
-					alert('거래처를 선택해주십시오')
-				}
-				window.close();
+function SendProductInfo(inputNum){
+	let productListChkBox = document.getElementsByName("chkBox");
+	//선택된 checkbox index를 찾기
+	for(i=0; i<productListChkBox.length; i++){
+		if(productListChkBox[i].checked){
+			let companyName = openPage.getElementsByName('buyerCompanyName')[0].value.trim()
+			if(companyName != ''){
+				let productSeq = productListChkBox[i].value;
+				let productName = document.getElementsByName('productName')[i].innerText
+				let productSupply = document.getElementsByName('productSupply')[i].innerText
+				let productStandard = document.getElementsByName('productStandard')[i].innerText
+				
+				//열려있는 페이지
+				let openPagePrpductSeq = openPage.getElementsByName('productSeq')[inputNum]
+				let openPageProductName = openPage.getElementsByName('productName')[inputNum]
+				let openPageStandard = openPage.getElementsByName('productStandard')[inputNum]
+				let openPageSuplyPrice = openPage.getElementsByName('orderSupply')[inputNum]
+				
+				//금액 관련
+				let price = Number(productSupply)
+				let tax = price / 10
+				
+				//팝업창 => OrderList로 Value이동
+				openPagePrpductSeq.value = productSeq
+				openPageProductName.value = productName
+				openPageStandard.value = productStandard
+				openPage.getElementsByName('orderCount')[inputNum].value = 0
+				openPageSuplyPrice.value = price
+				openPage.getElementsByName('orderTax')[inputNum].value = tax
+				openPage.getElementsByName('orderTotal')[inputNum].value = 0
+				openPage.getElementsByName('orderCount')[inputNum].removeAttribute('disabled')
+			}else{
+				alert('거래처를 선택해주십시오')
 			}
+			window.close();
 		}
 	}
+}
 //deleteBtn(List내역 하루치 전체 삭제 기능)
-	function deleteList(){
-		form.action='./deleteList.jsp'
-		form.submit()
-	}
+function deleteList(){
+	form.action='./deleteList.jsp'
+	form.submit()
+}
 	
 //function util 1=>01
 	//한글자 숫자를 2글자로 변형
-	function changeNumber(num){
-		let strNum = num+''
-		if(strNum.length==1){
-			strNum='0'+strNum
-		}
-		return strNum
+function changeNumber(num){
+	let strNum = num+''
+	if(strNum.length==1){
+		strNum='0'+strNum
 	}
+	return strNum
+}
+
+function translateExcel(){
+	let orderDate = $('#year').val()+changeNumber($('#month').val())+changeNumber($('#day').val())
+	let buyerSeq = document.getElementsByName('buyerSeq')[0].value
+	let openUrl = "orderListToExcel.jsp?buyerSeq="+buyerSeq+"&orderDate="+orderDate
+	let popTitle = "excelDownload"
+	let popOption = "width = 400, height = 200, top = 300, status = no, scrollbars = yes"
 	
-	function translateExcel(){
-		let orderDate = $('#year').val()+changeNumber($('#month').val())+changeNumber($('#day').val())
-		let buyerSeq = document.getElementsByName('buyerSeq')[0].value
-		/*$.ajax({
-				type:'POST',
-				url:'./orderListToExcel.jsp',
-				data:{
-					'buyerSeq':buyerSeq,
-					'orderDate':orderDate
-				},
-				success:function(data){
-					
-				},error:function(){
-					alert('에러')
-				}
-			})*/
-		let openUrl = "orderListToExcel.jsp?buyerSeq="+buyerSeq+"&orderDate="+orderDate
-		let popTitle = "excelDownload"
-		let popOption = "width = 400, height = 200, top = 300, status = no, scrollbars = yes"
-		
-		window.open(openUrl, popTitle, popOption);
-	}
+	window.open(openUrl, popTitle, popOption);
+}

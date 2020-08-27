@@ -38,7 +38,4 @@ public class totalYYYYDto {
 	public void setYear_not_conllect_money_avg(int year_not_conllect_money_avg) {
 		this.year_not_conllect_money_avg = year_not_conllect_money_avg;
 	}
-
-	
-	
 }

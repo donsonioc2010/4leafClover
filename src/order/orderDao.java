@@ -16,6 +16,8 @@ import db.DBConnection;
 
 public class orderDao {
 	private static orderDao dao = new orderDao();
+	private orderDao() {DBConnection.initConnection();}
+	public static orderDao getInstance() {return dao;}
 	
 	//MainOrder.jsp 에서 Excel 로 보내기 위한 Data를 뽑는 Query
 	public List<excelDto> getExcelData(String buyerSeq, String orderDate){
@@ -61,11 +63,8 @@ public class orderDao {
 				dto.setProductSeq(rs.getInt(14));
 				list.add(dto);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}	
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}	
 		return list;
 	}
 	
@@ -89,15 +88,15 @@ public class orderDao {
 			
 			if(rs.next()) {//Not Null
 				orderDto order = new orderDto();
-					order.setBuyerSeq(rs.getInt(1));
-					order.setOrderSort(rs.getInt(2));
-					order.setOrderDate(rs.getString(3));
-					order.setOrderSupplyValue(rs.getInt(4));
-					order.setOrderTaxValue(rs.getInt(5));
-					order.setOrderCollectMoney(rs.getInt(6));
-					order.setOrderNotCollectMoney(rs.getInt(7));
-					order.setOrderTotal(rs.getInt(8));
-					order.setOrderNum(rs.getString(9));
+				order.setBuyerSeq(rs.getInt(1));
+				order.setOrderSort(rs.getInt(2));
+				order.setOrderDate(rs.getString(3));
+				order.setOrderSupplyValue(rs.getInt(4));
+				order.setOrderTaxValue(rs.getInt(5));
+				order.setOrderCollectMoney(rs.getInt(6));
+				order.setOrderNotCollectMoney(rs.getInt(7));
+				order.setOrderTotal(rs.getInt(8));
+				order.setOrderNum(rs.getString(9));
 				list.add(order);
 				
 				psmt.clearParameters();
@@ -122,17 +121,15 @@ public class orderDao {
 					list.add(detail);
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}
 		return list;
 	}
+	
+	//이메소드는 MainOrder페이지에서 수정버튼을 누를시 작동하는 메소드임
 	public boolean updateOrder(orderDto order) {
-		//이메소드는 MainOrder페이지에서 수정버튼을 누를시 작동하는 메소드임
-		String sql = "UPDATE ORDER_LIST SET ORDER_COLLECT_MONEY=?,"
-				+ " ORDER_NOT_COLLECT_MONEY = ?  WHERE ORDER_NUM = ?";
+		String sql = "UPDATE ORDER_LIST SET ORDER_COLLECT_MONEY=?, ORDER_NOT_COLLECT_MONEY = ?"
+				+ "  WHERE ORDER_NUM = ?";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -146,12 +143,9 @@ public class orderDao {
 			psmt.setString(3, order.getOrderNum());
 			
 			count = psmt.executeUpdate();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, null);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, null);}
+		
 		//true면 입력성공
 		return count>0?true:false;
 	}
@@ -160,11 +154,12 @@ public class orderDao {
 	public boolean insertOrder(orderDto order,List<detailDto> detail) {
 		boolean confirm = checkDetailData(order);
 		if(!confirm) {
-			String sql[] = {	//BUYER_SEQ,ORDERSORT,ORDERDATE,ORDERSUPPLYPRICE,
-								//ORDERTAXVALUE,ORDERCOLLECT,ORDERNOTCOLLECT,ORDERTOTAL,ORDERNUM
-					"INSERT INTO ORDER_LIST VALUES (?,?,?,?,?,?,?,?,?)",
-					"INSERT INTO ORDER_DETAIL VALUES (?,?,?,?,?,?)"
-					};
+			//BUYER_SEQ,ORDERSORT,ORDERDATE,ORDERSUPPLYPRICE,
+			//ORDERTAXVALUE,ORDERCOLLECT,ORDERNOTCOLLECT,ORDERTOTAL,ORDERNUM
+			String sql[] = {"INSERT INTO ORDER_LIST VALUES (?,?,?,?,?,?,?,?,?)",
+							"INSERT INTO ORDER_DETAIL VALUES (?,?,?,?,?,?)"};
+			
+			//timeStamp Create
 			LocalDateTime localDateTime = LocalDateTime.now();
 			Timestamp timestamp2 = Timestamp.valueOf(localDateTime);
 			long stamp = timestamp2.getTime();
@@ -205,29 +200,19 @@ public class orderDao {
 				psmt.executeBatch();
 			} catch (Exception e) {
 				e.printStackTrace();
-				try {
-					conn.rollback();
-					confirm = true;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				try {conn.rollback();confirm = true;}
+				catch (SQLException e1) {e1.printStackTrace();}
 			}finally {
-				try {
-					conn.setAutoCommit(true);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				try {conn.setAutoCommit(true);} 
+				catch (SQLException e) {e.printStackTrace();}
 				DBClose.close(psmt, conn, null);
 			}
 		}
 		return confirm;
 	}
 	public boolean deleteList(String orderNum) {
-		String sql[] = {
-				"DELETE FROM ORDER_DETAIL WHERE ORDER_NUM = ?",
-				"DELETE FROM ORDER_LIST WHERE ORDER_NUM = ?"
-		};
+		String sql[] = {"DELETE FROM ORDER_DETAIL WHERE ORDER_NUM = ?",
+						"DELETE FROM ORDER_LIST WHERE ORDER_NUM = ?"};
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -240,22 +225,16 @@ public class orderDao {
 				psmt = null;
 				psmt = conn.prepareStatement(sql[i]);
 				psmt.setNString(1, orderNum);
-				if(i == 1)
-					count = psmt.executeUpdate();
-				else
-					psmt.executeUpdate();
+				if(i == 1)	count = psmt.executeUpdate();
+				else 		psmt.executeUpdate();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, null);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, null);}
 		return count>0?true:false;
 	}
 	
-	
+	//메소드의 역할 : 중복된 일자에 Data가 있는지 없는지 확인하는 기능
 	private boolean checkDetailData(orderDto dto) {
-		//메소드의 역할 : 중복된 일자에 Data가 있는지 없는지 확인하는 기능
 		String sql ="SELECT * FROM ORDER_LIST WHERE BUYER_SEQ = ? AND ORDER_DATE = ?";
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -268,18 +247,12 @@ public class orderDao {
 			psmt.setString(2, dto.getOrderDate());
 			
 			rs = psmt.executeQuery();
-			if(rs.next()) {
-				result = true;//Data가 있을경우 True
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}
+			
+			if(rs.next()) {result = true;}//Data가 있을경우 True
+			
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}
 		return result;
 	}
-	
-	private orderDao() {DBConnection.initConnection();}
-	public static orderDao getInstance() {return dao;}
 }
 

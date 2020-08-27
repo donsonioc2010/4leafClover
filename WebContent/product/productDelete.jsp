@@ -3,7 +3,6 @@
     pageEncoding="UTF-8"%>
 <%
 	
-	//0819 03:21수정중
 	String strSeq =	request.getParameter("productSeq");
 	productDao dao = productDao.getInstance();
 	

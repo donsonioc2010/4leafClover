@@ -6,9 +6,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-String id = (String)session.getAttribute("login");
-if(id==null){
-	response.sendRedirect("../login/login.jsp");
+String id = null;
+if(session.getAttribute("login")==null){
+	response.sendRedirect("./login/login.jsp");
+}else{
+	id = (String)session.getAttribute("login");
 }
 	int seq = Integer.parseInt(request.getParameter("seq"));
 	String date = request.getParameter("date");

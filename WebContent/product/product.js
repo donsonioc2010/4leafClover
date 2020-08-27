@@ -7,9 +7,8 @@ function enterSearchProduct(){
 	}
 	return true
 }
-
+//검색하는 기능 구현하기 Ajax로 데이터 가져와서 뿌려주기
 $('#searchBtn').click(function(){
-	//검색하는 기능 구현하기 Ajax로 데이터 가져와서 뿌려주기
 	searchList()
 })
 function searchList(){
@@ -87,5 +86,3 @@ $('#productListTable tbody tr').click(function(e){
 	let popOption = "width=550,height=500,left=500,top=50,status=no,scrollbars=yes"
 	window.open(openUrl,popTitle,popOption)	
 });
-
-//끝났나?

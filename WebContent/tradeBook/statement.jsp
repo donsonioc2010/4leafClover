@@ -8,65 +8,64 @@
     pageEncoding="UTF-8"%>
     
 <%
-String id = "";
-if(session.getAttribute("login")==null){
-	response.sendRedirect("../login/login.jsp");
-}else{
-	id = (String)session.getAttribute("login");
-}
-orderlistbillsDto dto= null;
-companyInform cDto = null;
-request.setCharacterEncoding("utf-8");
-String year=request.getParameter("year");
-String month=request.getParameter("month");
-String day=request.getParameter("day");
-System.out.println(year+""+month+""+day);
-String rdate = year + UtilEx.two(month) + UtilEx.two(day);
-int seq = Integer.parseInt(request.getParameter("seq"));
-System.out.println(seq);
-orderlistbillsDao dao = orderlistbillsDao.getInstance();
-List<companyInform> infomList = dao.getBillsInform(rdate,seq);
+	String id = null;
+	if(session.getAttribute("login")==null){
+		response.sendRedirect("../login/login.jsp");
+	}else{
+		id = (String)session.getAttribute("login");
+	}
+	orderlistbillsDto dto= null;
+	companyInform cDto = null;
+	request.setCharacterEncoding("utf-8");
+	String year=request.getParameter("year");
+	String month=request.getParameter("month");
+	String day=request.getParameter("day");
+	
+	String rdate = year + UtilEx.two(month) + UtilEx.two(day);
+	int seq = Integer.parseInt(request.getParameter("seq"));
 
-String spageNumber = request.getParameter("pageNumber");
-
-int pageNumber = 0;
-if(spageNumber != null && !spageNumber.equals("")){
-	pageNumber = Integer.parseInt(spageNumber);
-}
-List<orderlistbillsDto> list = dao.getBillsList(pageNumber, seq, rdate);		// pageNum, buyer_seq, orderDate
-
-
-int len = dao.getAllList(seq, rdate);
-
-int listPage = len/10;
-if(len % 10 > 0){
-	listPage++;
-}
-
-for(int i = 0; i< list.size(); i++){
-	System.out.println("list"+list.get(i).toString());
-	dto = list.get(i);
-}
-
-// dto에 값이 없을 경우 되돌아 감
-if(dto.getOrder_total() == 0){
-	response.sendRedirect("../order/MainOrder.jsp");
-}
-DecimalFormat df = new DecimalFormat("###,###");
-int total = dto.getOrder_total();
-
-
-for(int i = 0; i< infomList.size(); i++){
-	cDto = infomList.get(i);
-}
-
-
-String standard =null;
-if(dto.getProduct_standard() == null){
-	standard = "";
-}else{
-	standard = dto.getProduct_standard();
-}
+	orderlistbillsDao dao = orderlistbillsDao.getInstance();
+	List<companyInform> infomList = dao.getBillsInform(rdate,seq);
+	
+	String spageNumber = request.getParameter("pageNumber");
+	
+	int pageNumber = 0;
+	if(spageNumber != null && !spageNumber.equals("")){
+		pageNumber = Integer.parseInt(spageNumber);
+	}
+	List<orderlistbillsDto> list = dao.getBillsList(pageNumber, seq, rdate);		// pageNum, buyer_seq, orderDate
+	
+	
+	int len = dao.getAllList(seq, rdate);
+	
+	int listPage = len/10;
+	if(len % 10 > 0){
+		listPage++;
+	}
+	
+	for(int i = 0; i< list.size(); i++){
+		dto = list.get(i);
+	}
+	
+	// dto에 값이 없을 경우 되돌아 감
+	if(dto.getOrder_total() == 0){
+		response.sendRedirect("../order/MainOrder.jsp");
+	}
+	DecimalFormat df = new DecimalFormat("###,###");
+	int total = dto.getOrder_total();
+	
+	
+	for(int i = 0; i< infomList.size(); i++){
+		cDto = infomList.get(i);
+	}
+	
+	
+	String standard =null;
+	if(dto.getProduct_standard() == null){
+		standard = "";
+	}else{
+		standard = dto.getProduct_standard();
+	}
 %>
 
 <link rel="stylesheet" href="./orderlistbills.css" />
@@ -355,4 +354,4 @@ if(dto.getProduct_standard() == null){
 			});
 		});
 		
-		</script>
+</script>

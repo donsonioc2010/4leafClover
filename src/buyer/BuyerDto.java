@@ -51,9 +51,7 @@ public class BuyerDto implements Serializable {
 	private String buyer_memo; // �ŷ��޸�
 	private String buyer_homepage; // ����Ʈ
 
-	public BuyerDto() {
-		// TODO Auto-generated constructor stub
-	}
+	public BuyerDto() {}
 
 	public BuyerDto(int buyer_seq, String seller_id, String buyer_company_name, String buyer_ceo,
 			String buyer_business_condition, String buyer_business_kinds, String buyer_company_num,
@@ -78,7 +76,6 @@ public class BuyerDto implements Serializable {
 		this.buyer_homepage = buyer_homepage;
 	}
 
-	
 	public BuyerDto(String seller_id, String buyer_company_name, String buyer_ceo, String buyer_business_condition,
 			String buyer_business_kinds, String buyer_company_num, String buyer_address1, String buyer_address2,
 			String buyer_address3, String buyer_admin, String buyer_email, String buyer_tel_num, String buyer_date,
@@ -101,7 +98,6 @@ public class BuyerDto implements Serializable {
 		this.buyer_homepage = buyer_homepage;
 	}
 
-	
 	public BuyerDto(String buyer_company_name, String buyer_ceo, String buyer_business_condition,
 			String buyer_business_kinds, String buyer_company_num, String buyer_address1, String buyer_address2,
 			String buyer_address3, String buyer_admin, String buyer_email, String buyer_tel_num, String buyer_memo,
@@ -122,17 +118,10 @@ public class BuyerDto implements Serializable {
 		this.buyer_homepage = buyer_homepage;
 	}
 
-	public int getBuyer_seq() {
-		return buyer_seq;
-	}
+	public int getBuyer_seq() {return buyer_seq;}
+	public void setBuyer_seq(int buyer_seq) {this.buyer_seq = buyer_seq;}
 
-	public void setBuyer_seq(int buyer_seq) {
-		this.buyer_seq = buyer_seq;
-	}
-
-	public String getSeller_id() {
-		return seller_id;
-	}
+	public String getSeller_id() {return seller_id;}
 
 	public void setSeller_id(String seller_id) {
 		this.seller_id = seller_id;
@@ -249,16 +238,4 @@ public class BuyerDto implements Serializable {
 	public void setBuyer_homepage(String buyer_homepage) {
 		this.buyer_homepage = buyer_homepage;
 	}
-
-	@Override
-	public String toString() {
-		return "BuyerDto [buyer_seq=" + buyer_seq + ", seller_id=" + seller_id + ", buyer_company_name="
-				+ buyer_company_name + ", buyer_ceo=" + buyer_ceo + ", buyer_business_condition="
-				+ buyer_business_condition + ", buyer_business_kinds=" + buyer_business_kinds + ", buyer_company_num="
-				+ buyer_company_num + ", buyer_address1=" + buyer_address1 + ", buyer_address2=" + buyer_address2
-				+ ", buyer_address3=" + buyer_address3 + ", buyer_admin=" + buyer_admin + ", buyer_email=" + buyer_email
-				+ ", buyer_tel_num=" + buyer_tel_num + ", buyer_date=" + buyer_date + ", buyer_memo=" + buyer_memo
-				+ ", buyer_homepage=" + buyer_homepage + "]";
-	}
-
 }

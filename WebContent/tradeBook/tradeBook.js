@@ -1,7 +1,6 @@
 
 var nowDate = new Date();
 
-// ==================MainOrder.jsp SetDate==========================
 //페이지가 로드시 Select박스의 날짜를 생성
 
 function createDate() {
@@ -97,8 +96,6 @@ function postNum() {
 function buySeqGetBtn(seq,companyName) {
     document.getElementById("frm").setAttribute("value", seq);
     document.getElementById("companyName").setAttribute("value",companyName);
-    var select = document.querySelector(".tradeselector").textContent;
-
 
     $.ajax({
         type: "GET",
@@ -114,39 +111,11 @@ function buySeqGetBtn(seq,companyName) {
             let text = "";
             $.each(data, function (i, item) {
                 index = i + 1;
-                text +=
-                    "<tr name='"+seq+"'>"  +
-                    "<td> " +
-                    index +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerdate +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersort +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerproductname +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersupplyprice +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertaxvalue +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgernotcollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgercollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertotal +
-                    "</td></tr>";
+                text += getText(index,item,seq)
             });
             $("#contentList").html(text);
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function () {
             // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
             alert("상세내역을 살펴보실경우 거래처정보란 테이블 거래처를 클릭해 주십시오.");
         },
@@ -154,8 +123,8 @@ function buySeqGetBtn(seq,companyName) {
 }
 
 document.querySelector("#searchWordBtn").onclick = function () {
-    const seq = document.querySelector("#frm").value;
-    var select = document.querySelector(".tradeselector").textContent; //올셀렉터로 시퀀스를 다가져오려햇으나 실패.... 다중입력되었을시엔 매개로받는것이 낫다..
+	    const seq = document.querySelector("#frm").value;
+	    var select = document.querySelector(".tradeselector").textContent; //올셀렉터로 시퀀스를 다가져오려햇으나 실패.... 다중입력되었을시엔 매개로받는것이 낫다..
     /* let a= document.querySelectorAll(".buyerseq");  
       console.log(a);*/ $.ajax({
         type: "GET",
@@ -171,45 +140,20 @@ document.querySelector("#searchWordBtn").onclick = function () {
             let index = 0;
             let text = "";
             $.each(data, function (i, item) {
+				//이거만 세번보는기분이야
                 index = i + 1;
-                text +=
-                    "<tr name='"+seq+"'>"  +
-                    "<td> " +
-                    index +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerdate +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersort +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerproductname +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersupplyprice +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertaxvalue +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgernotcollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgercollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertotal +
-                    "</td></tr>";
+                text += getText(index,item,seq)
             });
             $("#contentList").html(text);
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function () {
             // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
             alert("상세내역을 살펴보실경우 거래처정보란 테이블 거래처를 클릭해 주십시오.");
         },
     });
 };
+
+//얜왜 2개예요? 같은기능하는애가 2개인데?
 document.querySelector("#datesaerchBtn").onclick = function () {
     const seq = document.querySelector("#frm").value;
     const term = "false";
@@ -229,45 +173,29 @@ document.querySelector("#datesaerchBtn").onclick = function () {
             let text = "";
             $.each(data, function (i, item) {
                 index = i + 1;
-                text +=
-                    "<tr name='"+seq+"'>"  +
-                    "<td> " +
-                    index +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerdate +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersort +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerproductname +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersupplyprice +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertaxvalue +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgernotcollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgercollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertotal +
-                    "</td></tr>";
+                text += getText(index,item,seq)
             });
             $("#contentList").html(text);
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function () {
             // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
             alert("상세내역을 살펴보실경우 거래처정보란 테이블 거래처를 클릭해 주십시오.");
         },
     });
 };
-
+function getText(index,item,seq){
+	return "<tr name='"+seq+"'>"
+				+"<td>"+index+"</td>"
+				+"<td>"+item.ledgerdate+"</td>" 
+				+"<td>"+item.ledgersort+"</td>" 
+				+"<td>"+item.ledgerproductname+"</td>"
+				+"<td>"+item.ledgersupplyprice +"</td>"
+				+"<td>"+item.ledgertaxvalue +"</td>"
+				+"<td>"+item.ledgernotcollectmoney+"</td>"
+				+"<td>"+item.ledgercollectmoney+"</td>" 
+				+"<td>"+item.ledgertotal+"</td>"
+			+"</tr>";
+}
 function termdatesaerchBtn() {
     let seq = document.querySelector("#frm").value;
     let term = "true";
@@ -288,121 +216,92 @@ function termdatesaerchBtn() {
             let text = "";
             $.each(data, function (i, item) {
                 index = i + 1;
-                text +=
-                	 
-                    "<tr name='"+seq+"'>"  +
-                    "<td> " +
-                    index +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerdate +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersort +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgerproductname +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgersupplyprice +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertaxvalue +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgernotcollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgercollectmoney +
-                    "</td>" +
-                    "<td>" +
-                    item.ledgertotal +
-                    "</td></tr>";
+                text += getText(index,item,seq)
             });
             $("#contentList").html(text);
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function () {
             // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
             alert("상세내역을 살펴보실경우 거래처정보란 테이블 거래처를 클릭해 주십시오.");
         },
     });
 }
 
-	$(document).on('dblclick','#contentList tr',function(e){
-		let buyerSeq = $(this).attr('name')
-		let orderDate = $(this).children('td')[1].innerText
-		let year  = orderDate.substring(0,4)
-		let month = orderDate.substring(4,6)
-		let day   = orderDate.substring(6)
-		
-		$('#detailSeq').val(buyerSeq)
-		$('#detailYear').val(year)
-		$('#detailMonth').val(month)
-		$('#detailDay').val(day)
-		
-		$('#gotoOrderDetail').attr("action","../order/MainOrder.jsp")
-		$('#gotoOrderDetail').submit()
+$(document).on('dblclick','#contentList tr',function(){
+	let buyerSeq = $(this).attr('name')
+	let orderDate = $(this).children('td')[1].innerText
+	let year  = orderDate.substring(0,4)
+	let month = orderDate.substring(4,6)
+	let day   = orderDate.substring(6)
+	
+	$('#detailSeq').val(buyerSeq)
+	$('#detailYear').val(year)
+	$('#detailMonth').val(month)
+	$('#detailDay').val(day)
+	
+	$('#gotoOrderDetail').attr("action","../order/MainOrder.jsp")
+	$('#gotoOrderDetail').submit()
+})
 
-	})
-
-    $("#addBuyerModalBtn").click(function () {
-        $.ajax({
-            type: "GET",
-            url: "./addtradeclient.jsp",
-            dataType: "html",
-            success: function (data) {
-                $("#layerpop1").html(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                alert("통신실패");
-            },
-        });
-    });
-    $("#stateMentOutputModalBtn").click(function () {
-        const seq = document.querySelector("#frm").value;
-        const year = document.querySelector("#year").value;
-        const month = document.querySelector("#month").value;
-        const day = document.querySelector("#day").value;
-        
-        $.ajax({
-            type: "post",
-            url: "./statement.jsp",
-            dataType: "html",
-            data: {
-                seq: seq,
-                year: year,
-                month: month,
-                day: day,
-            },
-            success: function (data) {
-                $("#layerpop2").html(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                location.reload(true);
-                alert("명세표 출력을 원하실경우 해당 거래처중 거래내역 목록의 거래일이 존재하는지 확인후 다시 시도해주십시오.");
-            },
-        });
-    });
-    $("#deleteBuyerModalBtn").click(function () {
-    const companyclient=document.querySelector("#companyName").value
-    
+$("#addBuyerModalBtn").click(function () {
     $.ajax({
-        type: "post",
-        url: "./deletetradeclient.jsp",
+        type: "GET",
+        url: "./addtradeclient.jsp",
         dataType: "html",
-        data: {
-        	companyclient: companyclient,
-          
-        },
         success: function (data) {
-            $("#layerpop3").html(data);
+            $("#layerpop1").html(data);
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function () {
             // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-            location.reload(true);
             alert("통신실패");
         },
     });
+});
+
+$("#stateMentOutputModalBtn").click(function () {
+    const seq = document.querySelector("#frm").value;
+    const year = document.querySelector("#year").value;
+    const month = document.querySelector("#month").value;
+    const day = document.querySelector("#day").value;
+    
+    $.ajax({
+        type: "post",
+        url: "./statement.jsp",
+        dataType: "html",
+        data: {
+            seq: seq,
+            year: year,
+            month: month,
+            day: day,
+        },
+        success: function (data) {
+            $("#layerpop2").html(data);
+        },
+        error: function () {
+            // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            location.reload(true);
+            alert("명세표 출력을 원하실경우 해당 거래처중 거래내역 목록의 거래일이 존재하는지 확인후 다시 시도해주십시오.");
+        },
+    });
+});
+
+$("#deleteBuyerModalBtn").click(function () {
+	const companyclient=document.querySelector("#companyName").value
+	
+	$.ajax({
+	    type: "post",
+	    url: "./deletetradeclient.jsp",
+	    dataType: "html",
+	    data: {
+	    	companyclient: companyclient,
+	    },
+	    success: function (data) {
+	        $("#layerpop3").html(data);
+	    },
+	    error: function () {
+	        // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+	        location.reload(true);
+	        alert("통신실패");
+	    },
+	});
 });

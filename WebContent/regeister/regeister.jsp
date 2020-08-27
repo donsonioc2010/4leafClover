@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./regeister.css" />
   </head>
   <body lang="ko">
-  <center>
+	<div align='center'>
       <form action="regeisterAf.jsp" method="post" name="regeister_member" id="regeform">
         <table width="800">
           <tr height="40">
@@ -263,7 +263,7 @@
           </tr>
         </table>
       </form>
-</center>
+	</div>
     <script src="./regeister.js"></script>
   </body>
 </html>

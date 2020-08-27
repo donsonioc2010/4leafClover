@@ -1,10 +1,9 @@
 var form = document.querySelector("#regeform");
 
-function goBack() {
-    location.href = "../login/login.jsp";
-}
+//login화면으로 돌아가기
+function goBack() {location.href = "../login/login.jsp";}
+//비밀번호가 맞는지 확인 맞으면 class명 same에 같다고 작성
 function isSame() {
-    //비밀번호가 맞는지 확인 맞으면 class명 same에 같다고 작성
 	if(form.pw.value != form.pwCheck.value){
 		same.innerHTML="<strong style='color:red;'>비밀번호가 맞지않습니다</strong>"
 	}else{

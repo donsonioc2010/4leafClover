@@ -32,9 +32,7 @@ public class sellerDto {
 	private String tel;
 	private String phone;
 	private String email;
-	public sellerDto() {
-		// TODO Auto-generated constructor stub
-	}
+	public sellerDto() {}
 	
 	public sellerDto(String id, String pw) {
 		super();
@@ -59,10 +57,7 @@ public class sellerDto {
 		this.tel = tel;
 		this.phone = phone;
 		this.email = email;
-	}
-	
-	
-	
+	}	
 	public sellerDto(String companyName, String ceo, String companyNumber, String businessCondition,
 			String businessKind, String address1, String address2, String address3, String tel,String phone,
 			String email) {
@@ -158,14 +153,4 @@ public class sellerDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Override
-	public String toString() {
-		return "sellerDto [id=" + id + ", pw=" + pw + ", companyName=" + companyName + ", ceo=" + ceo
-				+ ", companyNumber=" + companyNumber + ", businessCondition=" + businessCondition + ", businessKind="
-				+ businessKind + ", address1=" + address1 + ", address2=" + address2 + ", address3=" + address3
-				+ ", tel=" + tel + ", phone=" + phone + ", email=" + email + "]";
-	}
-	
-	
-	
 }

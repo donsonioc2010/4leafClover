@@ -11,12 +11,8 @@ import db.DBConnection;
 
 public class sellerDao {
 	private static sellerDao dao = new sellerDao();
-	private sellerDao() {
-		DBConnection.initConnection();
-	}
-	public static sellerDao getInstance() {
-		return dao;
-	}
+	private sellerDao() {DBConnection.initConnection();}
+	public static sellerDao getInstance() {return dao;}
 	
 	//관리자의 로그인 기능
 	public boolean sellerLogin(sellerDto dto) {
@@ -25,6 +21,7 @@ public class sellerDao {
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		boolean confirm = false;
+		
 		try {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -33,14 +30,9 @@ public class sellerDao {
 			psmt.setString(2, dto.getPw());
 			
 			//정보를 확인해서 널값인지 아닌지만 확인한다
-			if(psmt.executeQuery()!=null) {
-				confirm = true;
-			}	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, null);
-		}
+			if(psmt.executeQuery()!=null) {confirm = true;}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, null);}
 		return confirm;
 	}
 	
@@ -72,14 +64,11 @@ public class sellerDao {
 			psmt.setString(13, dto.getEmail());
 			
 			count = psmt.executeUpdate();			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, null);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, null);}
 		return count>0?true:false;	
 	}
+	
 	//id중복확인 null인경우에만(false인경우)에만 사용이 가능하다
 	public boolean confirmId(String id) {
 		String sql =" SELECT SELLER_ID FROM SELLER WHERE SELLER_ID = ?";
@@ -93,32 +82,16 @@ public class sellerDao {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1,id);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
-				confirm = true;
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}
+			if(rs.next()) {confirm = true;}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}
 		//데이터가 있을떄만 true
 		return confirm;
 	}
 	// seller 정보 불러오기
 	public List<sellerDto> getSellerInform(String id) {
-		String sql = " SELECT "
-				+ " SELLER_COMPANY_NAME,"
-				+ " SELLER_CEO, "
-				+ " SELLER_COMPANY_NUMBER,"
-				+ " SELLER_BUSINESS_CONDITION, "
-				+ " SELLER_BUSINESS_KIND, "
-				+ " SELLER_ADDRESS1,"
-				+ " SELLER_ADDRESS2, "
-				+ " SELLER_ADDRESS3, "
-				+ " SELLER_TEL_NUM, "
-				+ " SELLER_PHONE_NUM, "
-				+ " SELLER_EMAIL "
+		String sql = " SELECT  SELLER_COMPANY_NAME,  SELLER_CEO, SELLER_COMPANY_NUMBER, SELLER_BUSINESS_CONDITION, SELLER_BUSINESS_KIND, "
+				+ " SELLER_ADDRESS1, SELLER_ADDRESS2, SELLER_ADDRESS3, SELLER_TEL_NUM, SELLER_PHONE_NUM, SELLER_EMAIL "
 				+ " FROM SELLER WHERE SELLER_ID = ? ";
 		
 		Connection conn = null;
@@ -129,14 +102,11 @@ public class sellerDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 getSellerInform success");
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
-			System.out.println("2/6 getSellerInform success");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 getSellerInform success");
 			
 			while (rs.next()) {
 				int i = 1;
@@ -153,33 +123,16 @@ public class sellerDao {
 												rs.getString(i++));
 				list.add(dto);
 			}
-			System.out.println("4/6 getSellerInform success");
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, rs);
-		}
+		} catch (Exception e) {e.printStackTrace();}
+		finally {DBClose.close(psmt, conn, rs);}
 		return list;
-		
 	}
+	
 	// seller 정보 수정
 	public boolean updateSeller(sellerDto dto, String id) {
-		String sql = " UPDATE SELLER"
-				+ " SET SELLER_COMPANY_NAME=?, "
-				+ " SELLER_CEO=?, "
-				+ " SELLER_COMPANY_NUMBER=?, "
-				+ " SELLER_BUSINESS_CONDITION=?, "
-				+ " SELLER_BUSINESS_KIND=?, "
-				+ " SELLER_ADDRESS1=?, "
-				+ " SELLER_ADDRESS2=?, "
-				+ " SELLER_ADDRESS3=?, "
-				+ " SELLER_TEL_NUM=?, "
-				+ " SELLER_PHONE_NUM=?, "
-				+ " SELLER_EMAIL=?"
-				+ " WHERE SELLER_ID=? ";
+		String sql = " UPDATE SELLER SET SELLER_COMPANY_NAME=?, SELLER_CEO=?, SELLER_COMPANY_NUMBER=?, SELLER_BUSINESS_CONDITION=?, "
+				+ " SELLER_BUSINESS_KIND=?, SELLER_ADDRESS1=?, SELLER_ADDRESS2=?, SELLER_ADDRESS3=?, SELLER_TEL_NUM=?, SELLER_PHONE_NUM=?, "
+				+ " SELLER_EMAIL=?  WHERE SELLER_ID=? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -187,7 +140,6 @@ public class sellerDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 updateSeller success");
 			
 			psmt=conn.prepareStatement(sql);
 			
@@ -203,19 +155,14 @@ public class sellerDao {
 			psmt.setString(10, dto.getPhone());
 			psmt.setString(11, dto.getEmail());
 			psmt.setString(12, id);
-			System.out.println("2/6 updateSeller success");
 			
 			count = psmt.executeUpdate();
-			System.out.println("3/6 updateSeller success");
 			
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("updateSeller failed");
+			System.out.println("수정실패");
 			e.printStackTrace();
-		}finally {
-			DBClose.close(psmt, conn, null);
-		}
+		}finally {DBClose.close(psmt, conn, null);}
 		return count>0?true:false;
 	}
 
@@ -225,34 +172,24 @@ public class sellerDao {
 				" ALTER TABLE PRODUCT DISABLE CONSTRAINT FK_SELLERID ",
 				 "DELETE FROM SELLER WHERE SELLER_ID=? " ,
 				 "ALTER TABLE PRODUCT ENABLE NOVALIDATE CONSTRAINT FK_SELLERID",
-				 "ALTER TABLE BUYER ENABLE NOVALIDATE CONSTRAINT FK_BUYER_SELLER_ID"
-		};
+				 "ALTER TABLE BUYER ENABLE NOVALIDATE CONSTRAINT FK_BUYER_SELLER_ID"};
 		Connection conn = null;
 		PreparedStatement psmt = null;
-		System.out.println("1/6 delSeller success");
 		
 		int count = 0;
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("2/6 delSeller success");
 			for(int i=0; i<sql.length;i++) {
 				psmt =conn.prepareStatement(sql[i]);
 
 				if(i==2) {
 					psmt.setString(1, sellerId);
-					System.out.println("3/6 delSeller success");
 					count = psmt.executeUpdate();
-
-				}else {
-					psmt.executeUpdate();
-				}
-				
-				
+				}else {psmt.executeUpdate();}
 			}
-			System.out.println("4/6 accountdel success");
 		} catch (Exception e) {
-			System.out.println("fail accountdel");
+			System.out.println("삭제실패");
 			e.printStackTrace();
 		}finally {
 			DBClose.close(psmt, conn, null);

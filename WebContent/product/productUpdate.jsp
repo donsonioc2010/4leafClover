@@ -17,21 +17,16 @@ dto.setProductPieceBox(Integer.parseInt(request.getParameter("productPieceBox"))
 dto.setProductStandard(request.getParameter("productStandard"));//string
 
 boolean confirm = dao.updateProduct(dto);
-if(confirm){
-	%>
+if(confirm){%>
 	<script type="text/javascript">
 	alert('수정 성공');
-	window.self.close()
-	opener.location.reload()
 	</script>
-	<%
-}else{
-	%>
+<%}else{%>
 	<script type="text/javascript">
 	alert('수정 실패')
+	</script>
+<%}%>
+<script>
 	window.self.close()
 	opener.location.reload()
-	</script>
-	<%
-}
- %>
+</script>

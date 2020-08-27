@@ -69,10 +69,4 @@ public class productDto implements Serializable {
 		this.productStandard = productStandard;
 	}
 
-	@Override
-	public String toString() {
-		return "productDto [productSeq=" + productSeq + ", productName=" + productName + ", productUnit=" + productUnit
-				+ ", productTradePrice=" + productTradePrice + ", productSort=" + productSort + ", productPieceBox="
-				+ productPieceBox + ", productStandard=" + productStandard + "]";
-	}
 }
