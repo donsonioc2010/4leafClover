@@ -19,7 +19,6 @@ if(session.getAttribute("login")!=null){
 		width:100%;
 	}
 	header #header #nav_UnderBar table{
-		position: absolute;
 		margin-left: 35px;
 	}
 	header #header #nav_UnderBar table,
@@ -67,7 +66,6 @@ if(session.getAttribute("login")!=null){
 		border: none;
 		outline: none;
 		font-size: 16px;
-		
 	}
 	a .logo{
 		padding-left:10px;
@@ -82,10 +80,17 @@ if(session.getAttribute("login")!=null){
 		height: 65px;
 		background-color: white;
 		border-bottom: 4px solid darkgray;
+		display: flex;
 	}
-	.id{
-	color: gray;
+	#header #nav_UnderBar table{
+		margin-top:20px;
 	}
+	#header #nav_UnderBar table tbody td{
+		margin-left:5px;
+		margin-right:5px;
+	}
+	.id{color: gray;}
+	header #header  #left50{margin-left:2%;}
 	
 </style>
 </head>
@@ -97,40 +102,37 @@ if(session.getAttribute("login")!=null){
 					<li class="top_menu"><a href="/ProductManagementSystem/login/logout.jsp"><span>LOGOUT</span></a></li>	
 					<li class="top_menu"><a href="/ProductManagementSystem/myPage/myPage.jsp"><span>MYPAGE</span></a></li>
 					<li class="top_menu"><a href="/ProductManagementSystem/index.jsp"><span>HOME</span></a></li>
+					<%if(id!=null){%>
+						<li class="top_menu id"><%=id%>님 환영합니다</li>
+					<%} %>				
+									
 				</ul>
 			</div>
 			
 			<div align="center" id="header" >
 				<div id='nav_UnderBar'>
-					<table >
-						<tbody>
-							<tr>
-								<td>
-								<a href='/ProductManagementSystem/index.jsp'>
-								<img src="/ProductManagementSystem/image/logo.png"class='logo'>
-								</a>
-								</td>
-								<td>&emsp;</td>
-								<td>&emsp;</td>
-								<td>&emsp;</td>
-								<td>&emsp;</td>
-								<td>&emsp;</td>
-								<td><input onclick="movePage(1);" type="button" class="category" value="거래처"></td>
-								<td>&emsp;</td>
-								<td><input onclick="movePage(2);" type="button" class="category" value="품목 관리"></td>
-								<td>&emsp;</td>
-								<td><input onclick="movePage(3);" type="button" class="category" value="거래 원장"></td>
-								<td>&emsp;</td>
-								<td><input onclick="movePage(4);" type="button" class="category" value="거래 전표"></td>
-								<td>&emsp;</td>
-								<td><input onclick="movePage(5);" type="button" class="category" value="총매출"></td>
-								<td>&emsp;</td>
-								<%if(id!=null){%>
-								<td class="id"><%=id%>님 환영합니다</td>
-								<%} %>
-							</tr>
-						</tbody>
-					</table>
+					<div align='left'>
+						<a href='/ProductManagementSystem/index.jsp'>
+							<img src="/ProductManagementSystem/image/logo.png"class='logo'>
+						</a>
+					</div>
+					<div id='left50'>
+						<table >
+							<tbody>
+								<tr>
+									<td><input onclick="movePage(1);" type="button" class="category" value="거래처"></td>
+	
+									<td><input onclick="movePage(2);" type="button" class="category" value="품목 관리"></td>
+	
+									<td><input onclick="movePage(3);" type="button" class="category" value="거래 원장"></td>
+	
+									<td><input onclick="movePage(4);" type="button" class="category" value="거래 전표"></td>
+	
+									<td><input onclick="movePage(5);" type="button" class="category" value="총매출"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 			</nav>
@@ -142,10 +144,10 @@ if(session.getAttribute("login")!=null){
 				}else if(Num==2){
 					location.href = 'http://'+location.host + '/ProductManagementSystem/product/product.jsp'
 				}else if(Num==3){
-					location.href = 'http://'+location.host+'/ProductManagementSystem/tradeBook/tradeBooks.jsp'
+					location.href = 'http://'+location.host + '/ProductManagementSystem/tradeBook/tradeBooks.jsp'
 				}else if(Num==4){
 					location.href = 'http://'+location.host + '/ProductManagementSystem/order/MainOrder.jsp'
-				}else{
+				}else if(Num==5){
 					location.href = 'http://'+location.host + '/ProductManagementSystem/total/total.jsp'
 					 }	
 				}

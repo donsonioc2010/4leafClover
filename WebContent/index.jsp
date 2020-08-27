@@ -14,8 +14,8 @@ if(session.getAttribute("login")==null){
 		<meta charset="UTF-8">
 		<title>Main</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="./init.css?after" />
-		<link rel="stylesheet" href="./index.css?after" />
+        <link rel="stylesheet" href="./init.css" />
+		<link rel="stylesheet" href="./index.css" />
 	</head>
 	<body>
 		<%if(id!=null){ %>
@@ -94,7 +94,7 @@ if(session.getAttribute("login")==null){
                     </th>
                 </tr>
             </table>
-            <script src='./product/product.js'type='application/javascript'></script>
         </div> 
+        <script src='./product/product.js'type='application/javascript'></script>
 	</body>
 </html>
