@@ -27,7 +27,7 @@ if(session.getAttribute("login")!=null){
 				padding:8px;
 				padding-bottom:0px;
 			}
-			header #header #nav_UnderBar table td input{\background-color: white;}
+			header #header #nav_UnderBar table td input{background-color: white;}
 			header .top{
 		  		background-color:white;  
 				position: relative;
