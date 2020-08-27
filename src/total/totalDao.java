@@ -107,14 +107,21 @@ public class totalDao {
 	}
 
 	public List<totalMMDto> getCompanyTotal(String id) {
-		String sql = " SELECT DISTINCT B.BUYER_COMPANY_NAME, " + 
-				"O.ORDER_TOTAL, " + 
-				"O.ORDER_COLLECT_MONEY, " + 
-				"O.ORDER_NOT_COLLECT_MONEY " + 
-				"FROM ORDER_LIST O, buyer b " + 
-				"WHERE O.BUYER_SEQ=B.BUYER_SEQ " + 
-				"AND substr(o.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') " + 
-				"AND b.seller_id = ? ";
+		String sql = " SELECT bcn, "
+				+ " sum(ot), "
+				+ " sum(oc), "
+				+ " sum(onc) " + 
+				" FROM " + 
+				" (SELECT "
+				+ " b.buyer_company_name as bcn, "
+				+ " ORDER_TOTAL as ot, "
+				+ " ORDER_COLLECT_MONEY as oc, "
+				+ " ORDER_NOT_COLLECT_MONEY as onc " + 
+				" FROM ORDER_LIST o, buyer b " + 
+				" WHERE b.seller_id = ? " + 
+					" AND substr(o.ORDER_DATE,1,4) = TO_CHAR(SYSDATE,'YYYY') " + 
+						" AND O.BUYER_SEQ=B.BUYER_SEQ) "
+				+ " group by bcn ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
