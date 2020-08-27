@@ -233,7 +233,7 @@ public class BuyerDao {
         }
         return list;
     }    
-// �ŷ�ó �̸� Ŭ���� �ŷ����� �ҷ�����(�Ϸ�)-------------------------------------------------------------------
+// 거래처 리스트가져오기-------------------------------------------------------------------
 	public BuyerDto getBuyerInfo(int seq) {
 		BuyerDto dto= null;
 		String sql = "SELECT * FROM BUYER WHERE BUYER_SEQ = ?";
@@ -279,7 +279,7 @@ public class BuyerDao {
 		return dto;
 	}
 	
-// �ŷ�ó ���� (�Ϸ�/ string id �� �ٲٱ� ) -------------------------------------------------------
+// 거래처 수정-------------------------------------------------------
 	public boolean updateaccount(BuyerDto dto, int seq) {
 		String sql = " UPDATE BUYER SET "
 				+ " BUYER_COMPANY_NAME=?, "
@@ -337,7 +337,7 @@ public class BuyerDao {
 			return count>0?true:false;
 	}
 	
-// �ŷ�ó ����(�Ϸ�)----------------------------------------------------
+// 거래처 삭제----------------------------------------------------
 	public boolean accountdel(String sellerId, String buyerCompanyName){
 		
 		String sql[] = {" ALTER TABLE ORDER_LIST DISABLE CONSTRAINT FK_BUYER_SEQ ",

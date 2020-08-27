@@ -1,5 +1,14 @@
+<%@page import="org.apache.commons.math3.stat.inference.GTest"%>
+<%@page import="myPageSeller.sellerDao"%>
+<%@page import="Seller.sellerDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+String id = null;
+if(session.getAttribute("login")!=null){
+	id = (String)session.getAttribute("login");
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +32,10 @@
 		padding-bottom:0px;
 	}
 	header #header #nav_UnderBar table td input{
-		background-color: gray;
+		background-color: white;
 	}
 	header .top{
-  		background-color: ghostwhite;  
+  		background-color:white;  
 		position: relative;
 		left: 0;
 		padding: 0;
@@ -37,10 +46,10 @@
 	header .top span{
 		font-size: 16px;
 		line-height: 20px;
-		color: blue;
+		color: black;
 	}
 	header .top span:hover{
-		color: red;
+		color: lightgray;
 	}
 	header .top_bar{
 		display: inline;
@@ -52,24 +61,30 @@
 	}
 	header .top .top_bar a {text-decoration: none;}
 	header #header .category:hover{
-		color: white;
+		color: lightgray;
 	}
 	header #header .category{
 		border: none;
 		outline: none;
+		font-size: 16px;
+		
 	}
-	header .top a .logo{
+	a .logo{
 		padding-left:10px;
-		width:100px;
-		height:30px;
+		width:160px;
+		height:60px;
 	}
 	header #header{
 		width: 100%;
 	}
 	header #header #nav_UnderBar{
 		width: 100%; 
-		height: 35px;
-		background-color: gray
+		height: 65px;
+		background-color: white;
+		border-bottom: 4px solid darkgray;
+	}
+	.id{
+	color: gray;
 	}
 	
 </style>
@@ -78,13 +93,10 @@
 		<header>
 			<nav>
 			<div class="top">
-				<a href='/ProductManagementSystem/index.jsp'>
-					<img src="/ProductManagementSystem/image/logo.png"class='logo'>
-				</a>
 				<ul class="top_bar">
-					<li class="top_menu"><a href="/ProductManagementSystem/login/logout.jsp"><span>로그아웃</span></a></li>
-					<li class="top_menu"><a href="/ProductManagementSystem/myPage/myPage.jsp"><span>마이페이지</span></a></li>
-					<li class="top_menu"><a href="/ProductManagementSystem/total/total.jsp"><span>총매출</span></a></li>
+					<li class="top_menu"><a href="/ProductManagementSystem/login/logout.jsp"><span>LOGOUT</span></a></li>	
+					<li class="top_menu"><a href="/ProductManagementSystem/myPage/myPage.jsp"><span>MYPAGE</span></a></li>
+					<li class="top_menu"><a href="/ProductManagementSystem/index.jsp"><span>HOME</span></a></li>
 				</ul>
 			</div>
 			
@@ -93,13 +105,29 @@
 					<table >
 						<tbody>
 							<tr>
+								<td>
+								<a href='/ProductManagementSystem/index.jsp'>
+								<img src="/ProductManagementSystem/image/logo.png"class='logo'>
+								</a>
+								</td>
+								<td>&emsp;</td>
+								<td>&emsp;</td>
+								<td>&emsp;</td>
+								<td>&emsp;</td>
+								<td>&emsp;</td>
 								<td><input onclick="movePage(1);" type="button" class="category" value="거래처"></td>
-								<td>|</td>
+								<td>&emsp;</td>
 								<td><input onclick="movePage(2);" type="button" class="category" value="품목 관리"></td>
-								<td>|</td>
+								<td>&emsp;</td>
 								<td><input onclick="movePage(3);" type="button" class="category" value="거래 원장"></td>
-								<td>|</td>
+								<td>&emsp;</td>
 								<td><input onclick="movePage(4);" type="button" class="category" value="거래 전표"></td>
+								<td>&emsp;</td>
+								<td><input onclick="movePage(5);" type="button" class="category" value="총매출"></td>
+								<td>&emsp;</td>
+								<%if(id!=null){%>
+								<td class="id"><%=id%>님 환영합니다</td>
+								<%} %>
 							</tr>
 						</tbody>
 					</table>
@@ -115,10 +143,12 @@
 					location.href = 'http://'+location.host + '/ProductManagementSystem/product/product.jsp'
 				}else if(Num==3){
 					location.href = 'http://'+location.host+'/ProductManagementSystem/tradeBook/tradeBooks.jsp'
-				}else{
+				}else if(Num==4){
 					location.href = 'http://'+location.host + '/ProductManagementSystem/order/MainOrder.jsp'
+				}else{
+					location.href = 'http://'+location.host + '/ProductManagementSystem/total/total.jsp'
+					 }	
 				}
-			}
 		</script>
 	</body>
 </html>
