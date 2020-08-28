@@ -70,14 +70,16 @@ table, th, tr, td {
 	background: #2B2E7E;
 	color: white;
 }
+
 .modalfixed_top {
-	 top: 88px;
-	 display: inline-table;
-	 position: fixed;
-	 width: calc(100% - 48px);
-	 background: #2B2E7E;
-	 color: white;
+	top: 88px;
+	display: inline-table;
+	position: fixed;
+	width: calc(100% - 48px);
+	background: #2B2E7E;
+	color: white;
 }
+
 button {
 	font-size: 14px;
 }
@@ -93,7 +95,6 @@ button {
 }
 
 .table-condensed {
-	
 	table-layout: fixed;
 }
 
@@ -110,7 +111,7 @@ button {
 	width: 80%;
 	margin-top: 3%;
 	margin-left: 10%;
-	padding: 7%;
+	padding: 3%;
 	background-color: white;
 	display: block;
 	box-shadow: 3px 3px 3px 3px #999;
@@ -225,8 +226,24 @@ input:focus::-ms-input-placeholder {
 	height: 0px;
 	border: 0px;
 }
-.modals { background-color: #ffffff; cursor: pointer; }
-	#wrapper {  }
-	.mouseenter { background: #50BCDF; }
-	.mouseleave { background: white; }
-	.selected { background: #eeeeea; }
+
+.modals {
+	background-color: #ffffff;
+	cursor: pointer;
+}
+
+#wrapper {
+	
+}
+
+.mouseenter {
+	background: #50BCDF;
+}
+
+.mouseleave {
+	background: white;
+}
+
+.selected {
+	background: #eeeeea;
+}

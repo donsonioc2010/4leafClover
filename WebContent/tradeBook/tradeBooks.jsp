@@ -85,6 +85,12 @@ if(searchWord !=null){
 		<!--거래처정보를 얻어오기위해 텍스트input 생성 -->
 <div class="searchclass">
 	<div class="panel-default">
+					<div align="right"style="margin-bottom: 18px;">
+					<label>납품일정: </label> <select name='year'id='year'onload='getMonthDay();'></select> 년
+					<select name='month'id='month'onload='getMonthDay();'></select> 월
+					<select name='day'id='day'></select> 일
+					<button class="btn btn-primary"id="stateMentOutputModalBtn" data-target="#layerpop2" data-toggle="modal">명세서출력</button>
+					</div>
 				<div id="jb-content">
 					<label>거래처정보</label> <input type="text" placeholder="거래처입력란"class="searchword" value="<%=searchWord%>">
 					<button class="glyphicon glyphicon-search"onclick="searchbooks()">검색</button> <!--클릭시검색함수로이동하여 처리한다. -->
@@ -98,10 +104,6 @@ if(searchWord !=null){
 					<!--거래처 모달형태 신규거래처를 추가적으로 기입하고 DB에 INSERT함--> 
 					<button class="btn btn-primary"id='addBuyerModalBtn'data-target="#layerpop1" data-toggle="modal">거래처추가</button>
 					<button class="btn btn-primary"id="deleteBuyerModalBtn"data-target="#layerpop3" data-toggle="modal">거래처삭제</button>&nbsp;&nbsp;
-					<label>거래일자</label> <select name='year'id='year'onload='getMonthDay();'></select> 년
-					<select name='month'id='month'onload='getMonthDay();'></select> 월
-					<select name='day'id='day'></select> 일
-					<button class="btn btn-primary"id="stateMentOutputModalBtn" data-target="#layerpop2" data-toggle="modal">명세서출력</button>
 				</div>
 
 			
@@ -124,7 +126,7 @@ if(searchWord !=null){
 							<th>최종거래일</th>
 							<th>메모</th>
 						</tr>
-							</thead><!--상단 td 태그 덮힘으로 강제 개행시켜버림  -->
+							</thead>
 					
 						
 						<% 
