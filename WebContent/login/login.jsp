@@ -72,7 +72,6 @@
 			},
 			success:function(data){
 				if(data.result == true){
-					 alert("로그인성공")
 					 location.href = "../index.jsp";
 				}else{
 					document.getElementById('alert').innerText = 'ID 또는 PW가 잘못되었습니다.'

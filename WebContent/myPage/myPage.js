@@ -1,9 +1,3 @@
-$("#saveBtn").on("click", function() {
-	let companyName = $("#companyName").val();
-	alert("companyName"+companyName);
-});
-
-
 
 function getPostNum() {
         new daum.Postcode({
