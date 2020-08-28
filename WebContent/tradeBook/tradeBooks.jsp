@@ -117,7 +117,7 @@ if(searchWord !=null){
 									<th>사업자번호</th>
 									<th>회사전화번호</th>
 									<th>담당자</th>
-									<th>최종거래일</th>
+									<th>계약시작일</th>
 									<th>메모</th>
 								</tr>
 							</thead><!--상단 td 태그 덮힘으로 강제 개행시켜버림  -->
